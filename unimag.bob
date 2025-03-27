@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Saved on 2025-03-24 23:08:16 by andreamichelotti-->
+<display version="2.0.0">
+  <name>UniMagterminal</name>
+  <width>681</width>
+  <height>710</height>
+  <widget type="action_button" version="3.0.0">
+    <name>Documentation</name>
+    <actions>
+      <action type="open_webpage">
+        <description>Confluence Documentation</description>
+        <url>$(DOCURL)</url>
+      </action>
+      <action type="open_display">
+        <description>Debug</description>
+        <file>debuginfo.bob</file>
+        <target>window</target>
+      </action>
+    </actions>
+    <text>Help..</text>
+    <x>310</x>
+    <width>150</width>
+    <height>28</height>
+    <font>
+      <font family="Arial" style="REGULAR" size="14.0">
+      </font>
+    </font>
+    <tooltip>$(actions)</tooltip>
+    <confirm_message>Are you sure your system is configured to access external web pages?</confirm_message>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Documentation_1</name>
+    <actions>
+      <action type="open_display">
+        <description>Load Dataset</description>
+        <file>loadMagnets.bob</file>
+        <target>window</target>
+      </action>
+      <action type="open_display">
+        <description>Save Dataset</description>
+        <file>saveDialog.bob</file>
+        <target>window</target>
+      </action>
+      <action type="open_display">
+        <description>Pretune</description>
+        <file>pretune/pretune.bob</file>
+        <target>window</target>
+      </action>
+      <action type="open_sar_filter">
+        <description>Open SaR filter</description>
+        <filter_id></filter_id>
+      </action>
+    </actions>
+    <text>Tools...</text>
+    <x>1</x>
+    <width>140</width>
+    <height>28</height>
+    <font>
+      <font family="Arial" style="REGULAR" size="14.0">
+      </font>
+    </font>
+    <tooltip>$(actions)</tooltip>
+    <confirm_message>Are you sure your system is configured to access external web pages?</confirm_message>
+  </widget>
+  <widget type="navtabs" version="2.0.0">
+    <name>UniNavigation</name>
+    <tabs>
+      <tab>
+        <name>ALL</name>
+        <file>magnet-array-main.bob</file>
+        <macros>
+          <TYPE>ALL</TYPE>
+        </macros>
+        <group_name></group_name>
+      </tab>
+      <tab>
+        <name>Dipole</name>
+        <file>magnet-array-main.bob</file>
+        <macros>
+          <TYPE>DIP</TYPE>
+        </macros>
+        <group_name></group_name>
+      </tab>
+      <tab>
+        <name>Quadrupoles</name>
+        <file>magnet-array-main.bob</file>
+        <macros>
+          <TYPE>QUA</TYPE>
+        </macros>
+        <group_name></group_name>
+      </tab>
+      <tab>
+        <name>Correctors</name>
+        <file>magnet-array-main.bob</file>
+        <macros>
+          <TYPE>COR</TYPE>
+        </macros>
+        <group_name></group_name>
+      </tab>
+      <tab>
+        <name>Solenoids</name>
+        <file>magnet-array-main.bob</file>
+        <macros>
+          <TYPE>SOL</TYPE>
+        </macros>
+        <group_name></group_name>
+      </tab>
+    </tabs>
+    <x>1</x>
+    <y>40</y>
+    <width>679</width>
+    <height>670</height>
+    <direction>0</direction>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_5</name>
+    <text>Selected</text>
+    <x>490</x>
+    <y>11</y>
+    <width>80</width>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update</name>
+    <pv_name>loc://magnets_selected&lt;VLong&gt;(0)</pv_name>
+    <x>559</x>
+    <y>10</y>
+    <width>51</width>
+    <format>1</format>
+    <precision>0</precision>
+  </widget>
+</display>
