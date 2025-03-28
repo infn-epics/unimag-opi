@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2025-03-24 17:13:18 by andreamichelotti-->
+<!--Saved on 2025-03-28 16:54:32 by andreamichelotti-->
 <display version="2.0.0">
   <name>MagnetChannelSet</name>
   <y>2</y>
-  <width>565</width>
+  <width>610</width>
   <height>30</height>
   <widget type="group" version="3.0.0">
     <name>Settings</name>
@@ -96,5 +96,15 @@
       <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
       </font>
     </font>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>LED_2</name>
+    <pv_name> =abs(`$(P):$(R):current` -`loc://apply:unimag:$(P):$(R):current`)&lt;0.5</pv_name>
+    <x>580</x>
+    <y>2</y>
+    <off_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </off_color>
   </widget>
 </display>

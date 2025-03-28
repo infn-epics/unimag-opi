@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2025-03-24 17:13:26 by andreamichelotti-->
+<!--Saved on 2025-03-28 16:34:37 by andreamichelotti-->
 <display version="2.0.0">
   <name>Display-load</name>
-  <width>560</width>
+  <width>610</width>
   <height>800</height>
   <scripts>
     <script file="scripts/LoadDataSet.py">
@@ -12,7 +12,7 @@
   <widget type="embedded" version="2.0.0">
     <name>element_template</name>
     <file>MagnetChannelSet.bob</file>
-    <width>560</width>
+    <width>610</width>
     <height>30</height>
     <visible>false</visible>
   </widget>

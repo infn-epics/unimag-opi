@@ -57,8 +57,12 @@ if name:
             widget.runtimeChildren().addChild(instance)
             loc_current = PVUtil.createPV("loc://apply:unimag:"+prefix+":"+identifier+":current",10)
             loc_state = PVUtil.createPV("loc://apply:unimag:"+prefix+":"+identifier+":state",10)
+            loc_current_ok = PVUtil.createPV("loc://apply:unimag:"+prefix+":"+identifier+":current:ok",10)
+            loc_state_ok = PVUtil.createPV("loc://apply:unimag:"+prefix+":"+identifier+":state:ok",10)
             loc_current.write(d['Current'])
             loc_state.write(d['State'])
+            loc_current_ok.write(1)
+            loc_state_ok.write(1)
 
             # if d['State']=="ON":
             #     loc_state.write(1)
@@ -116,7 +120,10 @@ if name:
                                 found=True
                                 loc_current = PVUtil.createPV("loc://apply:unimag:"+prefix+":"+identifier+":current",10)
                                 loc_state = PVUtil.createPV("loc://apply:unimag:"+prefix+":"+identifier+":state",10)
-                        
+                                loc_current_ok = PVUtil.createPV("loc://apply:unimag:"+prefix+":"+identifier+":current:ok",10)
+                                loc_state_ok = PVUtil.createPV("loc://apply:unimag:"+prefix+":"+identifier+":state:ok",10)
+                                loc_current_ok.write(1)
+                                loc_state_ok.write(1)
                         if not found:
                             print "%% not found: "+identifier + " in "+conffile
                             continue

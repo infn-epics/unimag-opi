@@ -39,13 +39,13 @@ if name:
     # Parse conf file
 
     fcsvn= name + ".sar.csv"
-    fcsvn_value= name + ".value.csv"
+    fcsvn_value_name= name + ".value.csv"
 
     print("Generating:" + fcsvn)
 
     # Open a file for writing
     fcsv = open(fcsvn, 'w')
-    fcsvn_value = open(fcsvn_value, 'w')
+    fcsvn_value = open(fcsvn_value_name, 'w')
 
     fcsv.write("PV,READBACK,READ_ONLY\n")
     fcsvn_value.write("Name,Prefix,Current,State\n")
@@ -101,4 +101,4 @@ if name:
                         
     fcsv.close()
     fcsvn_value.close()
-    ScriptUtil.showMessageDialog(widget, "Generated \"" + fcsvn + "\" SAR file & dumped values to \"" + fcsvn_value + "\"")
+    ScriptUtil.showMessageDialog(widget, "Generated \"" + fcsvn + "\" SAR file & dumped values to \"" + fcsvn_value_name + "\"")

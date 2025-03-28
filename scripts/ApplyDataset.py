@@ -27,9 +27,13 @@ for pvr in pvs:
     name=pv.getName()
     if name.endswith(":ok"):
         continue
-    if name.startswith("loc://apply:unimag:"):
+
+    if name.startswith("loc://apply:unimag:") and not name.endswith(":"):
+        print ("****** processing "+name)
+
         local = PVUtil.createPV(name,10)
-        #localok = PVUtil.createPV(name+":ok",10)
+        localok = PVUtil.createPV(name+":ok",10)
+        localok.write(1)
 
         ## remove the prefix
         rname=name.replace("loc://apply:unimag:","")
@@ -37,9 +41,9 @@ for pvr in pvs:
         try:
             remote = PVUtil.createPV(rname,100)
             print ("APPLY "+rname+"="+ name+"="+str(pvread))
-            PVUtil.writePV(name+":ok",0,0)
-            #localok.write(0)
+            #PVUtil.writePV(name+":ok",0,0)
             remote.write(local.read().getValue())
+            localok.write(0)
         except:
             print ("## Error APPLING "+rname+"="+ name+"="+str(pvread))
 
