@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2025-07-03 09:34:04 by andreamichelotti-->
+<!--Saved on 2025-07-03 16:06:59 by andreamichelotti-->
 <display version="2.0.0">
   <width>501</width>
   <height>747</height>
@@ -795,7 +795,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text_up_limitI</name>
-    <pv_name>$(P):$(R):LimitMaxI</pv_name>
+    <pv_name>$(P):$(R):rangeI</pv_name>
     <x>117</x>
     <y>114</y>
     <width>45</width>
@@ -1147,7 +1147,7 @@
     </actions>
     <widget type="combo" version="2.0.0">
       <name>combo_scan_period</name>
-      <pv_name>caenels:fastps:ReadbackPoll_.SCAN</pv_name>
+      <pv_name>$(P):$(R):ReadbackPoll_.SCAN</pv_name>
       <y>15</y>
       <height>31</height>
       <background_color>
@@ -1175,7 +1175,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text_up_limitV</name>
-    <pv_name>$(P):$(R):LimitMaxV</pv_name>
+    <pv_name>$(P):$(R):rangeV</pv_name>
     <x>172</x>
     <y>114</y>
     <width>45</width>
