@@ -4,7 +4,7 @@
   <name>magnetdisplay</name>
   <width>660</width>
   <scripts>
-    <script file="scripts/YAMLLoadDevicePopulateArray.py" check_connections="false">
+    <script file="../Scripts/YAMLLoadDevicePopulateArray.py" check_connections="false">
     </script>
   </scripts>
   <widget type="embedded" version="2.0.0">
