@@ -16,7 +16,7 @@
     </line_color>
     <widget type="textupdate" version="2.0.0">
       <name>Text Update</name>
-      <pv_name>$(P):$(R):current_rb</pv_name>
+      <pv_name>$(P):$(R):CURRENT_RB</pv_name>
       <x>115</x>
       <y>2</y>
       <width>95</width>
@@ -43,14 +43,14 @@
           <exp bool_exp="(pv0==0)||(pv1==2)">
             <value>icons/icons-2407/open.png</value>
           </exp>
-          <pv_name>$(P):$(R):current_rb</pv_name>
-          <pv_name>$(P):$(R):state_rb</pv_name>
+          <pv_name>$(P):$(R):CURRENT_RB</pv_name>
+          <pv_name>$(P):$(R):STATE_RB</pv_name>
         </rule>
       </rules>
     </widget>
     <widget type="symbol" version="2.0.0">
       <name>Mode</name>
-      <pv_name>$(P):$(R):state_rb</pv_name>
+      <pv_name>$(P):$(R):STATE_RB</pv_name>
       <symbols>
         <symbol>icons/icons-2407/off.png</symbol>
         <symbol>icons/icons-2407/oper.png</symbol>
@@ -70,7 +70,7 @@ $(actions)</tooltip>
     </widget>
     <widget type="textupdate" version="2.0.0">
       <name>Text Update_4</name>
-      <pv_name>$(P):$(R):state_rb</pv_name>
+      <pv_name>$(P):$(R):STATE_RB</pv_name>
       <x>301</x>
       <y>2</y>
       <width>40</width>
@@ -129,7 +129,7 @@ else:
           <value>ON</value>
         </action>
       </actions>
-      <pv_name>$(P):$(R):state</pv_name>
+      <pv_name>$(P):$(R):STATE_SP</pv_name>
       <x>63</x>
       <y>1</y>
       <width>46</width>
@@ -142,13 +142,13 @@ else:
           <exp bool_exp="pvStr0==&quot;STANDBY&quot;">
             <value>true</value>
           </exp>
-          <pv_name>$(P):$(R):state_rb</pv_name>
+          <pv_name>$(P):$(R):STATE_RB</pv_name>
         </rule>
       </rules>
     </widget>
     <widget type="textentry" version="3.0.0">
       <name>entryCurrent</name>
-      <pv_name>$(P):$(R):current</pv_name>
+      <pv_name>$(P):$(R):CURRENT_SP</pv_name>
       <x>2</x>
       <y>5</y>
       <width>61</width>
@@ -166,7 +166,7 @@ else:
           <value>STANDBY</value>
         </action>
       </actions>
-      <pv_name>$(P):$(R):state</pv_name>
+      <pv_name>$(P):$(R):STATE_SP</pv_name>
       <x>111</x>
       <y>1</y>
       <width>46</width>
@@ -179,7 +179,7 @@ else:
           <exp bool_exp="pvStr0==&quot;STANDBY&quot;">
             <value>false</value>
           </exp>
-          <pv_name>$(P):$(R):state_rb</pv_name>
+          <pv_name>$(P):$(R):STATE_RB</pv_name>
         </rule>
       </rules>
     </widget>
@@ -220,7 +220,7 @@ else:
           <value>RESET</value>
         </action>
       </actions>
-      <pv_name>$(P):$(R):state</pv_name>
+      <pv_name>$(P):$(R):STATE_SP</pv_name>
       <x>157</x>
       <y>1</y>
       <width>46</width>
