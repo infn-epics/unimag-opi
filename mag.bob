@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2025-07-19 11:25:20 by andreamichelotti-->
+<!--Saved on 2025-07-21 15:01:10 by andreamichelotti-->
 <display version="2.0.0">
   <name>UniMagterminal</name>
-  <width>751</width>
-  <height>840</height>
+  <width>780</width>
+  <height>830</height>
   <widget type="action_button" version="3.0.0">
     <name>Documentation</name>
     <actions>
@@ -20,40 +20,6 @@
     <text>Help..</text>
     <x>310</x>
     <width>150</width>
-    <height>28</height>
-    <font>
-      <font family="Arial" style="REGULAR" size="14.0">
-      </font>
-    </font>
-    <tooltip>$(actions)</tooltip>
-    <confirm_message>Are you sure your system is configured to access external web pages?</confirm_message>
-  </widget>
-  <widget type="action_button" version="3.0.0">
-    <name>Documentation_1</name>
-    <actions>
-      <action type="open_display">
-        <description>Load Dataset</description>
-        <file>loadMagnets.bob</file>
-        <target>window</target>
-      </action>
-      <action type="open_display">
-        <description>Save Dataset</description>
-        <file>saveDialog.bob</file>
-        <target>window</target>
-      </action>
-      <action type="open_display">
-        <description>Pretune</description>
-        <file>pretune/pretune.bob</file>
-        <target>window</target>
-      </action>
-      <action type="open_sar_filter">
-        <description>Open SaR filter</description>
-        <filter_id></filter_id>
-      </action>
-    </actions>
-    <text>Tools...</text>
-    <x>1</x>
-    <width>140</width>
     <height>28</height>
     <font>
       <font family="Arial" style="REGULAR" size="14.0">
@@ -106,9 +72,8 @@
         <group_name></group_name>
       </tab>
     </tabs>
-    <x>1</x>
-    <y>40</y>
-    <width>749</width>
+    <y>30</y>
+    <width>780</width>
     <height>800</height>
     <direction>0</direction>
   </widget>

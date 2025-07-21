@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2025-07-19 01:01:07 by andreamichelotti-->
+<!--Saved on 2025-07-21 15:03:48 by andreamichelotti-->
 <display version="2.0.0">
   <name>MAGMagnetArrayMain</name>
-  <width>690</width>
+  <width>780</width>
   <height>720</height>
   <widget type="embedded" version="2.0.0">
     <name>Embedded Display</name>
@@ -88,5 +88,43 @@ for pvr in lpvs:
         <pv_name>$(pv_name)</pv_name>
       </script>
     </scripts>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Tools</name>
+    <actions>
+      <action type="open_display">
+        <description>Load Dataset</description>
+        <file>../LoadDataset.bob</file>
+        <target>window</target>
+      </action>
+      <action type="execute">
+        <description>Save Dataset</description>
+        <script file="../Scripts/dumppv_to_file.py">
+        </script>
+      </action>
+      <action type="execute">
+        <description>Copy PV</description>
+        <script file="../Scripts/dumppv.py">
+        </script>
+      </action>
+      <action type="open_display">
+        <description>Pretune</description>
+        <file>pretune/pretune.bob</file>
+        <target>window</target>
+      </action>
+      <action type="open_sar_filter">
+        <description>Open SaR filter</description>
+        <filter_id></filter_id>
+      </action>
+    </actions>
+    <text>Tools...</text>
+    <x>670</x>
+    <height>28</height>
+    <font>
+      <font family="Arial" style="REGULAR" size="14.0">
+      </font>
+    </font>
+    <tooltip>$(actions)</tooltip>
+    <confirm_message>Are you sure your system is configured to access external web pages?</confirm_message>
   </widget>
 </display>
