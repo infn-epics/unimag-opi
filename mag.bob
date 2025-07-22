@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2025-07-21 15:01:10 by andreamichelotti-->
+<!--Saved on 2025-07-19 11:25:20 by andreamichelotti-->
 <display version="2.0.0">
   <name>UniMagterminal</name>
-  <width>780</width>
-  <height>830</height>
+  <width>751</width>
+  <height>840</height>
   <widget type="action_button" version="3.0.0">
     <name>Documentation</name>
     <actions>
@@ -28,6 +28,7 @@
     <tooltip>$(actions)</tooltip>
     <confirm_message>Are you sure your system is configured to access external web pages?</confirm_message>
   </widget>
+  
   <widget type="navtabs" version="2.0.0">
     <name>MagNavigation</name>
     <tabs>
@@ -35,7 +36,7 @@
         <name>ALL</name>
         <file>mag_array.bob</file>
         <macros>
-          <TYPE>ALL</TYPE>
+          <FUNC>ALL</FUNC>
         </macros>
         <group_name></group_name>
       </tab>
@@ -43,7 +44,7 @@
         <name>Dipole</name>
         <file>mag_array.bob</file>
         <macros>
-          <TYPE>DIP</TYPE>
+          <FUNC>DIP</FUNC>
         </macros>
         <group_name></group_name>
       </tab>
@@ -51,7 +52,7 @@
         <name>Quadrupoles</name>
         <file>mag_array.bob</file>
         <macros>
-          <TYPE>QUA</TYPE>
+          <FUNC>QUA</FUNC>
         </macros>
         <group_name></group_name>
       </tab>
@@ -59,7 +60,7 @@
         <name>Correctors</name>
         <file>mag_array.bob</file>
         <macros>
-          <TYPE>COR</TYPE>
+          <FUNC>COR</FUNC>
         </macros>
         <group_name></group_name>
       </tab>
@@ -67,13 +68,14 @@
         <name>Solenoids</name>
         <file>mag_array.bob</file>
         <macros>
-          <TYPE>SOL</TYPE>
+          <FUNC>SOL</FUNC>
         </macros>
         <group_name></group_name>
       </tab>
     </tabs>
-    <y>30</y>
-    <width>780</width>
+    <x>1</x>
+    <y>40</y>
+    <width>749</width>
     <height>800</height>
     <direction>0</direction>
   </widget>
