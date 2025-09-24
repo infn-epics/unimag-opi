@@ -1,194 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2025-09-24 by GitHub Copilot - Improved version-->
 <display version="2.0.0">
   <name>Hazemeyer Power Supply Control</name>
-  <width>1200</width>
-  <height>800</height>
-  <background_color>
-    <color name="Background" red="240" green="240" blue="240">
-    </color>
-  </background_color>
-  
-  <!-- Title -->
+  <width>1298</width>
+  <height>770</height>
+  <grid_visible>false</grid_visible>
   <widget type="label" version="2.0.0">
     <name>Title</name>
     <class>TITLE</class>
     <text>Hazemeyer Serial Power Supply - $(P):$(R)</text>
-    <x>10</x>
-    <y>10</y>
+    <x use_class="true">0</x>
+    <y use_class="true">0</y>
     <width>1180</width>
     <height>40</height>
-    <font>
-      <font name="Header 1" family="Liberation Sans" style="BOLD" size="24.0">
+    <font use_class="true">
+      <font name="Header 1" family="Liberation Sans" style="BOLD" size="22.0">
       </font>
     </font>
-    <foreground_color>
-      <color name="Header" red="0" green="0" blue="128">
+    <foreground_color use_class="true">
+      <color name="Text" red="0" green="0" blue="0">
       </color>
     </foreground_color>
     <background_color>
-      <color name="Header_Background" red="220" green="220" blue="255">
+      <color name="Header_Background" red="77" green="77" blue="77">
       </color>
     </background_color>
+    <transparent use_class="true">true</transparent>
     <horizontal_alignment>1</horizontal_alignment>
   </widget>
-
-  <!-- Status Overview Bar -->
   <widget type="group" version="3.0.0">
     <name>Status_Overview</name>
     <x>10</x>
     <y>60</y>
     <width>1180</width>
     <height>60</height>
-    <border_color>
-      <color red="128" green="128" blue="128">
-      </color>
-    </border_color>
-    
     <widget type="led" version="2.0.0">
       <name>Power_LED</name>
       <pv_name>$(P):$(R):OPERATIONAL</pv_name>
       <x>20</x>
-      <y>15</y>
       <width>30</width>
       <height>30</height>
-      <off_color>
-        <color name="Off" red="60" green="100" blue="60">
-        </color>
-      </off_color>
-      <on_color>
-        <color name="On" red="0" green="255" blue="0">
-        </color>
-      </on_color>
     </widget>
-    
     <widget type="label" version="2.0.0">
       <name>Power_Label</name>
       <text>Power</text>
-      <x>60</x>
-      <y>20</y>
+      <x>50</x>
       <width>60</width>
-      <height>20</height>
     </widget>
-    
     <widget type="led" version="2.0.0">
       <name>Fault_LED</name>
       <pv_name>$(P):$(R):ALL_FAULT</pv_name>
       <x>140</x>
-      <y>15</y>
       <width>30</width>
       <height>30</height>
-      <off_color>
-        <color name="Off" red="60" green="100" blue="60">
-        </color>
-      </off_color>
       <on_color>
         <color name="Alarm" red="255" green="0" blue="0">
         </color>
       </on_color>
     </widget>
-    
     <widget type="label" version="2.0.0">
       <name>Fault_Label</name>
       <text>Fault</text>
       <x>180</x>
-      <y>20</y>
       <width>60</width>
-      <height>20</height>
     </widget>
-    
     <widget type="textupdate" version="2.0.0">
       <name>State_Display</name>
       <pv_name>$(P):$(R):STATE_RB</pv_name>
       <x>300</x>
-      <y>15</y>
       <width>120</width>
       <height>30</height>
       <font>
         <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
         </font>
       </font>
-      <foreground_color>
-        <color name="Text" red="0" green="0" blue="0">
-        </color>
-      </foreground_color>
-      <background_color>
-        <color name="Read_Background" red="255" green="255" blue="255">
-        </color>
-      </background_color>
       <horizontal_alignment>1</horizontal_alignment>
     </widget>
-    
     <widget type="label" version="2.0.0">
       <name>State_Label</name>
       <text>State:</text>
       <x>250</x>
-      <y>20</y>
       <width>50</width>
-      <height>20</height>
     </widget>
-
     <widget type="textupdate" version="2.0.0">
       <name>Current_Display</name>
       <pv_name>$(P):$(R):CURRENT_RB</pv_name>
       <x>500</x>
-      <y>15</y>
-      <width>100</width>
       <height>30</height>
-      <precision>2</precision>
       <font>
         <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
         </font>
       </font>
+      <precision>2</precision>
       <horizontal_alignment>2</horizontal_alignment>
     </widget>
-    
     <widget type="label" version="2.0.0">
       <name>Current_Display_Label</name>
       <text>Current [A]:</text>
       <x>440</x>
-      <y>20</y>
       <width>80</width>
-      <height>20</height>
     </widget>
-
     <widget type="textupdate" version="2.0.0">
       <name>Voltage_Display</name>
       <pv_name>$(P):$(R):VOLTAGE_RB</pv_name>
       <x>680</x>
-      <y>15</y>
-      <width>100</width>
       <height>30</height>
-      <precision>1</precision>
       <font>
         <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
         </font>
       </font>
+      <precision>1</precision>
       <horizontal_alignment>2</horizontal_alignment>
     </widget>
-    
     <widget type="label" version="2.0.0">
       <name>Voltage_Display_Label</name>
       <text>Voltage [V]:</text>
       <x>620</x>
-      <y>20</y>
       <width>80</width>
-      <height>20</height>
     </widget>
   </widget>
-
-  <!-- Control Panel -->
   <widget type="group" version="3.0.0">
     <name>Control_Panel</name>
     <x>10</x>
     <y>140</y>
     <width>580</width>
     <height>280</height>
-    <border_color>
-      <color red="128" green="128" blue="128">
-      </color>
-    </border_color>
-    
     <widget type="label" version="2.0.0">
       <name>Control_Title</name>
       <text>Control Panel</text>
@@ -197,7 +132,7 @@
       <width>200</width>
       <height>25</height>
       <font>
-        <font name="Header 2" family="Liberation Sans" style="BOLD" size="16.0">
+        <font name="Header 2" family="Liberation Sans" style="BOLD" size="18.0">
         </font>
       </font>
       <foreground_color>
@@ -205,50 +140,34 @@
         </color>
       </foreground_color>
     </widget>
-
-    <!-- State Control -->
     <widget type="combo" version="2.0.0">
       <name>State_Control</name>
       <pv_name>$(P):$(R):STATE_SP</pv_name>
       <x>150</x>
       <y>50</y>
       <width>120</width>
-      <height>30</height>
     </widget>
-    
     <widget type="label" version="2.0.0">
       <name>State_Control_Label</name>
       <text>State:</text>
       <x>20</x>
       <y>55</y>
-      <width>100</width>
-      <height>20</height>
     </widget>
-
-    <!-- Current Setpoint -->
     <widget type="textentry" version="3.0.0">
       <name>Current_SP</name>
       <pv_name>$(P):$(R):CURRENT_SP</pv_name>
       <x>150</x>
       <y>90</y>
-      <width>100</width>
       <height>30</height>
       <precision>2</precision>
-      <background_color>
-        <color name="Write_Background" red="255" green="255" blue="128">
-        </color>
-      </background_color>
     </widget>
-    
     <widget type="label" version="2.0.0">
       <name>Current_SP_Label</name>
       <text>Current SP [A]:</text>
       <x>20</x>
       <y>95</y>
       <width>120</width>
-      <height>20</height>
     </widget>
-
     <widget type="textupdate" version="2.0.0">
       <name>Current_SP_RB</name>
       <pv_name>$(P):$(R):CURRENT_SP</pv_name>
@@ -257,36 +176,22 @@
       <width>80</width>
       <height>30</height>
       <precision>2</precision>
-      <background_color>
-        <color name="Read_Background" red="240" green="240" blue="240">
-        </color>
-      </background_color>
     </widget>
-
-    <!-- Slew Rate -->
     <widget type="textentry" version="3.0.0">
       <name>Slew_Rate_SP</name>
       <pv_name>$(P):$(R):SLEWRATE_SP</pv_name>
       <x>150</x>
       <y>130</y>
-      <width>100</width>
       <height>30</height>
       <precision>2</precision>
-      <background_color>
-        <color name="Write_Background" red="255" green="255" blue="128">
-        </color>
-      </background_color>
     </widget>
-    
     <widget type="label" version="2.0.0">
       <name>Slew_Rate_Label</name>
       <text>Slew Rate [A/s]:</text>
       <x>20</x>
       <y>135</y>
       <width>120</width>
-      <height>20</height>
     </widget>
-
     <widget type="textupdate" version="2.0.0">
       <name>Slew_Rate_RB</name>
       <pv_name>$(P):$(R):SLEWRATE_SP</pv_name>
@@ -295,13 +200,7 @@
       <width>80</width>
       <height>30</height>
       <precision>2</precision>
-      <background_color>
-        <color name="Read_Background" red="240" green="240" blue="240">
-        </color>
-      </background_color>
     </widget>
-
-    <!-- Action Buttons -->
     <widget type="action_button" version="3.0.0">
       <name>Power_On_Button</name>
       <actions>
@@ -316,16 +215,16 @@
       <y>50</y>
       <width>80</width>
       <height>35</height>
+      <font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
       <background_color>
         <color name="OK" red="0" green="255" blue="0">
         </color>
       </background_color>
-      <font>
-        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="12.0">
-        </font>
-      </font>
+      <tooltip>$(actions)</tooltip>
     </widget>
-
     <widget type="action_button" version="3.0.0">
       <name>Standby_Button</name>
       <actions>
@@ -340,16 +239,16 @@
       <y>50</y>
       <width>80</width>
       <height>35</height>
+      <font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
       <background_color>
         <color name="Minor" red="255" green="255" blue="0">
         </color>
       </background_color>
-      <font>
-        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="12.0">
-        </font>
-      </font>
+      <tooltip>$(actions)</tooltip>
     </widget>
-
     <widget type="action_button" version="3.0.0">
       <name>Reset_Button</name>
       <actions>
@@ -364,16 +263,16 @@
       <y>95</y>
       <width>80</width>
       <height>35</height>
+      <font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
       <background_color>
         <color name="Stop" red="255" green="160" blue="0">
         </color>
       </background_color>
-      <font>
-        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="12.0">
-        </font>
-      </font>
+      <tooltip>$(actions)</tooltip>
     </widget>
-
     <widget type="action_button" version="3.0.0">
       <name>Emergency_Stop</name>
       <actions>
@@ -388,93 +287,61 @@
       <y>95</y>
       <width>80</width>
       <height>35</height>
+      <font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
       <background_color>
         <color name="Major" red="255" green="0" blue="0">
         </color>
       </background_color>
-      <font>
-        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="12.0">
-        </font>
-      </font>
+      <tooltip>$(actions)</tooltip>
     </widget>
-
-    <!-- Limits Display -->
     <widget type="group" version="3.0.0">
       <name>Limits</name>
       <x>20</x>
       <y>180</y>
       <width>320</width>
       <height>80</height>
-      <border_color>
-        <color red="180" green="180" blue="180">
-        </color>
-      </border_color>
-      
-      <widget type="label" version="2.0.0">
-        <name>Limits_Title</name>
-        <text>System Limits</text>
-        <x>10</x>
-        <y>5</y>
-        <width>120</width>
-        <height>20</height>
-        <font>
-          <font name="Default Bold" family="Liberation Sans" style="BOLD" size="12.0">
-          </font>
-        </font>
-      </widget>
-
-      <widget type="textupdate" version="2.0.0">
-        <name>Max_Current</name>
-        <pv_name>$(P):$(R):IMAX</pv_name>
-        <x>120</x>
-        <y>25</y>
-        <width>80</width>
-        <height>25</height>
-        <precision>1</precision>
-      </widget>
-      
       <widget type="label" version="2.0.0">
         <name>Max_Current_Label</name>
         <text>Max Current [A]:</text>
-        <x>10</x>
-        <y>30</y>
+        <x>30</x>
+        <y>2</y>
         <width>110</width>
-        <height>20</height>
       </widget>
-
       <widget type="textupdate" version="2.0.0">
-        <name>Max_Voltage</name>
-        <pv_name>$(P):$(R):VMAX</pv_name>
-        <x>120</x>
-        <y>50</y>
+        <name>Max_Current</name>
+        <pv_name>$(P):$(R):IMAX</pv_name>
+        <x>140</x>
         <width>80</width>
         <height>25</height>
         <precision>1</precision>
       </widget>
-      
+      <widget type="textupdate" version="2.0.0">
+        <name>Max_Voltage</name>
+        <pv_name>$(P):$(R):VMAX</pv_name>
+        <x>140</x>
+        <y>22</y>
+        <width>80</width>
+        <height>25</height>
+        <precision>1</precision>
+      </widget>
       <widget type="label" version="2.0.0">
         <name>Max_Voltage_Label</name>
         <text>Max Voltage [V]:</text>
-        <x>10</x>
-        <y>55</y>
+        <x>30</x>
+        <y>22</y>
         <width>110</width>
-        <height>20</height>
       </widget>
     </widget>
   </widget>
-
-  <!-- Monitoring Panel -->
   <widget type="group" version="3.0.0">
     <name>Monitoring_Panel</name>
     <x>610</x>
     <y>140</y>
     <width>580</width>
     <height>280</height>
-    <border_color>
-      <color red="128" green="128" blue="128">
-      </color>
-    </border_color>
-    
     <widget type="label" version="2.0.0">
       <name>Monitor_Title</name>
       <text>Monitoring</text>
@@ -483,7 +350,7 @@
       <width>200</width>
       <height>25</height>
       <font>
-        <font name="Header 2" family="Liberation Sans" style="BOLD" size="16.0">
+        <font name="Header 2" family="Liberation Sans" style="BOLD" size="18.0">
         </font>
       </font>
       <foreground_color>
@@ -491,8 +358,6 @@
         </color>
       </foreground_color>
     </widget>
-
-    <!-- Current Monitoring -->
     <widget type="textupdate" version="2.0.0">
       <name>Current_RB</name>
       <pv_name>$(P):$(R):CURRENT_RB</pv_name>
@@ -500,45 +365,19 @@
       <y>50</y>
       <width>120</width>
       <height>30</height>
-      <precision>3</precision>
       <font>
         <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
         </font>
       </font>
+      <precision>3</precision>
     </widget>
-    
     <widget type="label" version="2.0.0">
       <name>Current_RB_Label</name>
       <text>Output Current [A]:</text>
       <x>20</x>
       <y>55</y>
       <width>130</width>
-      <height>20</height>
     </widget>
-
-    <widget type="textupdate" version="2.0.0">
-      <name>Raw_Current</name>
-      <pv_name>$(P):$(R):RAW_CURRENT_RB</pv_name>
-      <x>280</x>
-      <y>50</y>
-      <width>80</width>
-      <height>30</height>
-    </widget>
-    
-    <widget type="label" version="2.0.0">
-      <name>Raw_Current_Label</name>
-      <text>(Raw:</text>
-      <x>280</x>
-      <y>30</y>
-      <width>40</width>
-      <height>20</height>
-      <font>
-        <font name="Comment" family="Liberation Sans" style="ITALIC" size="10.0">
-        </font>
-      </font>
-    </widget>
-
-    <!-- Voltage Monitoring -->
     <widget type="textupdate" version="2.0.0">
       <name>Voltage_RB</name>
       <pv_name>$(P):$(R):VOLTAGE_RB</pv_name>
@@ -546,32 +385,19 @@
       <y>90</y>
       <width>120</width>
       <height>30</height>
-      <precision>2</precision>
       <font>
         <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
         </font>
       </font>
+      <precision>2</precision>
     </widget>
-    
     <widget type="label" version="2.0.0">
       <name>Voltage_RB_Label</name>
       <text>Output Voltage [V]:</text>
       <x>20</x>
       <y>95</y>
       <width>130</width>
-      <height>20</height>
     </widget>
-
-    <widget type="textupdate" version="2.0.0">
-      <name>Raw_Voltage</name>
-      <pv_name>$(P):$(R):RAW_VOLTAGE_RB</pv_name>
-      <x>280</x>
-      <y>90</y>
-      <width>80</width>
-      <height>30</height>
-    </widget>
-
-    <!-- Additional Monitoring -->
     <widget type="textupdate" version="2.0.0">
       <name>Earth_Current</name>
       <pv_name>$(P):$(R):EARTH_CURRENT_RB</pv_name>
@@ -581,16 +407,13 @@
       <height>30</height>
       <precision>3</precision>
     </widget>
-    
     <widget type="label" version="2.0.0">
       <name>Earth_Current_Label</name>
       <text>Earth Current [A]:</text>
       <x>20</x>
       <y>135</y>
       <width>130</width>
-      <height>20</height>
     </widget>
-
     <widget type="textupdate" version="2.0.0">
       <name>Set_Current_RB</name>
       <pv_name>$(P):$(R):SET_CURRENT_RB</pv_name>
@@ -600,46 +423,52 @@
       <height>30</height>
       <precision>3</precision>
     </widget>
-    
     <widget type="label" version="2.0.0">
       <name>Set_Current_RB_Label</name>
       <text>Set Current RB [A]:</text>
       <x>20</x>
       <y>175</y>
       <width>130</width>
-      <height>20</height>
     </widget>
-
-    <!-- Progress Bar for Current -->
-    <widget type="progressbar" version="2.0.0">
-      <name>Current_Progress</name>
-      <pv_name>$(P):$(R):CURRENT_RB</pv_name>
-      <x>380</x>
-      <y>50</y>
-      <width>180</width>
-      <height>25</height>
-      <limits_from_pv>false</limits_from_pv>
-      <minimum>0.0</minimum>
-      <maximum>$(IMAX)</maximum>
-      <fill_color>
-        <color name="OK" red="0" green="255" blue="0">
-        </color>
-      </fill_color>
+    <widget type="stripchart" version="2.1.0">
+      <name>Strip Chart</name>
+      <x>270</x>
+      <y>22</y>
+      <width>280</width>
+      <height>223</height>
+      <show_toolbar>false</show_toolbar>
+      <rules>
+        <rule name="New Rulemax" prop_id="y_axes[0].maximum" out_exp="true">
+          <exp bool_exp="pvInt0">
+            <expression>pvInt0</expression>
+          </exp>
+          <pv_name>$(P):$(R):IMAX</pv_name>
+        </rule>
+      </rules>
+      <traces>
+        <trace>
+          <name>current</name>
+          <y_pv>$(P):$(R):CURRENT_RB</y_pv>
+          <axis>0</axis>
+          <trace_type>1</trace_type>
+          <color>
+            <color red="0" green="0" blue="255">
+            </color>
+          </color>
+          <line_width>2</line_width>
+          <point_type>0</point_type>
+          <point_size>10</point_size>
+          <visible>true</visible>
+        </trace>
+      </traces>
     </widget>
   </widget>
-
-  <!-- Status Detail Panel -->
   <widget type="group" version="3.0.0">
     <name>Status_Detail</name>
     <x>10</x>
-    <y>440</y>
+    <y>430</y>
     <width>1180</width>
     <height>340</height>
-    <border_color>
-      <color red="128" green="128" blue="128">
-      </color>
-    </border_color>
-    
     <widget type="label" version="2.0.0">
       <name>Status_Title</name>
       <text>Status Details</text>
@@ -648,7 +477,7 @@
       <width>200</width>
       <height>25</height>
       <font>
-        <font name="Header 2" family="Liberation Sans" style="BOLD" size="16.0">
+        <font name="Header 2" family="Liberation Sans" style="BOLD" size="18.0">
         </font>
       </font>
       <foreground_color>
@@ -656,34 +485,28 @@
         </color>
       </foreground_color>
     </widget>
-
-    <!-- Status Register 1 -->
     <widget type="byte_monitor" version="2.0.0">
       <name>Status_Reg1</name>
       <pv_name>$(P):$(R):RAW_STATE_RB</pv_name>
-      <x>30</x>
-      <y>50</y>
+      <x>48</x>
+      <y>70</y>
       <width>30</width>
       <height>240</height>
       <numBits>16</numBits>
       <bitReverse>true</bitReverse>
       <horizontal>false</horizontal>
     </widget>
-
     <widget type="label" version="2.0.0">
       <name>Status_Reg1_Title</name>
       <text>Status Register 1</text>
       <x>70</x>
       <y>50</y>
       <width>150</width>
-      <height>20</height>
       <font>
-        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="12.0">
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
         </font>
       </font>
     </widget>
-
-    <!-- Bit Labels for Register 1 -->
     <widget type="label" version="2.0.0">
       <name>Bit0_Label</name>
       <text>0: Power On</text>
@@ -692,7 +515,6 @@
       <width>120</width>
       <height>15</height>
     </widget>
-    
     <widget type="label" version="2.0.0">
       <name>Bit1_Label</name>
       <text>1: Standby</text>
@@ -701,7 +523,6 @@
       <width>120</width>
       <height>15</height>
     </widget>
-    
     <widget type="label" version="2.0.0">
       <name>Bit2_Label</name>
       <text>2: Ready</text>
@@ -710,7 +531,6 @@
       <width>120</width>
       <height>15</height>
     </widget>
-    
     <widget type="label" version="2.0.0">
       <name>Bit3_Label</name>
       <text>3: All Fault</text>
@@ -719,7 +539,6 @@
       <width>120</width>
       <height>15</height>
     </widget>
-    
     <widget type="label" version="2.0.0">
       <name>Bit4_Label</name>
       <text>4: BNC Ramp Start</text>
@@ -728,7 +547,6 @@
       <width>120</width>
       <height>15</height>
     </widget>
-    
     <widget type="label" version="2.0.0">
       <name>Bit5_Label</name>
       <text>5: Remote</text>
@@ -737,34 +555,28 @@
       <width>120</width>
       <height>15</height>
     </widget>
-
-    <!-- Status Register 2 -->
     <widget type="byte_monitor" version="2.0.0">
       <name>Status_Reg2</name>
       <pv_name>$(P):$(R):RAW_STATE2_RB</pv_name>
       <x>300</x>
-      <y>50</y>
+      <y>70</y>
       <width>30</width>
       <height>240</height>
       <numBits>16</numBits>
       <bitReverse>true</bitReverse>
       <horizontal>false</horizontal>
     </widget>
-
     <widget type="label" version="2.0.0">
       <name>Status_Reg2_Title</name>
       <text>Status Register 2 (Faults)</text>
       <x>340</x>
       <y>50</y>
       <width>200</width>
-      <height>20</height>
       <font>
-        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="12.0">
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
         </font>
       </font>
     </widget>
-
-    <!-- Fault Labels -->
     <widget type="label" version="2.0.0">
       <name>Fault0_Label</name>
       <text>0: User Fault 1</text>
@@ -773,7 +585,6 @@
       <width>150</width>
       <height>15</height>
     </widget>
-    
     <widget type="label" version="2.0.0">
       <name>Fault5_Label</name>
       <text>5: DC Overcurrent</text>
@@ -782,7 +593,6 @@
       <width>150</width>
       <height>15</height>
     </widget>
-    
     <widget type="label" version="2.0.0">
       <name>Fault7_Label</name>
       <text>7: Earth Current</text>
@@ -791,7 +601,6 @@
       <width>150</width>
       <height>15</height>
     </widget>
-    
     <widget type="label" version="2.0.0">
       <name>Fault9_Label</name>
       <text>9: AC Overcurrent</text>
@@ -800,7 +609,6 @@
       <width>150</width>
       <height>15</height>
     </widget>
-    
     <widget type="label" version="2.0.0">
       <name>Fault12_Label</name>
       <text>12: Door</text>
@@ -809,92 +617,96 @@
       <width>150</width>
       <height>15</height>
     </widget>
-
-    <!-- Raw Values Display -->
     <widget type="group" version="3.0.0">
       <name>Raw_Values</name>
       <x>600</x>
       <y>50</y>
-      <width>300</width>
-      <height>120</height>
-      <border_color>
-        <color red="180" green="180" blue="180">
-        </color>
-      </border_color>
-      
+      <height>241</height>
       <widget type="label" version="2.0.0">
         <name>Raw_Title</name>
         <text>Raw Register Values</text>
         <x>10</x>
         <y>5</y>
         <width>180</width>
-        <height>20</height>
         <font>
-          <font name="Default Bold" family="Liberation Sans" style="BOLD" size="12.0">
+          <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
           </font>
         </font>
       </widget>
-
       <widget type="textupdate" version="2.0.0">
         <name>Raw_State1</name>
         <pv_name>$(P):$(R):RAW_STATE_RB</pv_name>
         <x>150</x>
         <y>25</y>
-        <width>100</width>
         <height>25</height>
         <format>4</format>
       </widget>
-      
       <widget type="label" version="2.0.0">
         <name>Raw_State1_Label</name>
         <text>State Reg 1:</text>
         <x>10</x>
         <y>30</y>
         <width>90</width>
-        <height>20</height>
       </widget>
-
       <widget type="textupdate" version="2.0.0">
         <name>Raw_State2</name>
         <pv_name>$(P):$(R):RAW_STATE2_RB</pv_name>
         <x>150</x>
         <y>55</y>
-        <width>100</width>
         <height>25</height>
         <format>4</format>
       </widget>
-      
       <widget type="label" version="2.0.0">
         <name>Raw_State2_Label</name>
         <text>State Reg 2:</text>
         <x>10</x>
         <y>60</y>
         <width>90</width>
-        <height>20</height>
+      </widget>
+      <widget type="label" version="2.0.0">
+        <name>Current_RB_Label_1</name>
+        <text>Output Current :</text>
+        <x>10</x>
+        <y>92</y>
+        <width>130</width>
+      </widget>
+      <widget type="textupdate" version="2.0.0">
+        <name>Raw_Current_1</name>
+        <pv_name>$(P):$(R):RAW_CURRENT_RB</pv_name>
+        <x>150</x>
+        <y>92</y>
+        <width>80</width>
+        <height>30</height>
+      </widget>
+      <widget type="label" version="2.0.0">
+        <name>Voltage_RB_Label_1</name>
+        <text>Output Voltage:</text>
+        <x>10</x>
+        <y>122</y>
+        <width>130</width>
+      </widget>
+      <widget type="textupdate" version="2.0.0">
+        <name>Raw_Voltage</name>
+        <pv_name>$(P):$(R):RAW_VOLTAGE_RB</pv_name>
+        <x>150</x>
+        <y>122</y>
+        <width>80</width>
+        <height>30</height>
       </widget>
     </widget>
-
-    <!-- Expert Controls -->
     <widget type="group" version="3.0.0">
       <name>Expert_Controls</name>
-      <x>920</x>
+      <x>900</x>
       <y>50</y>
       <width>250</width>
-      <height>200</height>
-      <border_color>
-        <color red="255" green="180" blue="180">
-        </color>
-      </border_color>
-      
       <widget type="label" version="2.0.0">
         <name>Expert_Title</name>
         <text>Expert Controls</text>
         <x>10</x>
         <y>5</y>
         <width>150</width>
-        <height>20</height>
         <font>
-          <font name="Default Bold" family="Liberation Sans" style="BOLD" size="12.0">
+          <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
           </font>
         </font>
         <foreground_color>
@@ -902,51 +714,32 @@
           </color>
         </foreground_color>
       </widget>
-
       <widget type="textentry" version="3.0.0">
         <name>Raw_Current_SP</name>
         <pv_name>$(P):$(R):RAW_CURRENT_SP</pv_name>
         <x>120</x>
         <y>30</y>
-        <width>100</width>
         <height>25</height>
-        <background_color>
-          <color name="Write_Background" red="255" green="255" blue="128">
-          </color>
-        </background_color>
       </widget>
-      
       <widget type="label" version="2.0.0">
         <name>Raw_Current_SP_Label</name>
         <text>Raw Current:</text>
         <x>10</x>
         <y>35</y>
-        <width>100</width>
-        <height>20</height>
       </widget>
-
       <widget type="textentry" version="3.0.0">
         <name>Raw_State_SP</name>
         <pv_name>$(P):$(R):RAW_STATE_SP</pv_name>
         <x>120</x>
         <y>60</y>
-        <width>100</width>
         <height>25</height>
-        <background_color>
-          <color name="Write_Background" red="255" green="255" blue="128">
-          </color>
-        </background_color>
       </widget>
-      
       <widget type="label" version="2.0.0">
         <name>Raw_State_SP_Label</name>
         <text>Raw State:</text>
         <x>10</x>
         <y>65</y>
-        <width>100</width>
-        <height>20</height>
       </widget>
-
       <widget type="action_button" version="3.0.0">
         <name>Start_Ramp_Button</name>
         <actions>
@@ -959,12 +752,11 @@
         <text>Start Ramp</text>
         <x>10</x>
         <y>100</y>
-        <width>100</width>
-        <height>30</height>
         <background_color>
           <color name="Minor" red="255" green="255" blue="0">
           </color>
         </background_color>
+        <tooltip>$(actions)</tooltip>
       </widget>
     </widget>
   </widget>
