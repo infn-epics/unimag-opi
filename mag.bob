@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2025-07-19 11:25:20 by andreamichelotti-->
 <display version="2.0.0">
   <name>UniMagterminal</name>
-  <width>751</width>
+  <width>961</width>
   <height>840</height>
   <widget type="action_button" version="3.0.0">
     <name>Documentation</name>
@@ -28,7 +27,6 @@
     <tooltip>$(actions)</tooltip>
     <confirm_message>Are you sure your system is configured to access external web pages?</confirm_message>
   </widget>
-  
   <widget type="navtabs" version="2.0.0">
     <name>MagNavigation</name>
     <tabs>
@@ -112,5 +110,13 @@
       <color name="Read_Background" red="240" green="240" blue="240">
       </color>
     </background_color>
+  </widget>
+  <widget type="picture" version="2.0.0">
+    <name>Picture</name>
+    <file>../../img/$(ZONE).png</file>
+    <x>751</x>
+    <width>209</width>
+    <height>140</height>
+    <stretch_image>true</stretch_image>
   </widget>
 </display>
