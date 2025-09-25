@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2025-09-25 16:16:17 by Alex-->
+<!--Saved on 2025-09-25 17:37:27 by Alex-->
 <display version="2.0.0">
   <name>Display</name>
   <widget type="textupdate" version="2.0.0">
@@ -546,5 +546,18 @@ print 'Wrote']]></text>
     <width>79</width>
     <height>70</height>
     <tooltip>$(actions)</tooltip>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_2</name>
+    <pv_name>$(P):$(R):SWVER</pv_name>
+    <x>138</x>
+    <y>425</y>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_36</name>
+    <text>SW Ver</text>
+    <x>30</x>
+    <y>425</y>
+    <width>80</width>
   </widget>
 </display>
