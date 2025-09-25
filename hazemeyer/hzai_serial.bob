@@ -760,4 +760,17 @@
       </widget>
     </widget>
   </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update</name>
+    <pv_name>$(P):$(R):SWVER</pv_name>
+    <x>1080</x>
+    <y>30</y>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Voltage_Display_Label_1</name>
+    <text>SW Version:</text>
+    <x>1000</x>
+    <y>30</y>
+    <width>80</width>
+  </widget>
 </display>
