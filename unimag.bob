@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2025-03-28 17:01:31 by andreamichelotti-->
 <display version="2.0.0">
   <name>UniMagterminal</name>
-  <width>681</width>
-  <height>710</height>
+  <width>701</width>
+  <height>780</height>
   <widget type="action_button" version="3.0.0">
     <name>Documentation</name>
     <actions>
@@ -108,8 +107,8 @@
     </tabs>
     <x>1</x>
     <y>40</y>
-    <width>679</width>
-    <height>670</height>
+    <width>699</width>
+    <height>740</height>
     <direction>0</direction>
   </widget>
   <widget type="label" version="2.0.0">
