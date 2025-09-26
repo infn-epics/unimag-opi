@@ -75,11 +75,10 @@ from org.phoebus.pv import PVPool
 lpvs=PVPool.getPVReferences()
 cnt=0
 for pvr in lpvs:
-    ppv=pvr.getEntry()
-    name=ppv.getName()
+    remote=pvr.getEntry()
+    name=remote.getName()
     if name.startswith("loc://unimag:selection:"):
-
-        remote = PVUtil.createPV(name,100)
+        remote.write(0)
         if PVUtil.getLong(pvs[0]):
             remote.write(1)
         else:

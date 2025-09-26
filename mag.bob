@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <display version="2.0.0">
   <name>UniMagterminal</name>
-  <width>961</width>
+  <width>1331</width>
   <height>840</height>
   <widget type="action_button" version="3.0.0">
     <name>Documentation</name>
@@ -73,7 +73,7 @@
     </tabs>
     <x>1</x>
     <y>40</y>
-    <width>749</width>
+    <width>799</width>
     <height>800</height>
     <direction>0</direction>
   </widget>
@@ -114,9 +114,10 @@
   <widget type="picture" version="2.0.0">
     <name>Picture</name>
     <file>../../img/$(ZONE).png</file>
-    <x>751</x>
-    <width>209</width>
-    <height>140</height>
+    <x>830</x>
+    <y>70</y>
+    <width>500</width>
+    <height>200</height>
     <stretch_image>true</stretch_image>
   </widget>
 </display>

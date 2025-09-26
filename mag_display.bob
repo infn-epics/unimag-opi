@@ -9,7 +9,7 @@
   </scripts>
   <widget type="embedded" version="2.0.0">
     <name>element_template</name>
-    <file>mag_channel.bob</file>
+    
     <y>610</y>
     <width>650</width>
     <height>35</height>

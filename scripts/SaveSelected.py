@@ -16,11 +16,10 @@ ffile.write("Name,Prefix,Current,State\n")
 lpvs=PVPool.getPVReferences()
 cnt=0
 for pvr in lpvs:
-    ppv=pvr.getEntry()
-    name=ppv.getName()
+    remote=pvr.getEntry()
+    name=remote.getName()
 
     if name.startswith("loc://unimag:selection:"):
-        remote = PVUtil.createPV(name,100)
         if remote.read().getValue()==1:
             pv_prefix=name.replace("loc://unimag:selection:","")
             ## Name is the last part of rname till the first :

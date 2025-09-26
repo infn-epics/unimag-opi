@@ -192,7 +192,6 @@ else:
           <target>window</target>
         </action>
       </actions>
-      <pv_name>loc://control_$(LCID)&lt;VString&gt;("$(OPI)")</pv_name>
       <text>Ctrl</text>
       <x>209</x>
       <y>1</y>

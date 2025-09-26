@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2025-07-21 15:03:48 by andreamichelotti-->
 <display version="2.0.0">
   <name>MAGMagnetArrayMain</name>
   <width>780</width>
@@ -63,12 +62,14 @@
   </widget>
   <widget type="checkbox" version="2.0.0">
     <name>Check Box</name>
-    <pv_name>loc://unimag:selection&lt;VLong&gt;(0)</pv_name>
+    <pv_name>loc://selection_$(LCID)&lt;VLong&gt;(0)</pv_name>
     <label></label>
     <x>98</x>
     <width>20</width>
+    <actions>
+    </actions>
     <scripts>
-      <script file="EmbeddedPy">
+      <script file="EmbeddedPy" check_connections="false">
         <text><![CDATA[# Embedded python script
 from org.csstudio.display.builder.runtime.script import PVUtil, ScriptUtil
 from org.phoebus.pv import PVPool
@@ -78,12 +79,12 @@ for pvr in lpvs:
     ppv=pvr.getEntry()
     name=ppv.getName()
     if name.startswith("loc://unimag:selection:"):
-
-        remote = PVUtil.createPV(name,100)
+        ppv.write(0)
         if PVUtil.getLong(pvs[0]):
-            remote.write(1)
+            ppv.write(1)
         else:
-            remote.write(0)
+            ppv.write(0)
+
 ]]></text>
         <pv_name>$(pv_name)</pv_name>
       </script>
@@ -115,6 +116,11 @@ for pvr in lpvs:
       <action type="open_sar_filter">
         <description>Open SaR filter</description>
         <filter_id></filter_id>
+      </action>
+      <action type="open_display">
+        <description>Group Action</description>
+        <file>control_group.bob</file>
+        <target>window</target>
       </action>
     </actions>
     <text>Tools...</text>
