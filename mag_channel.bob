@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2025-03-25 16:57:15 by andreamichelotti-->
 <display version="2.0.0">
   <name>MagnetChannel</name>
   <width>660</width>
@@ -88,29 +87,11 @@ $(actions)</tooltip>
     </widget>
     <widget type="checkbox" version="2.0.0">
       <name>Check Box</name>
-      <pv_name>loc://unimag:selection:$(P):$(R)&lt;VLong&gt;(0)</pv_name>
+      <pv_name>loc://selection:$(P):$(R)&lt;VLong&gt;(0)</pv_name>
       <label></label>
       <x>84</x>
       <y>2</y>
       <width>20</width>
-      <scripts>
-        <script file="EmbeddedPy">
-          <text><![CDATA[# Embedded python script
-from org.csstudio.display.builder.runtime.script import PVUtil, ScriptUtil
-val=PVUtil.getLong(pvs[1])
-cnt=PVUtil.getLong(pvs[0])
-if val:
-    cnt = cnt +1
-else:
-    cnt=cnt - 1
-if cnt>0:
-    pvs[0].write(cnt)
-else:
-    pvs[0].write(0)]]></text>
-          <pv_name trigger="false">loc://magnets_selected&lt;VLong&gt;</pv_name>
-          <pv_name>$(pv_name)</pv_name>
-        </script>
-      </scripts>
       <border_alarm_sensitive>false</border_alarm_sensitive>
     </widget>
   </widget>

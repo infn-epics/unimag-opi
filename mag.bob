@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <display version="2.0.0">
   <name>UniMagterminal</name>
+  <macros>
+    <TYPE>ALL</TYPE>
+  </macros>
   <width>1331</width>
   <height>840</height>
   <widget type="action_button" version="3.0.0">

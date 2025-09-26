@@ -62,33 +62,19 @@
   </widget>
   <widget type="checkbox" version="2.0.0">
     <name>Check Box</name>
-    <pv_name>loc://selection_$(LCID)&lt;VLong&gt;(0)</pv_name>
+    <pv_name>loc://selectiall&lt;VLong&gt;(0)</pv_name>
     <label></label>
     <x>98</x>
     <width>20</width>
     <actions>
     </actions>
     <scripts>
-      <script file="EmbeddedPy" check_connections="false">
-        <text><![CDATA[# Embedded python script
-from org.csstudio.display.builder.runtime.script import PVUtil, ScriptUtil
-from org.phoebus.pv import PVPool
-lpvs=PVPool.getPVReferences()
-cnt=0
-for pvr in lpvs:
-    ppv=pvr.getEntry()
-    name=ppv.getName()
-    if name.startswith("loc://unimag:selection:"):
-        ppv.write(0)
-        if PVUtil.getLong(pvs[0]):
-            ppv.write(1)
-        else:
-            ppv.write(0)
-
-]]></text>
+      <script file="../Scripts/SelectionAll.py">
         <pv_name>$(pv_name)</pv_name>
+        <pv_name trigger="false">loc://magnets_selected&lt;VLong&gt;</pv_name>
       </script>
     </scripts>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="action_button" version="3.0.0">
     <name>Tools</name>

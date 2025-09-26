@@ -19,9 +19,9 @@ for pvr in lpvs:
     remote=pvr.getEntry()
     name=remote.getName()
 
-    if name.startswith("loc://unimag:selection:"):
+    if name.startswith("loc://selection:"):
         if remote.read().getValue()==1:
-            pv_prefix=name.replace("loc://unimag:selection:","")
+            pv_prefix=name.replace("loc://selection:","")
             ## Name is the last part of rname till the first :
             
             prefix,identifier=pv_prefix.rsplit(":",1)

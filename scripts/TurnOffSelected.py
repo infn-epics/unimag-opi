@@ -11,9 +11,9 @@ def turn_off_selected():
         selection_pv = pvr.getEntry()
         name = selection_pv.getName()
         
-        if name.startswith("loc://unimag:selection:"):
+        if name.startswith("loc://selection:"):
             if selection_pv.read().getValue() == 1:
-                pv_prefix = name.replace("loc://unimag:selection:", "")
+                pv_prefix = name.replace("loc://selection:", "")
                 prefix, identifier = pv_prefix.rsplit(":", 1)
                 
                 try:
