@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <display version="2.0.0">
   <name>MagnetChannel</name>
-  <width>660</width>
+  <width>570</width>
   <height>30</height>
   <widget type="group" version="3.0.0">
     <name>Readout</name>
-    <x>10</x>
-    <width>350</width>
+    <width>320</width>
     <height>30</height>
     <style>2</style>
     <line_color>
@@ -24,7 +23,7 @@
     </widget>
     <widget type="picture" version="2.0.0">
       <name>Picture</name>
-      <x>221</x>
+      <x>210</x>
       <y>2</y>
       <width>40</width>
       <height>23</height>
@@ -58,9 +57,9 @@
         <symbol>icons/icons-2407/bad.png</symbol>
         <symbol>icons/icons-2407/fault.png</symbol>
       </symbols>
-      <x>261</x>
+      <x>250</x>
       <y>2</y>
-      <width>40</width>
+      <width>21</width>
       <height>23</height>
       <tooltip>$(pv_name)
 $(pv_value)
@@ -70,7 +69,7 @@ $(actions)</tooltip>
     <widget type="textupdate" version="2.0.0">
       <name>Text Update_4</name>
       <pv_name>$(P):$(R):STATE_RB</pv_name>
-      <x>301</x>
+      <x>271</x>
       <y>2</y>
       <width>40</width>
       <horizontal_alignment>1</horizontal_alignment>
@@ -79,7 +78,7 @@ $(actions)</tooltip>
       <name>Label_11</name>
       <text>$(R)</text>
       <y>2</y>
-      <width>115</width>
+      <width>84</width>
       <font>
         <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
         </font>
@@ -89,7 +88,7 @@ $(actions)</tooltip>
       <name>Check Box</name>
       <pv_name>loc://selection:$(P):$(R)&lt;VLong&gt;(0)</pv_name>
       <label></label>
-      <x>84</x>
+      <x>89</x>
       <y>2</y>
       <width>20</width>
       <border_alarm_sensitive>false</border_alarm_sensitive>
@@ -97,8 +96,8 @@ $(actions)</tooltip>
   </widget>
   <widget type="group" version="3.0.0">
     <name>Settings</name>
-    <x>370</x>
-    <width>280</width>
+    <x>320</x>
+    <width>250</width>
     <height>30</height>
     <style>2</style>
     <widget type="action_button" version="3.0.0">
@@ -111,7 +110,7 @@ $(actions)</tooltip>
         </action>
       </actions>
       <pv_name>$(P):$(R):STATE_SP</pv_name>
-      <x>63</x>
+      <x>64</x>
       <y>1</y>
       <width>46</width>
       <height>25</height>
@@ -133,7 +132,7 @@ $(actions)</tooltip>
       <x>2</x>
       <y>5</y>
       <width>61</width>
-      <precision>3</precision>
+      <precision>2</precision>
       <horizontal_alignment>1</horizontal_alignment>
       <actions>
       </actions>
@@ -174,9 +173,9 @@ $(actions)</tooltip>
         </action>
       </actions>
       <text>Ctrl</text>
-      <x>209</x>
+      <x>205</x>
       <y>1</y>
-      <width>60</width>
+      <width>40</width>
       <height>25</height>
       <rules>
         <rule name="Enable" prop_id="visible" out_exp="false">
@@ -201,7 +200,7 @@ $(actions)</tooltip>
         </action>
       </actions>
       <pv_name>$(P):$(R):STATE_SP</pv_name>
-      <x>157</x>
+      <x>158</x>
       <y>1</y>
       <width>46</width>
       <height>25</height>

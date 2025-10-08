@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2025-07-19 00:52:47 by andreamichelotti-->
 <display version="2.0.0">
   <name>magnetdisplay</name>
-  <width>660</width>
+  <width>570</width>
   <scripts>
     <script file="../Scripts/YAMLLoadDevicePopulateArray.py" check_connections="false">
     </script>
   </scripts>
   <widget type="embedded" version="2.0.0">
     <name>element_template</name>
-    
-    <y>610</y>
-    <width>650</width>
-    <height>35</height>
+    <y>570</y>
+    <width>570</width>
+    <height>30</height>
     <visible>false</visible>
   </widget>
 </display>

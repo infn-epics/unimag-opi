@@ -75,7 +75,7 @@ for ioc in iocs:
             if 'devfunc' in ioc:
                 devfunc  = ioc.get("devfunc", "")
             else:
-                if ('HCV' in name) or ('VCR' in name) or ('CHH' in name) or ('CVV' in name):
+                if ('HCR' in name) or ('VCR' in name) or ('CHH' in name) or ('CVV' in name):
                     devfunc="COR"
                 elif ('QUA' in name) or ('QUAD' in name):
                     devfunc="QUA"

@@ -4,8 +4,8 @@
   <macros>
     <TYPE>ALL</TYPE>
   </macros>
-  <width>1331</width>
-  <height>840</height>
+  <width>620</width>
+  <height>720</height>
   <widget type="action_button" version="3.0.0">
     <name>Documentation</name>
     <actions>
@@ -76,8 +76,8 @@
     </tabs>
     <x>1</x>
     <y>40</y>
-    <width>799</width>
-    <height>800</height>
+    <width>619</width>
+    <height>680</height>
     <direction>0</direction>
   </widget>
   <widget type="label" version="2.0.0">
@@ -113,14 +113,5 @@
       <color name="Read_Background" red="240" green="240" blue="240">
       </color>
     </background_color>
-  </widget>
-  <widget type="picture" version="2.0.0">
-    <name>Picture</name>
-    <file>../../img/$(ZONE).png</file>
-    <x>830</x>
-    <y>70</y>
-    <width>500</width>
-    <height>200</height>
-    <stretch_image>true</stretch_image>
   </widget>
 </display>
