@@ -1,79 +1,56 @@
 from org.csstudio.display.builder.runtime.script import ScriptUtil,PVUtil
-from confutils import csv_to_dict
 import os
 from java.lang import Exception
-embedded_width = 800
-embedded_height = 30
+import epik8sutil
 
+print(widget.getName() + "] Starting LoadZoneTypes.py")
 
+devarray = epik8sutil.conf_to_dev(widget)
+zones_set = set()
+type_set = set()
+func_set = set()
+if not devarray:
+    group = widget.getEffectiveMacros().getValue("GROUP")
+    if group is None:
+        group = "mag"
+    ScriptUtil.showMessageDialog(widget, "No devices found for group: " + group)
+else:
+    combozone = ScriptUtil.findWidgetByName(widget, "Zonecombo")
+    combofunc = ScriptUtil.findWidgetByName(widget, "Funccombo")
+    combotype = ScriptUtil.findWidgetByName(widget, "Typecombo")
 
-logger = ScriptUtil.getLogger()
-
-conffile = widget.getEffectiveMacros().getValue("CONFFILE")
-display_model =  widget.getDisplayModel()
-
-display_path = os.path.dirname(display_model.getUserData(display_model.USER_DATA_INPUT_FILE))
-
-confpath=display_path+"/"+conffile
-
-if not os.path.exists(confpath):
-    ScriptUtil.showMessageDialog(widget,"Cannot find  file \""+confpath+"\" please set CONFFILE macro to a correct file")
-    
+    # Find the combo box widget
   
-## parse conf file
-print "LOADING CONFIGURATION:"+ confpath
+    if combozone is None:
+        ScriptUtil.showMessageDialog(widget, "Cannot find Zonecombo widget")
+    elif combofunc is None:
+        ScriptUtil.showMessageDialog(widget, "Cannot find Funccombo widget")
 
-maginfo=csv_to_dict(confpath)
-combozone = ScriptUtil.findWidgetByName(widget, "Zonecombo")
-combotype = ScriptUtil.findWidgetByName(widget, "Typecombo")
-devices = []
+    else:
+        # Build device list from devarray
+        device_list = []
+        print(widget.getName() + "] FOUND " + str(len(devarray)) + " devices in configuration file")
+        zones_set.add("ALL")
+        func_set.add("ALL")
+        type_set.add("ALL")
+        
+        for dev in devarray:
+            # Use the device name
+            
+            funcdev=dev.get('FUNC','')
+            zoneadd = dev.get('ZONE', '')
+            typedev=dev.get('TYPE','')
+            if zoneadd:
+                zones_set.add(zoneadd)
 
-# zones=["all"]
-# types=["all"]
-zones=set()
-types=set()
-zones.add("all")
-types.add("all")
-# for key in maginfo:
-#     devices.append({'R': key,"P":maginfo[key]['Prefix']})
+            if funcdev:
+                func_set.add(funcdev)
 
-for key in maginfo:
-    z=maginfo[key]['Zone']
-    # print(key+" zone:"+z)
-    zones.add(z)
+            if typedev:
+                type_set.add(typedev)
 
-for key in maginfo:
-    t=maginfo[key]['Type']
-    # print(key+" type:"+t)
-    types.add(t) 
+        
+        combozone.setItems(list(zones_set))
+        combofunc.setItems(list(func_set))
+        combotype.setItems(list(type_set))
 
-
-zones = list(zones)
-types = list(types)
-print "Zones:"+ str(zones)
-print "Types:"+ str(types)
-
-
-#pvn="loc://maginfo-"+DID
-# print ("MAGINFO:"+ pvn)
-
-#loc_pv = PVUtil.createPV(pvn,1)
-pvs[0].write(str(maginfo))
-
-combozone.setItems(zones)
-combotype.setItems(types)
-#pvs[1].write("('all', 'TT', 'TB', 'TM')")
-#pvs[2].write(types)
-
-
-
-# display = widget.getDisplayModel()
-# rows = 35
-# for i in range(len(devices)):
-#     # x = (i / rows) * embedded_width
-#     # y = 170 + embedded_height*(i % rows)
-#     x=0
-#     y= i * embedded_height
-#     instance = createInstance(x, y, devices[i])
-#     display.runtimeChildren().addChild(instance)
-    

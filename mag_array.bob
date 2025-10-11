@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <display version="2.0.0">
   <name>mag_array</name>
-  <height>570</height>
+  <width>820</width>
+  <height>730</height>
+  <background_color>
+    <color name="Transparent" red="255" green="255" blue="255" alpha="0">
+    </color>
+  </background_color>
+  <grid_color>
+    <color name="Transparent" red="255" green="255" blue="255" alpha="0">
+    </color>
+  </grid_color>
   <widget type="embedded" version="2.0.0">
     <name>Embedded Display</name>
     <file>mag_display.bob</file>
-    <y>70</y>
+    <x>10</x>
+    <y>30</y>
     <width>800</width>
-    <height>500</height>
+    <height>700</height>
     <transparent>true</transparent>
   </widget>
   <widget type="label" version="2.0.0">
