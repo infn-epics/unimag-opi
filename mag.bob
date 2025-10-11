@@ -3,9 +3,10 @@
   <name>UniMagterminal</name>
   <macros>
     <TYPE>ALL</TYPE>
+    <BOBITEM>mag_channel_dante.bob</BOBITEM>
   </macros>
-  <width>1331</width>
-  <height>840</height>
+  <width>799</width>
+  <height>810</height>
   <widget type="action_button" version="3.0.0">
     <name>Documentation</name>
     <actions>
@@ -74,10 +75,9 @@
         <group_name></group_name>
       </tab>
     </tabs>
-    <x>1</x>
     <y>40</y>
-    <width>799</width>
-    <height>800</height>
+    <width>860</width>
+    <height>630</height>
     <direction>0</direction>
   </widget>
   <widget type="label" version="2.0.0">
@@ -85,42 +85,44 @@
     <text>Selected</text>
     <x>150</x>
     <width>80</width>
+    <visible>false</visible>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>Text Update</name>
     <pv_name>loc://magnets_selected&lt;VLong&gt;(0)</pv_name>
     <x>220</x>
     <width>51</width>
+    <visible>false</visible>
     <format>1</format>
     <precision>0</precision>
   </widget>
   <widget type="label" version="2.0.0">
     <name>Label_6</name>
     <text>Zone</text>
-    <x>500</x>
+    <y>10</y>
     <width>80</width>
     <font>
-      <font family="Liberation Sans" style="BOLD" size="14.0">
+      <font family="Liberation Sans" style="BOLD" size="16.0">
       </font>
     </font>
   </widget>
   <widget type="label" version="2.0.0">
     <name>Text Update_1</name>
     <text>$(ZONE)</text>
-    <x>560</x>
+    <x>70</x>
+    <y>10</y>
     <width>90</width>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="16.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color name="On" red="0" green="255" blue="0">
+      </color>
+    </foreground_color>
     <background_color>
       <color name="Read_Background" red="240" green="240" blue="240">
       </color>
     </background_color>
-  </widget>
-  <widget type="picture" version="2.0.0">
-    <name>Picture</name>
-    <file>../../img/$(ZONE).png</file>
-    <x>830</x>
-    <y>70</y>
-    <width>500</width>
-    <height>200</height>
-    <stretch_image>true</stretch_image>
   </widget>
 </display>

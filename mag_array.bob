@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <display version="2.0.0">
-  <name>MAGMagnetArrayMain</name>
-  <width>780</width>
-  <height>720</height>
+  <name>mag_array</name>
+  <height>570</height>
   <widget type="embedded" version="2.0.0">
     <name>Embedded Display</name>
     <file>mag_display.bob</file>
     <y>70</y>
-    <width>690</width>
-    <height>650</height>
+    <width>800</width>
+    <height>500</height>
     <transparent>true</transparent>
   </widget>
   <widget type="label" version="2.0.0">

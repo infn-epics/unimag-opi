@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2025-03-23 23:48:19 by andreamichelotti-->
 <display version="2.0.0">
   <name>magnetdisplay</name>
   <width>660</width>
+  <height>500</height>
   <scripts>
     <script file="scripts/MagLoadDevicePopulateArray.py">
       <pv_name>loc://ZONE_$(LCID)&lt;VString&gt;($(ZONE))</pv_name>
