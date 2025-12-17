@@ -498,7 +498,7 @@
     </widget>
     <widget type="label" version="2.0.0">
       <name>Status_Reg1_Title</name>
-      <text>Status Register 1</text>
+      <text>Status Register</text>
       <x>70</x>
       <y>50</y>
       <width>150</width>
@@ -565,10 +565,14 @@
       <numBits>16</numBits>
       <bitReverse>true</bitReverse>
       <horizontal>false</horizontal>
+      <on_color>
+        <color name="MAJOR" red="255" green="0" blue="0">
+        </color>
+      </on_color>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Status_Reg2_Title</name>
-      <text>Status Register 2 (Faults)</text>
+      <text>Faults</text>
       <x>340</x>
       <y>50</y>
       <width>200</width>
