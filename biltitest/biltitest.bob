@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--Saved on 2024-05-30 19:51:06 by andreamichelotti-->
 <display version="2.0.0">
-  <name>Bilt iTest BE2811 - bipolar current source - $(device)</name>
+  <name>Bilt iTest BE2811 - bipolar current source - $(P):$(R)</name>
   <x>480</x>
   <y>54</y>
   <width>548</width>
@@ -161,7 +161,7 @@
   </widget>
   <widget type="label" version="2.0.0">
     <name>Title Banner_1</name>
-    <text>$(device)</text>
+    <text>$(P):$(R)</text>
     <width>548</width>
     <height>45</height>
     <font>
@@ -189,7 +189,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>Text Update Template_1</name>
-    <pv_name>$(device):CURRENT_RB</pv_name>
+    <pv_name>$(P):$(R):CURRENT_RB</pv_name>
     <x>426</x>
     <y>85</y>
     <width>88</width>
@@ -218,7 +218,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>Text Update Template_2</name>
-    <pv_name>$(device):VOLTAGE_RB</pv_name>
+    <pv_name>$(P):$(R):VOLTAGE_RB</pv_name>
     <x>426</x>
     <y>115</y>
     <width>88</width>
@@ -247,7 +247,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>Text Update Template_4</name>
-    <pv_name>$(device):STATUS_RB</pv_name>
+    <pv_name>$(P):$(R):STATUS_RB</pv_name>
     <x>426</x>
     <y>55</y>
     <width>88</width>
@@ -276,7 +276,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>Text Update Template_5</name>
-    <pv_name>$(device):SETCURR_RB</pv_name>
+    <pv_name>$(P):$(R):SETCURR_RB</pv_name>
     <x>108</x>
     <y>85</y>
     <width>88</width>
@@ -305,7 +305,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>Text Update Template_6</name>
-    <pv_name>$(device):NAME</pv_name>
+    <pv_name>$(P):$(R):NAME</pv_name>
     <x>108</x>
     <y>55</y>
     <width>183</width>
@@ -334,7 +334,7 @@
   </widget>
   <widget type="spinner" version="2.0.0">
     <name>Spinner Template_1</name>
-    <pv_name>$(device):CURRENT_SP</pv_name>
+    <pv_name>$(P):$(R):CURRENT_SP</pv_name>
     <x>202</x>
     <y>84</y>
     <width>90</width>
@@ -378,7 +378,7 @@
         <description>WritePV</description>
       </action>
     </actions>
-    <pv_name>$(device):STATUS_SP</pv_name>
+    <pv_name>$(P):$(R):STATUS_SP</pv_name>
     <text>On</text>
     <x>107</x>
     <y>114</y>
@@ -406,7 +406,7 @@
         <description>WritePV</description>
       </action>
     </actions>
-    <pv_name>$(device):STATUS_SP</pv_name>
+    <pv_name>$(P):$(R):STATUS_SP</pv_name>
     <text>Off</text>
     <x>202</x>
     <y>114</y>
@@ -434,7 +434,7 @@
         <description>WritePV</description>
       </action>
     </actions>
-    <pv_name>$(device):CLEAR</pv_name>
+    <pv_name>$(P):$(R):CLEAR</pv_name>
     <text>Clear</text>
     <x>12</x>
     <y>114</y>
@@ -484,7 +484,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>Text Update SYSERR</name>
-    <pv_name>$(device):SYSERR_RB</pv_name>
+    <pv_name>$(P):$(R):SYSERR_RB</pv_name>
     <x>108</x>
     <y>146</y>
     <width>183</width>
@@ -542,7 +542,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>Text Update FAULT</name>
-    <pv_name>$(device):FAULT_RB</pv_name>
+    <pv_name>$(P):$(R):FAULT_RB</pv_name>
     <x>426</x>
     <y>146</y>
     <width>88</width>
@@ -571,7 +571,7 @@
   </widget>
   <widget type="led" version="2.0.0">
     <name>LED_LimMon</name>
-    <pv_name>$(device):LIMSTAT_RB</pv_name>
+    <pv_name>$(P):$(R):LIMSTAT_RB</pv_name>
     <x>305</x>
     <y>180</y>
     <width>18</width>
@@ -623,7 +623,7 @@
         <description>WritePV</description>
       </action>
     </actions>
-    <pv_name>$(device):LIMCLR</pv_name>
+    <pv_name>$(P):$(R):LIMCLR</pv_name>
     <text>Clr Fault</text>
     <x>426</x>
     <y>176</y>
