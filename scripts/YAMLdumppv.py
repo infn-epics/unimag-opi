@@ -54,6 +54,20 @@ iocs = epics_config.get("iocs")
 if iocs is None:
     ScriptUtil.showMessageDialog(widget, "Cannot find iocs section, please provide a valid values.yaml file")
     exit()
+# Merge iocDefaults into each IOC so per-template fields (e.g. devtype, opi) are available
+ioc_defaults = data.get("iocDefaults")
+if ioc_defaults:
+    merged_iocs = []
+    for ioc in iocs:
+        tmpl = ioc.get("template") or ioc.get("devtype") or ""
+        tmpl_defaults = ioc_defaults.get(tmpl)
+        if tmpl_defaults:
+            merged = dict(tmpl_defaults)
+            merged.update(dict(ioc))
+            merged_iocs.append(merged)
+        else:
+            merged_iocs.append(ioc)
+    iocs = merged_iocs
 # Parse conf file
 
 devarray = []
