@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2026-02-25 11:54:17 by riccardoesposito-->
+<!--Saved on 2026-03-25 14:09:00 by riccardoesposito-->
 <display version="2.0.0">
   <name>Display</name>
   <width>901</width>
   <height>830</height>
   <widget type="label" version="2.0.0">
     <name>Label</name>
-    <text>$(P)$(R)interface</text>
+    <text>$(P):$(R):interface</text>
     <x>10</x>
     <y>10</y>
     <width>320</width>
@@ -29,7 +29,7 @@
     </widget>
     <widget type="textentry" version="3.0.0">
       <name>Text Entry_5</name>
-      <pv_name>$(P)$(R)CURRENT_SP</pv_name>
+      <pv_name>$(P):$(R):CURRENT_SP</pv_name>
       <x>142</x>
       <y>22</y>
     </widget>
@@ -42,7 +42,7 @@
     </widget>
     <widget type="textupdate" version="2.0.0">
       <name>Text Update_12</name>
-      <pv_name>$(P)$(R)CURRENT_RB</pv_name>
+      <pv_name>$(P):$(R):CURRENT_RB</pv_name>
       <x>142</x>
       <y>72</y>
     </widget>
@@ -55,7 +55,7 @@
     </widget>
     <widget type="textupdate" version="2.0.0">
       <name>Text Update_10</name>
-      <pv_name>$(P)$(R)CURRENT_SP_RB</pv_name>
+      <pv_name>$(P):$(R):CURRENT_SP_RB</pv_name>
       <x>142</x>
       <y>122</y>
     </widget>
@@ -68,7 +68,7 @@
           <value>1</value>
         </action>
       </actions>
-      <pv_name>$(P)$(R)Output</pv_name>
+      <pv_name>$(P):$(R):Output</pv_name>
       <text>Power ON</text>
       <x>292</x>
       <y>12</y>
@@ -88,7 +88,7 @@
           <value>0</value>
         </action>
       </actions>
-      <pv_name>$(P)$(R)Output</pv_name>
+      <pv_name>$(P):$(R):Output</pv_name>
       <text>Power OFF</text>
       <x>292</x>
       <y>62</y>
@@ -143,13 +143,13 @@
     </widget>
     <widget type="textupdate" version="2.0.0">
       <name>Text Update_16</name>
-      <pv_name>$(P)$(R)VOLTAGE_RB</pv_name>
+      <pv_name>$(P):$(R):VOLTAGE_RB</pv_name>
       <x>142</x>
       <y>72</y>
     </widget>
     <widget type="textupdate" version="2.0.0">
       <name>Text Update_18</name>
-      <pv_name>$(P)$(R)VOLTAGE_SP_RB</pv_name>
+      <pv_name>$(P):$(R):VOLTAGE_SP_RB</pv_name>
       <x>142</x>
       <y>122</y>
     </widget>
@@ -162,13 +162,13 @@
     </widget>
     <widget type="textentry" version="3.0.0">
       <name>Text Entry_11</name>
-      <pv_name>$(P)$(R)VOLTAGE_SP</pv_name>
+      <pv_name>$(P):$(R):VOLTAGE_SP</pv_name>
       <x>142</x>
       <y>22</y>
     </widget>
     <widget type="byte_monitor" version="2.0.0">
       <name>Byte Monitor</name>
-      <pv_name>$(P)$(R)LimitStatus-RB</pv_name>
+      <pv_name>$(P):$(R):LimitStatus-RB</pv_name>
       <x>272</x>
       <y>22</y>
       <width>26</width>
@@ -191,7 +191,7 @@
     <width>410</width>
     <widget type="textentry" version="3.0.0">
       <name>Text Entry_12</name>
-      <pv_name>$(P)$(R)OVP-SP</pv_name>
+      <pv_name>$(P):$(R):OVP-SP</pv_name>
       <x>132</x>
       <y>22</y>
       <width>110</width>
@@ -212,7 +212,7 @@
     </widget>
     <widget type="textupdate" version="2.0.0">
       <name>Text Update_23</name>
-      <pv_name>$(P)$(R)OVP-RB</pv_name>
+      <pv_name>$(P):$(R):OVP-RB</pv_name>
       <x>132</x>
       <y>62</y>
       <width>110</width>
@@ -226,7 +226,7 @@
           <value>1</value>
         </action>
       </actions>
-      <pv_name>$(P)$(R)Reset-Cmd</pv_name>
+      <pv_name>$(P):$(R):Reset-Cmd</pv_name>
       <text>Reset</text>
       <x>292</x>
       <y>12</y>
@@ -239,7 +239,7 @@
     </widget>
     <widget type="textupdate" version="2.0.0">
       <name>Text Update_24</name>
-      <pv_name>$(P)$(R)Power-RB</pv_name>
+      <pv_name>$(P):$(R):Power-RB</pv_name>
       <x>133</x>
       <y>142</y>
       <width>110</width>
@@ -256,7 +256,7 @@
       <actions>
         <action type="write_pv">
           <description>Write PV</description>
-          <pv_name>$(P)$(R)ClearStatus-Cmd</pv_name>
+          <pv_name>$(P):$(R):ClearStatus-Cmd</pv_name>
           <value>1</value>
         </action>
       </actions>
@@ -281,7 +281,7 @@
     <traces>
       <trace>
         <name>$(traces[0].y_pv)</name>
-        <y_pv>$(P)$(R)Current-RB</y_pv>
+        <y_pv>$(P):$(R):Current-RB</y_pv>
         <axis>0</axis>
         <trace_type>2</trace_type>
         <color>
@@ -297,14 +297,14 @@
   </widget>
   <widget type="stripchart" version="2.1.0">
     <name>Strip Chart_1</name>
-    <x>899</x>
-    <y>70</y>
+    <x>410</x>
+    <y>440</y>
     <width>491</width>
     <height>370</height>
     <traces>
       <trace>
         <name>$(traces[0].y_pv)</name>
-        <y_pv>$(P)$(R)Voltage-RB</y_pv>
+        <y_pv>$(P):$(R):Voltage-RB</y_pv>
         <axis>0</axis>
         <trace_type>2</trace_type>
         <color>
