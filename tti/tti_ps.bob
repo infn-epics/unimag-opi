@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2026-03-25 14:09:00 by riccardoesposito-->
+<!--Saved on 2026-03-26 11:47:56 by riccardoesposito-->
 <display version="2.0.0">
   <name>Display</name>
   <width>901</width>
@@ -9,7 +9,7 @@
     <text>$(P):$(R):interface</text>
     <x>10</x>
     <y>10</y>
-    <width>320</width>
+    <width>600</width>
     <height>40</height>
     <font>
       <font family="Times New Roman" style="BOLD" size="22.0">
@@ -113,7 +113,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_14</name>
-    <pv_name>SPARC:TTI:Identity</pv_name>
+    <pv_name>$(P):$(R):Identity</pv_name>
     <x>610</x>
     <y>20</y>
     <width>289</width>
@@ -281,7 +281,7 @@
     <traces>
       <trace>
         <name>$(traces[0].y_pv)</name>
-        <y_pv>$(P):$(R):Current-RB</y_pv>
+        <y_pv>$(P):$(R):CURRENT_RB</y_pv>
         <axis>0</axis>
         <trace_type>2</trace_type>
         <color>
@@ -304,7 +304,7 @@
     <traces>
       <trace>
         <name>$(traces[0].y_pv)</name>
-        <y_pv>$(P):$(R):Voltage-RB</y_pv>
+        <y_pv>$(P):$(R):VOLTAGE_RB</y_pv>
         <axis>0</axis>
         <trace_type>2</trace_type>
         <color>
