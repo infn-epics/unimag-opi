@@ -1,0 +1,1220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Saved on 2026-04-24 13:38:11 by Alex-->
+<display version="2.0.0">
+  <name>OCEM modbus 4 chan</name>
+  <width>1059</width>
+  <height>670</height>
+  <rules>
+    <rule name="New Rule" prop_id="background_color" out_exp="false">
+      <exp bool_exp="pv0==0">
+        <value>
+          <color name="OK" red="0" green="255" blue="0">
+          </color>
+        </value>
+      </exp>
+      <pv_name>$(P):$(R):GlobalAlarms</pv_name>
+    </rule>
+  </rules>
+  <widget type="label" version="2.0.0">
+    <name>Label_2</name>
+    <text>Status</text>
+    <x>30</x>
+    <y>40</y>
+    <width>70</width>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_1</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(P):$(R):GlobalControl</pv_name>
+        <value>4</value>
+        <description>Set Standby</description>
+      </action>
+    </actions>
+    <x>540</x>
+    <y>20</y>
+    <tooltip>$(actions)</tooltip>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_2</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(P):$(R):GlobalControl</pv_name>
+        <value>2</value>
+        <description>Set Operational</description>
+      </action>
+    </actions>
+    <x>540</x>
+    <y>60</y>
+    <tooltip>$(actions)</tooltip>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_2</name>
+    <pv_name>$(P):$(R):GlobalStateRaw</pv_name>
+    <x>195</x>
+    <y>40</y>
+    <width>30</width>
+    <height>18</height>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_3</name>
+    <text>$(P):$(R)</text>
+    <x>190</x>
+    <y>10</y>
+    <width>248</width>
+  </widget>
+  <widget type="stripchart" version="2.1.0">
+    <name>Strip Chart</name>
+    <x>12</x>
+    <y>480</y>
+    <width>260</width>
+    <height>180</height>
+    <tooltip></tooltip>
+    <start>20 seconds</start>
+    <y_axes>
+      <y_axis>
+        <title>Y</title>
+        <autoscale>true</autoscale>
+        <log_scale>false</log_scale>
+        <minimum>0.0</minimum>
+        <maximum>10.0</maximum>
+        <show_grid>false</show_grid>
+        <visible>true</visible>
+        <color>
+          <color name="Text" red="0" green="0" blue="0">
+          </color>
+        </color>
+      </y_axis>
+    </y_axes>
+    <traces>
+      <trace>
+        <name>$(traces[0].y_pv)</name>
+        <y_pv>$(P):$(R):WayA_Current</y_pv>
+        <axis>0</axis>
+        <trace_type>2</trace_type>
+        <color>
+          <color red="0" green="0" blue="255">
+          </color>
+        </color>
+        <line_width>2</line_width>
+        <point_type>0</point_type>
+        <point_size>10</point_size>
+        <visible>true</visible>
+      </trace>
+    </traces>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_6</name>
+    <text>Alarms</text>
+    <x>258</x>
+    <y>40</y>
+    <width>90</width>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_7</name>
+    <pv_name>$(P):$(R):GlobalAlarms</pv_name>
+    <x>330</x>
+    <y>40</y>
+    <width>110</width>
+    <rules>
+      <rule name="New Rule" prop_id="background_color" out_exp="false">
+        <exp bool_exp="pv0=&quot;NO &quot;">
+          <value>
+            <color name="OK" red="0" green="255" blue="0">
+            </color>
+          </value>
+        </exp>
+        <pv_name>$(P):$(R):Alarms</pv_name>
+      </rule>
+    </rules>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(P):$(R):GlobalControl</pv_name>
+        <value>8</value>
+        <description>WritePV</description>
+      </action>
+    </actions>
+    <text>RESET ALARMS</text>
+    <x>660</x>
+    <y>40</y>
+    <height>50</height>
+    <tooltip>$(actions)</tooltip>
+  </widget>
+  <widget type="text-symbol" version="2.0.0">
+    <name>Text Symbol_4</name>
+    <pv_name>$(P):$(R):GlobalStateRaw</pv_name>
+    <symbols>
+      <symbol>NO VAL</symbol>
+      <symbol>POWER OFF</symbol>
+      <symbol>STANDBY</symbol>
+      <symbol>NOVAL</symbol>
+      <symbol>POWER ON</symbol>
+      <symbol>NOVAL</symbol>
+      <symbol>NOVAL</symbol>
+      <symbol>NOVAL</symbol>
+      <symbol>OPER</symbol>
+      <symbol>NOVAL</symbol>
+      <symbol>NOVAL</symbol>
+      <symbol>NOVAL</symbol>
+      <symbol>NOVAL</symbol>
+      <symbol>NOVAL</symbol>
+      <symbol>NOVAL</symbol>
+      <symbol>NOVAL</symbol>
+      <symbol>FAULT</symbol>
+    </symbols>
+    <x>90</x>
+    <y>30</y>
+    <width>85</width>
+  </widget>
+  <widget type="group" version="3.0.0">
+    <name>Way A</name>
+    <x>12</x>
+    <y>140</y>
+    <width>260</width>
+    <height>340</height>
+    <widget type="text-symbol" version="2.0.0">
+      <name>Text Symbol</name>
+      <pv_name>$(P):$(R):WayA_State</pv_name>
+      <symbols>
+        <symbol>NOVAL</symbol>
+        <symbol>STANDBY</symbol>
+        <symbol>POWER ON</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>OPER</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>POWER OFF</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>FAULT</symbol>
+      </symbols>
+      <x>87</x>
+      <y>12</y>
+      <width>85</width>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>Action Button_9</name>
+      <actions>
+        <action type="write_pv">
+          <pv_name>$(P):$(R):WayA_StateControl</pv_name>
+          <value>2</value>
+          <description>StandBy  A</description>
+        </action>
+      </actions>
+      <x>-3</x>
+      <y>160</y>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>Action Button_10</name>
+      <actions execute_as_one="true">
+        <action type="write_pv">
+          <pv_name>$(P):$(R):WayA_StateControl</pv_name>
+          <value>1</value>
+          <description>PowerOn A</description>
+        </action>
+      </actions>
+      <x>122</x>
+      <y>160</y>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>Action Button_11</name>
+      <actions execute_as_one="true">
+        <action type="write_pv">
+          <pv_name>$(P):$(R):WayA_StateControl</pv_name>
+          <value>8</value>
+          <description>Start Ramp A</description>
+        </action>
+      </actions>
+      <x>122</x>
+      <y>200</y>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>Action Button_12</name>
+      <actions execute_as_one="true">
+        <action type="write_pv">
+          <pv_name>$(P):$(R):WayA_StateControl</pv_name>
+          <value>4</value>
+          <description>Reset Fault A</description>
+        </action>
+      </actions>
+      <x>-3</x>
+      <y>200</y>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="byte_monitor" version="2.0.0">
+      <name>Byte Monitor</name>
+      <pv_name>$(P):$(R):WayA_AlarmsFirst</pv_name>
+      <x>7</x>
+      <y>240</y>
+      <width>215</width>
+      <numBits>16</numBits>
+      <bitReverse>true</bitReverse>
+      <on_color>
+        <color name="MAJOR" red="255" green="0" blue="0">
+        </color>
+      </on_color>
+    </widget>
+    <widget type="byte_monitor" version="2.0.0">
+      <name>Byte Monitor_1</name>
+      <pv_name>$(P):$(R):WayA_AlarmsSecond</pv_name>
+      <x>7</x>
+      <y>260</y>
+      <width>40</width>
+      <height>13</height>
+      <numBits>3</numBits>
+      <bitReverse>true</bitReverse>
+      <on_color>
+        <color name="MAJOR" red="255" green="0" blue="0">
+        </color>
+      </on_color>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_4</name>
+      <text>Current</text>
+      <x>7</x>
+      <y>50</y>
+      <width>90</width>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_3</name>
+      <pv_name>$(P):$(R):WayA_Current</pv_name>
+      <x>120</x>
+      <y>50</y>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_7</name>
+      <text>Voltage</text>
+      <x>7</x>
+      <y>80</y>
+      <width>80</width>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_8</name>
+      <pv_name>$(P):$(R):WayA_Voltage</pv_name>
+      <x>125</x>
+      <y>80</y>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_2</name>
+      <pv_name>$(P):$(R):WayA_Current_SP</pv_name>
+      <x>122</x>
+      <y>117</y>
+      <height>24</height>
+      <actions>
+        <action type="execute">
+          <script file="EmbeddedPy">
+            <text><![CDATA[# Embedded python script
+from org.csstudio.display.builder.runtime.script import PVUtil, ScriptUtil
+print 'Ciao Ale'
+# widget.setPropertyValue('text', PVUtil.getString(pvs[0]))
+
+pname="loc://ampereToSet"
+pvx = PVUtil.createPV(pname,1000)
+ampere_pv= PVUtil.getDouble(pvx)
+
+
+
+#maxload_pv = PVUtil.getDouble(pvs[1])        # SPARC:OCEM:TEST:MaxIset
+
+# Calcolo: (A / MaxLoad) * 65535
+raw_value = int(round((ampere_pv / 280) * 65535))
+print 'ampere'
+print ampere_pv
+print 'Writing'
+print raw_value 
+PVUtil.writePV("SPARC:OCEM:TEST:Current_SP_raw",raw_value,1000)
+print 'Wrote']]></text>
+          </script>
+          <description>Execute Script</description>
+        </action>
+      </actions>
+      <border_alarm_sensitive>false</border_alarm_sensitive>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_34</name>
+      <text>Set Current (A)</text>
+      <x>7</x>
+      <y>117</y>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_4</name>
+      <pv_name>$(P):$(R):WayA_State</pv_name>
+      <x>197</x>
+      <y>20</y>
+      <width>28</width>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_5</name>
+      <text>Ch State</text>
+      <x>7</x>
+      <y>20</y>
+      <width>90</width>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_7</name>
+      <pv_name>$(P):$(R):WayA_SetRamp_SP</pv_name>
+      <x>122</x>
+      <y>273</y>
+      <height>24</height>
+      <actions>
+        <action type="execute">
+          <script file="EmbeddedPy">
+            <text><![CDATA[# Embedded python script
+from org.csstudio.display.builder.runtime.script import PVUtil, ScriptUtil
+print 'Ciao Ale'
+# widget.setPropertyValue('text', PVUtil.getString(pvs[0]))
+
+pname="loc://ampereToSet"
+pvx = PVUtil.createPV(pname,1000)
+ampere_pv= PVUtil.getDouble(pvx)
+
+
+
+#maxload_pv = PVUtil.getDouble(pvs[1])        # SPARC:OCEM:TEST:MaxIset
+
+# Calcolo: (A / MaxLoad) * 65535
+raw_value = int(round((ampere_pv / 280) * 65535))
+print 'ampere'
+print ampere_pv
+print 'Writing'
+print raw_value 
+PVUtil.writePV("SPARC:OCEM:TEST:Current_SP_raw",raw_value,1000)
+print 'Wrote']]></text>
+          </script>
+          <description>Execute Script</description>
+        </action>
+      </actions>
+      <border_alarm_sensitive>false</border_alarm_sensitive>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_45</name>
+      <text>Set Ramp (A/s)</text>
+      <x>7</x>
+      <y>276</y>
+    </widget>
+  </widget>
+  <widget type="group" version="3.0.0">
+    <name>Way B</name>
+    <x>280</x>
+    <y>140</y>
+    <width>250</width>
+    <height>340</height>
+    <widget type="action_button" version="3.0.0">
+      <name>Action Button_3</name>
+      <actions>
+        <action type="write_pv">
+          <pv_name>$(P):$(R):WayB_StateControl</pv_name>
+          <value>2</value>
+          <description>StandBy  B</description>
+        </action>
+      </actions>
+      <y>161</y>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>Action Button_6</name>
+      <actions execute_as_one="true">
+        <action type="write_pv">
+          <pv_name>$(P):$(R):WayB_StateControl</pv_name>
+          <value>1</value>
+          <description>PowerOn B</description>
+        </action>
+      </actions>
+      <x>109</x>
+      <y>161</y>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>Action Button_7</name>
+      <actions execute_as_one="true">
+        <action type="write_pv">
+          <pv_name>$(P):$(R):WayB_StateControl</pv_name>
+          <value>8</value>
+          <description>Start Ramp B </description>
+        </action>
+      </actions>
+      <x>109</x>
+      <y>201</y>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="text-symbol" version="2.0.0">
+      <name>Text Symbol_1</name>
+      <pv_name>$(P):$(R):WayB_State</pv_name>
+      <symbols>
+        <symbol>NOVAL</symbol>
+        <symbol>STANDBY</symbol>
+        <symbol>POWER ON</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>OPER</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>POWER OFF</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>FAULT</symbol>
+      </symbols>
+      <x>62</x>
+      <y>13</y>
+      <width>80</width>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>Action Button_8</name>
+      <actions execute_as_one="true">
+        <action type="write_pv">
+          <pv_name>$(P):$(R):WayB_StateControl</pv_name>
+          <value>4</value>
+          <description>Reset Fault B</description>
+        </action>
+      </actions>
+      <y>201</y>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="byte_monitor" version="2.0.0">
+      <name>Byte Monitor_2</name>
+      <pv_name>$(P):$(R):WayB_AlarmsSecond</pv_name>
+      <y>261</y>
+      <width>40</width>
+      <height>13</height>
+      <numBits>3</numBits>
+      <bitReverse>true</bitReverse>
+      <on_color>
+        <color name="MAJOR" red="255" green="0" blue="0">
+        </color>
+      </on_color>
+    </widget>
+    <widget type="byte_monitor" version="2.0.0">
+      <name>Byte Monitor_3</name>
+      <pv_name>$(P):$(R):WayB_AlarmsFirst</pv_name>
+      <y>241</y>
+      <width>215</width>
+      <height>13</height>
+      <numBits>16</numBits>
+      <bitReverse>true</bitReverse>
+      <on_color>
+        <color name="MAJOR" red="255" green="0" blue="0">
+        </color>
+      </on_color>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_8</name>
+      <text>Current</text>
+      <y>51</y>
+      <width>90</width>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_5</name>
+      <pv_name>$(P):$(R):WayB_Current</pv_name>
+      <x>102</x>
+      <y>51</y>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_9</name>
+      <text>Voltage</text>
+      <y>81</y>
+      <width>80</width>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_9</name>
+      <pv_name>$(P):$(R):WayB_Voltage</pv_name>
+      <x>102</x>
+      <y>81</y>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_10</name>
+      <pv_name>$(P):$(R):WayB_State</pv_name>
+      <x>156</x>
+      <y>18</y>
+      <width>43</width>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_10</name>
+      <text>Ch State</text>
+      <y>21</y>
+      <width>90</width>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_4</name>
+      <pv_name>$(P):$(R):WayB_Current_SP</pv_name>
+      <x>103</x>
+      <y>118</y>
+      <height>24</height>
+      <actions>
+        <action type="execute">
+          <script file="EmbeddedPy">
+            <text><![CDATA[# Embedded python script
+from org.csstudio.display.builder.runtime.script import PVUtil, ScriptUtil
+print 'Ciao Ale'
+# widget.setPropertyValue('text', PVUtil.getString(pvs[0]))
+
+pname="loc://ampereToSet"
+pvx = PVUtil.createPV(pname,1000)
+ampere_pv= PVUtil.getDouble(pvx)
+
+
+
+#maxload_pv = PVUtil.getDouble(pvs[1])        # SPARC:OCEM:TEST:MaxIset
+
+# Calcolo: (A / MaxLoad) * 65535
+raw_value = int(round((ampere_pv / 280) * 65535))
+print 'ampere'
+print ampere_pv
+print 'Writing'
+print raw_value 
+PVUtil.writePV("SPARC:OCEM:TEST:Current_SP_raw",raw_value,1000)
+print 'Wrote']]></text>
+          </script>
+          <description>Execute Script</description>
+        </action>
+      </actions>
+      <border_alarm_sensitive>false</border_alarm_sensitive>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_36</name>
+      <text>Set Current (A)</text>
+      <y>118</y>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_46</name>
+      <text>Set Ramp (A/s)</text>
+      <y>278</y>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_8</name>
+      <pv_name>$(P):$(R):WayB_SetRamp_SP</pv_name>
+      <x>107</x>
+      <y>274</y>
+      <height>24</height>
+      <actions>
+        <action type="execute">
+          <script file="EmbeddedPy">
+            <text><![CDATA[# Embedded python script
+from org.csstudio.display.builder.runtime.script import PVUtil, ScriptUtil
+print 'Ciao Ale'
+# widget.setPropertyValue('text', PVUtil.getString(pvs[0]))
+
+pname="loc://ampereToSet"
+pvx = PVUtil.createPV(pname,1000)
+ampere_pv= PVUtil.getDouble(pvx)
+
+
+
+#maxload_pv = PVUtil.getDouble(pvs[1])        # SPARC:OCEM:TEST:MaxIset
+
+# Calcolo: (A / MaxLoad) * 65535
+raw_value = int(round((ampere_pv / 280) * 65535))
+print 'ampere'
+print ampere_pv
+print 'Writing'
+print raw_value 
+PVUtil.writePV("SPARC:OCEM:TEST:Current_SP_raw",raw_value,1000)
+print 'Wrote']]></text>
+          </script>
+          <description>Execute Script</description>
+        </action>
+      </actions>
+      <border_alarm_sensitive>false</border_alarm_sensitive>
+    </widget>
+  </widget>
+  <widget type="group" version="3.0.0">
+    <name>Way C</name>
+    <x>540</x>
+    <y>140</y>
+    <width>250</width>
+    <height>340</height>
+    <widget type="label" version="2.0.0">
+      <name>Label_37</name>
+      <text>Current</text>
+      <x>-6</x>
+      <y>50</y>
+      <width>90</width>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_6</name>
+      <pv_name>$(P):$(R):WayC_Current</pv_name>
+      <x>112</x>
+      <y>50</y>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_38</name>
+      <text>Voltage</text>
+      <x>-6</x>
+      <y>80</y>
+      <width>80</width>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_11</name>
+      <pv_name>$(P):$(R):WayC_Voltage</pv_name>
+      <x>112</x>
+      <y>80</y>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_12</name>
+      <pv_name>$(P):$(R):WayC_State</pv_name>
+      <x>184</x>
+      <y>20</y>
+      <width>28</width>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_39</name>
+      <text>Ch State</text>
+      <x>-6</x>
+      <y>20</y>
+      <width>90</width>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_5</name>
+      <pv_name>$(P):$(R):WayC_Current_SP</pv_name>
+      <x>112</x>
+      <y>117</y>
+      <height>24</height>
+      <actions>
+        <action type="execute">
+          <script file="EmbeddedPy">
+            <text><![CDATA[# Embedded python script
+from org.csstudio.display.builder.runtime.script import PVUtil, ScriptUtil
+print 'Ciao Ale'
+# widget.setPropertyValue('text', PVUtil.getString(pvs[0]))
+
+pname="loc://ampereToSet"
+pvx = PVUtil.createPV(pname,1000)
+ampere_pv= PVUtil.getDouble(pvx)
+
+
+
+#maxload_pv = PVUtil.getDouble(pvs[1])        # SPARC:OCEM:TEST:MaxIset
+
+# Calcolo: (A / MaxLoad) * 65535
+raw_value = int(round((ampere_pv / 280) * 65535))
+print 'ampere'
+print ampere_pv
+print 'Writing'
+print raw_value 
+PVUtil.writePV("SPARC:OCEM:TEST:Current_SP_raw",raw_value,1000)
+print 'Wrote']]></text>
+          </script>
+          <description>Execute Script</description>
+        </action>
+      </actions>
+      <border_alarm_sensitive>false</border_alarm_sensitive>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_40</name>
+      <text>Set Current (A)</text>
+      <x>-6</x>
+      <y>117</y>
+    </widget>
+    <widget type="text-symbol" version="2.0.0">
+      <name>Text Symbol_2</name>
+      <pv_name>$(P):$(R):WayC_State</pv_name>
+      <symbols>
+        <symbol>NOVAL</symbol>
+        <symbol>STANDBY</symbol>
+        <symbol>POWER ON</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>OPER</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>POWER OFF</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>FAULT</symbol>
+      </symbols>
+      <x>74</x>
+      <y>12</y>
+      <width>85</width>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>Action Button_13</name>
+      <actions>
+        <action type="write_pv">
+          <pv_name>$(P):$(R):WayC_StateControl</pv_name>
+          <value>2</value>
+          <description>StandBy  C</description>
+        </action>
+      </actions>
+      <x>-6</x>
+      <y>160</y>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>Action Button_14</name>
+      <actions execute_as_one="true">
+        <action type="write_pv">
+          <pv_name>$(P):$(R):WayC_StateControl</pv_name>
+          <value>1</value>
+          <description>PowerOn C</description>
+        </action>
+      </actions>
+      <x>119</x>
+      <y>160</y>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>Action Button_15</name>
+      <actions execute_as_one="true">
+        <action type="write_pv">
+          <pv_name>$(P):$(R):WayC_StateControl</pv_name>
+          <value>8</value>
+          <description>Start Ramp C </description>
+        </action>
+      </actions>
+      <x>119</x>
+      <y>200</y>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>Action Button_16</name>
+      <actions execute_as_one="true">
+        <action type="write_pv">
+          <pv_name>$(P):$(R):WayC_StateControl</pv_name>
+          <value>4</value>
+          <description>Reset Fault C</description>
+        </action>
+      </actions>
+      <x>-6</x>
+      <y>200</y>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="byte_monitor" version="2.0.0">
+      <name>Byte Monitor_4</name>
+      <pv_name>$(P):$(R):WayC_AlarmsFirst</pv_name>
+      <x>-6</x>
+      <y>240</y>
+      <width>215</width>
+      <numBits>16</numBits>
+      <bitReverse>true</bitReverse>
+      <on_color>
+        <color name="MAJOR" red="255" green="0" blue="0">
+        </color>
+      </on_color>
+    </widget>
+    <widget type="byte_monitor" version="2.0.0">
+      <name>Byte Monitor_5</name>
+      <pv_name>$(P):$(R):WayC_AlarmsSecond</pv_name>
+      <x>-6</x>
+      <y>260</y>
+      <width>40</width>
+      <height>13</height>
+      <numBits>3</numBits>
+      <bitReverse>true</bitReverse>
+      <on_color>
+        <color name="MAJOR" red="255" green="0" blue="0">
+        </color>
+      </on_color>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_47</name>
+      <text>Set Ramp (A/s)</text>
+      <y>278</y>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_9</name>
+      <pv_name>$(P):$(R):WayC_SetRamp_SP</pv_name>
+      <x>111</x>
+      <y>273</y>
+      <height>24</height>
+      <actions>
+        <action type="execute">
+          <script file="EmbeddedPy">
+            <text><![CDATA[# Embedded python script
+from org.csstudio.display.builder.runtime.script import PVUtil, ScriptUtil
+print 'Ciao Ale'
+# widget.setPropertyValue('text', PVUtil.getString(pvs[0]))
+
+pname="loc://ampereToSet"
+pvx = PVUtil.createPV(pname,1000)
+ampere_pv= PVUtil.getDouble(pvx)
+
+
+
+#maxload_pv = PVUtil.getDouble(pvs[1])        # SPARC:OCEM:TEST:MaxIset
+
+# Calcolo: (A / MaxLoad) * 65535
+raw_value = int(round((ampere_pv / 280) * 65535))
+print 'ampere'
+print ampere_pv
+print 'Writing'
+print raw_value 
+PVUtil.writePV("SPARC:OCEM:TEST:Current_SP_raw",raw_value,1000)
+print 'Wrote']]></text>
+          </script>
+          <description>Execute Script</description>
+        </action>
+      </actions>
+      <border_alarm_sensitive>false</border_alarm_sensitive>
+    </widget>
+  </widget>
+  <widget type="group" version="3.0.0">
+    <name>Way D</name>
+    <x>797</x>
+    <y>140</y>
+    <width>250</width>
+    <height>340</height>
+    <widget type="label" version="2.0.0">
+      <name>Label_41</name>
+      <text>Current</text>
+      <y>50</y>
+      <width>90</width>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_13</name>
+      <pv_name>$(P):$(R):WayD_Current</pv_name>
+      <x>112</x>
+      <y>50</y>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_42</name>
+      <text>Voltage</text>
+      <x>1</x>
+      <y>80</y>
+      <width>80</width>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_14</name>
+      <pv_name>$(P):$(R):WayD_Voltage</pv_name>
+      <x>112</x>
+      <y>80</y>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_15</name>
+      <pv_name>$(P):$(R):WayD_State</pv_name>
+      <x>173</x>
+      <y>20</y>
+      <width>39</width>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_43</name>
+      <text>Ch State</text>
+      <y>20</y>
+      <width>90</width>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_6</name>
+      <pv_name>$(P):$(R):WayD_Current_SP</pv_name>
+      <x>112</x>
+      <y>117</y>
+      <height>24</height>
+      <actions>
+        <action type="execute">
+          <script file="EmbeddedPy">
+            <text><![CDATA[# Embedded python script
+from org.csstudio.display.builder.runtime.script import PVUtil, ScriptUtil
+print 'Ciao Ale'
+# widget.setPropertyValue('text', PVUtil.getString(pvs[0]))
+
+pname="loc://ampereToSet"
+pvx = PVUtil.createPV(pname,1000)
+ampere_pv= PVUtil.getDouble(pvx)
+
+
+
+#maxload_pv = PVUtil.getDouble(pvs[1])        # SPARC:OCEM:TEST:MaxIset
+
+# Calcolo: (A / MaxLoad) * 65535
+raw_value = int(round((ampere_pv / 280) * 65535))
+print 'ampere'
+print ampere_pv
+print 'Writing'
+print raw_value 
+PVUtil.writePV("SPARC:OCEM:TEST:Current_SP_raw",raw_value,1000)
+print 'Wrote']]></text>
+          </script>
+          <description>Execute Script</description>
+        </action>
+      </actions>
+      <border_alarm_sensitive>false</border_alarm_sensitive>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_44</name>
+      <text>Set Current (A)</text>
+      <y>117</y>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>Action Button_17</name>
+      <actions>
+        <action type="write_pv">
+          <pv_name>$(P):$(R):WayD_StateControl</pv_name>
+          <value>2</value>
+          <description>StandBy  D</description>
+        </action>
+      </actions>
+      <y>160</y>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>Action Button_18</name>
+      <actions execute_as_one="true">
+        <action type="write_pv">
+          <pv_name>$(P):$(R):WayD_StateControl</pv_name>
+          <value>1</value>
+          <description>PowerOn D</description>
+        </action>
+      </actions>
+      <x>119</x>
+      <y>160</y>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>Action Button_19</name>
+      <actions execute_as_one="true">
+        <action type="write_pv">
+          <pv_name>$(P):$(R):WayD_StateControl</pv_name>
+          <value>8</value>
+          <description>Start Ramp D</description>
+        </action>
+      </actions>
+      <x>119</x>
+      <y>200</y>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>Action Button_20</name>
+      <actions execute_as_one="true">
+        <action type="write_pv">
+          <pv_name>$(P):$(R):WayD_StateControl</pv_name>
+          <value>4</value>
+          <description>Reset Fault D</description>
+        </action>
+      </actions>
+      <y>200</y>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="byte_monitor" version="2.0.0">
+      <name>Byte Monitor_6</name>
+      <pv_name>$(P):$(R):WayD_AlarmsFirst</pv_name>
+      <y>240</y>
+      <width>215</width>
+      <numBits>16</numBits>
+      <bitReverse>true</bitReverse>
+      <on_color>
+        <color name="MAJOR" red="255" green="0" blue="0">
+        </color>
+      </on_color>
+    </widget>
+    <widget type="byte_monitor" version="2.0.0">
+      <name>Byte Monitor_7</name>
+      <pv_name>$(P):$(R):WayD_AlarmsSecond</pv_name>
+      <y>260</y>
+      <width>40</width>
+      <height>13</height>
+      <numBits>3</numBits>
+      <bitReverse>true</bitReverse>
+      <on_color>
+        <color name="MAJOR" red="255" green="0" blue="0">
+        </color>
+      </on_color>
+    </widget>
+    <widget type="text-symbol" version="2.0.0">
+      <name>Text Symbol_3</name>
+      <pv_name>$(P):$(R):WayD_State</pv_name>
+      <symbols>
+        <symbol>NOVAL</symbol>
+        <symbol>STANDBY</symbol>
+        <symbol>POWER ON</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>OPER</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>POWER OFF</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>NOVAL</symbol>
+        <symbol>FAULT</symbol>
+      </symbols>
+      <x>72</x>
+      <y>12</y>
+      <width>89</width>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_48</name>
+      <text>Set Ramp (A/s)</text>
+      <y>278</y>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_10</name>
+      <pv_name>$(P):$(R):WayD_SetRamp_SP</pv_name>
+      <x>114</x>
+      <y>272</y>
+      <height>24</height>
+      <actions>
+        <action type="execute">
+          <script file="EmbeddedPy">
+            <text><![CDATA[# Embedded python script
+from org.csstudio.display.builder.runtime.script import PVUtil, ScriptUtil
+print 'Ciao Ale'
+# widget.setPropertyValue('text', PVUtil.getString(pvs[0]))
+
+pname="loc://ampereToSet"
+pvx = PVUtil.createPV(pname,1000)
+ampere_pv= PVUtil.getDouble(pvx)
+
+
+
+#maxload_pv = PVUtil.getDouble(pvs[1])        # SPARC:OCEM:TEST:MaxIset
+
+# Calcolo: (A / MaxLoad) * 65535
+raw_value = int(round((ampere_pv / 280) * 65535))
+print 'ampere'
+print ampere_pv
+print 'Writing'
+print raw_value 
+PVUtil.writePV("SPARC:OCEM:TEST:Current_SP_raw",raw_value,1000)
+print 'Wrote']]></text>
+          </script>
+          <description>Execute Script</description>
+        </action>
+      </actions>
+      <border_alarm_sensitive>false</border_alarm_sensitive>
+    </widget>
+  </widget>
+  <widget type="stripchart" version="2.1.0">
+    <name>Strip Chart_1</name>
+    <x>280</x>
+    <y>480</y>
+    <width>260</width>
+    <height>180</height>
+    <tooltip></tooltip>
+    <start>20 seconds</start>
+    <y_axes>
+      <y_axis>
+        <title>Y</title>
+        <autoscale>true</autoscale>
+        <log_scale>false</log_scale>
+        <minimum>0.0</minimum>
+        <maximum>10.0</maximum>
+        <show_grid>false</show_grid>
+        <visible>true</visible>
+        <color>
+          <color name="Text" red="0" green="0" blue="0">
+          </color>
+        </color>
+      </y_axis>
+    </y_axes>
+    <traces>
+      <trace>
+        <name>$(traces[0].y_pv)</name>
+        <y_pv>$(P):$(R):WayB_Current</y_pv>
+        <axis>0</axis>
+        <trace_type>2</trace_type>
+        <color>
+          <color red="0" green="0" blue="255">
+          </color>
+        </color>
+        <line_width>2</line_width>
+        <point_type>0</point_type>
+        <point_size>10</point_size>
+        <visible>true</visible>
+      </trace>
+    </traces>
+  </widget>
+  <widget type="stripchart" version="2.1.0">
+    <name>Strip Chart_2</name>
+    <x>540</x>
+    <y>480</y>
+    <width>260</width>
+    <height>180</height>
+    <tooltip></tooltip>
+    <start>20 seconds</start>
+    <y_axes>
+      <y_axis>
+        <title>Y</title>
+        <autoscale>true</autoscale>
+        <log_scale>false</log_scale>
+        <minimum>0.0</minimum>
+        <maximum>10.0</maximum>
+        <show_grid>false</show_grid>
+        <visible>true</visible>
+        <color>
+          <color name="Text" red="0" green="0" blue="0">
+          </color>
+        </color>
+      </y_axis>
+    </y_axes>
+    <traces>
+      <trace>
+        <name>$(traces[0].y_pv)</name>
+        <y_pv>$(P):$(R):WayC_Current</y_pv>
+        <axis>0</axis>
+        <trace_type>2</trace_type>
+        <color>
+          <color red="0" green="0" blue="255">
+          </color>
+        </color>
+        <line_width>2</line_width>
+        <point_type>0</point_type>
+        <point_size>10</point_size>
+        <visible>true</visible>
+      </trace>
+    </traces>
+  </widget>
+  <widget type="stripchart" version="2.1.0">
+    <name>Strip Chart_3</name>
+    <x>800</x>
+    <y>480</y>
+    <width>247</width>
+    <height>180</height>
+    <tooltip></tooltip>
+    <start>20 seconds</start>
+    <y_axes>
+      <y_axis>
+        <title>Y</title>
+        <autoscale>true</autoscale>
+        <log_scale>false</log_scale>
+        <minimum>0.0</minimum>
+        <maximum>10.0</maximum>
+        <show_grid>false</show_grid>
+        <visible>true</visible>
+        <color>
+          <color name="Text" red="0" green="0" blue="0">
+          </color>
+        </color>
+      </y_axis>
+    </y_axes>
+    <traces>
+      <trace>
+        <name>$(traces[0].y_pv)</name>
+        <y_pv>$(P):$(R):WayD_Current</y_pv>
+        <axis>0</axis>
+        <trace_type>2</trace_type>
+        <color>
+          <color red="0" green="0" blue="255">
+          </color>
+        </color>
+        <line_width>2</line_width>
+        <point_type>0</point_type>
+        <point_size>10</point_size>
+        <visible>true</visible>
+      </trace>
+    </traces>
+  </widget>
+</display>
