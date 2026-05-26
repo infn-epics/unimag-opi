@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2026-04-24 13:38:11 by Alex-->
+<!--Saved on 2026-05-18 12:36:19 by Alex-->
 <display version="2.0.0">
   <name>OCEM modbus 4 chan</name>
   <width>1059</width>
@@ -15,6 +15,62 @@
       <pv_name>$(P):$(R):GlobalAlarms</pv_name>
     </rule>
   </rules>
+  <scripts>
+    <script file="EmbeddedPy" check_connections="false">
+      <text><![CDATA[from org.csstudio.display.builder.runtime.script import PVUtil
+from org.csstudio.display.builder.runtime.script import ScriptUtil
+from org.phoebus.pv import PVPool
+
+
+print "HELLOHELLEOEEHHHELLOHELLLOHELLLO START SCRIPT FOR OCEM4chan"
+# Current macros
+macros = widget.getMacrosOrProperties()
+P = macros.getValue("P")
+R = macros.getValue("R")
+
+# Construct parent PV name
+parent_pv_name = "%s:%s:PARENT" % (P, R)
+
+try:
+    # Connect to PV
+    pv = PVPool.getPV(parent_pv_name)
+    print pv
+    # Wait briefly for connection
+    #pv.start()
+    value = pv.read().getValue()
+    print value
+    if value is not None:
+        parent = str(value)
+        # Extract last field after ':'
+        new_r = parent.split(":")[-1]
+	# Only reopen if changed
+        if new_r != R:
+
+            # Build new macro set
+            new_macros = {
+                "P": P,
+                "R": new_r
+            }
+	    print "HELLOBEFORE TRYING TO LAUNCH ScriptUtil.openDisplay"
+	    #print (dir(widget))
+	    print("SCRIPTUTIL TYPE:", ScriptUtil.__class__)
+	    print(type(ScriptUtil.openDisplay))
+            #print(dir(widget.getUserData))
+	    print "2 HELLOBEFORE TRYING TO LAUNCH ScriptUtil.openDisplay"
+            # Reopen same display with updated macros
+            #ScriptUtil.openDisplay(
+            #    widget,
+            #    "C:\\Users\\Alex\\source\\repos\\NewEPICS\\temp\\OCEM_serial.bob",
+            #    new_macros
+            #)
+	    ScriptUtil.openDisplay(widget,"OCEM_modbus4chan.bob","REPLACE",new_macros)
+	   #ScriptUtil.openDisplay(widget, "SomeDisplay.bob", "REPLACE", macros)
+except Exception as ex:
+    # No parent PV or connection issue -> do nothing
+    print("No PARENT mapping for %s" % parent_pv_name)]]></text>
+      <pv_name>loc://dummy</pv_name>
+    </script>
+  </scripts>
   <widget type="label" version="2.0.0">
     <name>Label_2</name>
     <text>Status</text>
@@ -211,7 +267,6 @@
           <description>StandBy  A</description>
         </action>
       </actions>
-      <x>-3</x>
       <y>160</y>
       <tooltip>$(actions)</tooltip>
     </widget>
@@ -250,7 +305,6 @@
           <description>Reset Fault A</description>
         </action>
       </actions>
-      <x>-3</x>
       <y>200</y>
       <tooltip>$(actions)</tooltip>
     </widget>
@@ -513,6 +567,11 @@ print 'Wrote']]></text>
         <color name="MAJOR" red="255" green="0" blue="0">
         </color>
       </on_color>
+      <labels>
+        <text>pippo</text>
+        <text>pluto</text>
+        <text>paperino</text>
+      </labels>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_8</name>
@@ -643,7 +702,6 @@ print 'Wrote']]></text>
     <widget type="label" version="2.0.0">
       <name>Label_37</name>
       <text>Current</text>
-      <x>-6</x>
       <y>50</y>
       <width>90</width>
     </widget>
@@ -656,7 +714,6 @@ print 'Wrote']]></text>
     <widget type="label" version="2.0.0">
       <name>Label_38</name>
       <text>Voltage</text>
-      <x>-6</x>
       <y>80</y>
       <width>80</width>
     </widget>
@@ -676,7 +733,6 @@ print 'Wrote']]></text>
     <widget type="label" version="2.0.0">
       <name>Label_39</name>
       <text>Ch State</text>
-      <x>-6</x>
       <y>20</y>
       <width>90</width>
     </widget>
@@ -719,7 +775,6 @@ print 'Wrote']]></text>
     <widget type="label" version="2.0.0">
       <name>Label_40</name>
       <text>Set Current (A)</text>
-      <x>-6</x>
       <y>117</y>
     </widget>
     <widget type="text-symbol" version="2.0.0">
@@ -757,7 +812,6 @@ print 'Wrote']]></text>
           <description>StandBy  C</description>
         </action>
       </actions>
-      <x>-6</x>
       <y>160</y>
       <tooltip>$(actions)</tooltip>
     </widget>
@@ -796,14 +850,12 @@ print 'Wrote']]></text>
           <description>Reset Fault C</description>
         </action>
       </actions>
-      <x>-6</x>
       <y>200</y>
       <tooltip>$(actions)</tooltip>
     </widget>
     <widget type="byte_monitor" version="2.0.0">
       <name>Byte Monitor_4</name>
       <pv_name>$(P):$(R):WayC_AlarmsFirst</pv_name>
-      <x>-6</x>
       <y>240</y>
       <width>215</width>
       <numBits>16</numBits>
@@ -816,7 +868,6 @@ print 'Wrote']]></text>
     <widget type="byte_monitor" version="2.0.0">
       <name>Byte Monitor_5</name>
       <pv_name>$(P):$(R):WayC_AlarmsSecond</pv_name>
-      <x>-6</x>
       <y>260</y>
       <width>40</width>
       <height>13</height>
@@ -1216,5 +1267,19 @@ print 'Wrote']]></text>
         <visible>true</visible>
       </trace>
     </traces>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update</name>
+    <pv_name>loc://dummy&lt;VLong&gt;(1)</pv_name>
+    <x>90</x>
+    <y>80</y>
+    <visible>false</visible>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_1</name>
+    <pv_name>$(P):$(R):PARENT:GlobalStateRaw</pv_name>
+    <x>298</x>
+    <y>90</y>
+    <width>156</width>
   </widget>
 </display>
