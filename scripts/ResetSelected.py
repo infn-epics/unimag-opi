@@ -10,39 +10,32 @@ def _get_pv_refs():
             time.sleep(0.05)
     return []
 
-def turn_off_selected():
-    """Turn OFF all selected magnets"""
+def reset_selected():
     lpvs = _get_pv_refs()
     count = 0
     errors = []
-    
+
     for pvr in lpvs:
         selection_pv = pvr.getEntry()
         name = selection_pv.getName()
-        
+
         if name.startswith("loc://selection:"):
             if selection_pv.read().getValue() == 1:
                 pv_prefix = name.replace("loc://selection:", "")
                 prefix, identifier = pv_prefix.rsplit(":", 1)
-                
                 try:
-                    # Turn OFF the magnet by setting state to OFF
                     state_sp_pv = PVUtil.createPV(pv_prefix + ":STATE_SP", 100)
-                    state_sp_pv.write("OFF")
+                    state_sp_pv.write("RESET")
                     count += 1
-                    print("Turned OFF magnet: "+identifier)
-                    
+                    print("Reset magnet: " + identifier)
                 except Exception as e:
-                    error_msg = "Error turning OFF "+identifier+": "+str(e)
-                    errors.append(error_msg)
-                    print(error_msg)
-    
-    # Show result message
-    if errors:
-        error_text = "\n".join(errors)
-        ScriptUtil.showMessageDialog(widget, "Turned OFF "+str(count)+" magnets\n\nErrors:\n"+error_text)
-    else:
-        ScriptUtil.showMessageDialog(widget, "Successfully turned OFF "+str(count)+" selected magnets")
+                    errors.append("Error resetting " + identifier + ": " + str(e))
 
-# Execute the function
-turn_off_selected()
+    if errors:
+        ScriptUtil.showMessageDialog(widget,
+            "Reset " + str(count) + " magnets\n\nErrors:\n" + "\n".join(errors))
+    else:
+        ScriptUtil.showMessageDialog(widget,
+            "Successfully reset " + str(count) + " selected magnets")
+
+reset_selected()

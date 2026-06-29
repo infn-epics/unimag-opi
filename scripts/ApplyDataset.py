@@ -2,6 +2,16 @@ from org.csstudio.display.builder.runtime.script import ScriptUtil, PVUtil
 from org.csstudio.display.builder.model import WidgetFactory
 from org.phoebus.pv import PVPool
 import os
+import time
+
+def _get_pv_refs():
+    for _ in range(10):
+        try:
+            return list(PVPool.getPVReferences())
+        except Exception:
+            time.sleep(0.05)
+    return []
+
 
 # logger = ScriptUtil.getLogger()
 device_prefix = widget.getEffectiveMacros().getValue("P")
@@ -21,7 +31,7 @@ name = PVUtil.getString(ScriptUtil.getPrimaryPV(widget))
 
 # pvs= ScriptUtil.getPVs(widget)
 # print "Loading PVONES "+ str(r)
-pvs=PVPool.getPVReferences()
+pvs=_get_pv_refs()
 for pvr in pvs:
     pv=pvr.getEntry()
     name=pv.getName()

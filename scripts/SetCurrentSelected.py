@@ -1,5 +1,14 @@
 from org.csstudio.display.builder.runtime.script import ScriptUtil, PVUtil
 from org.phoebus.pv import PVPool
+import time
+
+def _get_pv_refs():
+    for _ in range(10):
+        try:
+            return list(PVPool.getPVReferences())
+        except Exception:
+            time.sleep(0.05)
+    return []
 
 def set_current_selected():
     """Set current for all selected magnets"""
@@ -16,7 +25,7 @@ def set_current_selected():
         ScriptUtil.showMessageDialog(widget, "Error: Please enter a valid current value")
         return
     
-    lpvs = PVPool.getPVReferences()
+    lpvs = _get_pv_refs()
     count = 0
     errors = []
     

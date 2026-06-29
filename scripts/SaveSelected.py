@@ -2,8 +2,17 @@ from org.csstudio.display.builder.runtime.script import ScriptUtil, PVUtil
 from confutil import csv_to_list
 from org.csstudio.display.builder.model import WidgetFactory
 from org.phoebus.pv import PVPool
-
 import os
+import time
+
+def _get_pv_refs():
+    for _ in range(10):
+        try:
+            return list(PVPool.getPVReferences())
+        except Exception:
+            time.sleep(0.05)
+    return []
+
 savedirw =ScriptUtil.findWidgetByName(widget,"DirSave")
 filenw=ScriptUtil.findWidgetByName(widget,"FileSave")
 savedir = PVUtil.getString(ScriptUtil.getPrimaryPV(savedirw))
@@ -13,7 +22,7 @@ filename = savedir+"/"+filedir
 ffile=open(filename,"w")
 ffile.write("Name,Prefix,Current,State\n")
 
-lpvs=PVPool.getPVReferences()
+lpvs=_get_pv_refs()
 cnt=0
 for pvr in lpvs:
     remote=pvr.getEntry()

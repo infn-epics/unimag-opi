@@ -1,16 +1,25 @@
 from org.csstudio.display.builder.runtime.script import ScriptUtil, PVUtil
 from org.phoebus.pv import PVPool
+import time
+
+def _get_pv_refs():
+    for _ in range(10):
+        try:
+            return list(PVPool.getPVReferences())
+        except Exception:
+            time.sleep(0.05)
+    return []
 
 def turn_on_selected():
     """Turn ON all selected magnets"""
-    lpvs = PVPool.getPVReferences()
+    lpvs = _get_pv_refs()
     count = 0
     errors = []
-    
+
     for pvr in lpvs:
         selection_pv = pvr.getEntry()
         name = selection_pv.getName()
-        
+
         if name.startswith("loc://selection:"):
             if selection_pv.read().getValue() == 1:
                 pv_prefix = name.replace("loc://selection:", "")
