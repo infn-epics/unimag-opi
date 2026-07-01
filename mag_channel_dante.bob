@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2026-01-09 13:49:35 by riccardoesposito-->
 <display version="2.0.0">
   <name>MagnetChannel</name>
   <width>740</width>
@@ -99,7 +98,7 @@ $(actions)</tooltip>
       <y>2</y>
       <width>115</width>
       <font>
-        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        <font family="Liberation Sans" style="BOLD" size="12.0">
         </font>
       </font>
     </widget>

@@ -5,8 +5,8 @@
     <TYPE>ALL</TYPE>
     <BOBITEM>mag_channel_dante.bob</BOBITEM>
   </macros>
-  <width>799</width>
-  <height>810</height>
+  <width>860</width>
+  <height>670</height>
   <widget type="action_button" version="3.0.0">
     <name>Documentation</name>
     <actions>
@@ -41,6 +41,14 @@
           <FUNC>ALL</FUNC>
         </macros>
         <group_name></group_name>
+        <selected_color>
+          <color red="236" green="236" blue="236">
+          </color>
+        </selected_color>
+        <deselected_color>
+          <color red="200" green="200" blue="200">
+          </color>
+        </deselected_color>
       </tab>
       <tab>
         <name>Dipole</name>
@@ -49,6 +57,14 @@
           <FUNC>DIP</FUNC>
         </macros>
         <group_name></group_name>
+        <selected_color>
+          <color red="236" green="236" blue="236">
+          </color>
+        </selected_color>
+        <deselected_color>
+          <color red="200" green="200" blue="200">
+          </color>
+        </deselected_color>
       </tab>
       <tab>
         <name>Quadrupoles</name>
@@ -57,6 +73,14 @@
           <FUNC>QUA</FUNC>
         </macros>
         <group_name></group_name>
+        <selected_color>
+          <color red="236" green="236" blue="236">
+          </color>
+        </selected_color>
+        <deselected_color>
+          <color red="200" green="200" blue="200">
+          </color>
+        </deselected_color>
       </tab>
       <tab>
         <name>Correctors</name>
@@ -65,6 +89,14 @@
           <FUNC>COR</FUNC>
         </macros>
         <group_name></group_name>
+        <selected_color>
+          <color red="236" green="236" blue="236">
+          </color>
+        </selected_color>
+        <deselected_color>
+          <color red="200" green="200" blue="200">
+          </color>
+        </deselected_color>
       </tab>
       <tab>
         <name>Solenoids</name>
@@ -73,6 +105,14 @@
           <FUNC>SOL</FUNC>
         </macros>
         <group_name></group_name>
+        <selected_color>
+          <color red="236" green="236" blue="236">
+          </color>
+        </selected_color>
+        <deselected_color>
+          <color red="200" green="200" blue="200">
+          </color>
+        </deselected_color>
       </tab>
     </tabs>
     <y>40</y>
