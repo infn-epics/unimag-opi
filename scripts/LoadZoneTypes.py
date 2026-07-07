@@ -36,12 +36,16 @@ else:
         
         for dev in devarray:
             # Use the device name
-            
+
             funcdev=dev.get('FUNC','')
             zoneadd = dev.get('ZONE', '')
             typedev=dev.get('TYPE','')
             if zoneadd:
-                zones_set.add(zoneadd)
+                ## a device can belong to multiple zones (comma separated in the ZONE macro), add each individually
+                for z in zoneadd.split(','):
+                    z = z.strip()
+                    if z:
+                        zones_set.add(z)
 
             if funcdev:
                 func_set.add(funcdev)
@@ -49,7 +53,7 @@ else:
             if typedev:
                 type_set.add(typedev)
 
-        
+
         combozone.setItems(list(zones_set))
         combofunc.setItems(list(func_set))
         combotype.setItems(list(type_set))
