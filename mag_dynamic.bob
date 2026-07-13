@@ -4,11 +4,12 @@
   <macros>
     <BOBITEM>mag_channel_dante.bob</BOBITEM>
   </macros>
-  <height>640</height>
+  <width>810</width>
+  <height>840</height>
   <widget type="group" version="3.0.0">
     <name>SaveRestore</name>
     <y>50</y>
-    <width>800</width>
+    <width>810</width>
     <height>30</height>
     <style>2</style>
     <background_color>
@@ -73,14 +74,14 @@
       <y>2</y>
       <width>60</width>
       <height>25</height>
-      <background_color>
-        <color red="0" green="160" blue="0">
-        </color>
-      </background_color>
       <foreground_color>
         <color name="White" red="255" green="255" blue="255">
         </color>
       </foreground_color>
+      <background_color>
+        <color red="0" green="160" blue="0">
+        </color>
+      </background_color>
       <tooltip>Turn ON all selected magnets</tooltip>
     </widget>
     <widget type="action_button" version="3.0.0">
@@ -97,14 +98,14 @@
       <y>2</y>
       <width>60</width>
       <height>25</height>
-      <background_color>
-        <color red="180" green="0" blue="0">
-        </color>
-      </background_color>
       <foreground_color>
         <color name="White" red="255" green="255" blue="255">
         </color>
       </foreground_color>
+      <background_color>
+        <color red="180" green="0" blue="0">
+        </color>
+      </background_color>
       <tooltip>Turn OFF all selected magnets</tooltip>
     </widget>
     <widget type="action_button" version="3.0.0">
@@ -121,14 +122,14 @@
       <y>2</y>
       <width>65</width>
       <height>25</height>
-      <background_color>
-        <color red="210" green="110" blue="0">
-        </color>
-      </background_color>
       <foreground_color>
         <color name="White" red="255" green="255" blue="255">
         </color>
       </foreground_color>
+      <background_color>
+        <color red="210" green="110" blue="0">
+        </color>
+      </background_color>
       <tooltip>Send RESET command to all selected magnets</tooltip>
     </widget>
     <widget type="action_button" version="3.0.0">
@@ -145,14 +146,14 @@
       <y>2</y>
       <width>60</width>
       <height>25</height>
-      <background_color>
-        <color red="60" green="60" blue="180">
-        </color>
-      </background_color>
       <foreground_color>
         <color name="White" red="255" green="255" blue="255">
         </color>
       </foreground_color>
+      <background_color>
+        <color red="60" green="60" blue="180">
+        </color>
+      </background_color>
       <tooltip>Set CURRENT_SP to 0 for all selected magnets</tooltip>
     </widget>
   </widget>
@@ -160,8 +161,8 @@
     <name>Embedded Display</name>
     <file>mag_array.bob</file>
     <y>80</y>
-    <width>800</width>
-    <height>560</height>
+    <width>810</width>
+    <height>760</height>
     <border_width>1</border_width>
   </widget>
   <widget type="group" version="3.0.0">
@@ -171,7 +172,7 @@
       <TYPE>ALL</TYPE>
       <FUNC>ALL</FUNC>
     </macros>
-    <width>800</width>
+    <width>810</width>
     <height>50</height>
     <style>2</style>
     <background_color>
@@ -180,8 +181,8 @@
     </background_color>
     <scripts>
       <script file="scripts/LoadZoneTypes.py">
-        <pv_name>loc://ZONE_$(DID)</pv_name>
-        <pv_name>loc://TYPE_$(DID)</pv_name>
+        <pv_name trigger="false">loc://ZONE_$(DID)</pv_name>
+        <pv_name trigger="false">loc://TYPE_$(DID)</pv_name>
       </script>
     </scripts>
     <widget type="label" version="2.0.0">

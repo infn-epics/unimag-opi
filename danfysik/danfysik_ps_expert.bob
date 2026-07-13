@@ -1,0 +1,721 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <name>Danfysik SYS8X00 Expert Panel</name>
+  <width>900</width>
+  <height>800</height>
+  <background_color>
+    <color red="240" green="240" blue="240">
+    </color>
+  </background_color>
+  
+  <!-- Title -->
+  <widget type="label" version="2.0.0">
+    <name>Title</name>
+    <text>Danfysik SYS8X00 - Expert Panel</text>
+    <x>10</x>
+    <y>10</y>
+    <width>880</width>
+    <height>40</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="18.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="128" green="0" blue="0">
+      </color>
+    </foreground_color>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+
+  <!-- Warning -->
+  <widget type="label" version="2.0.0">
+    <name>Warning</name>
+    <text>⚠️ WARNING: Expert controls - Use with caution ⚠️</text>
+    <x>10</x>
+    <y>50</y>
+    <width>880</width>
+    <height>25</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="255" green="0" blue="0">
+      </color>
+    </foreground_color>
+    <horizontal_alignment>1</horizontal_alignment>
+    <background_color>
+      <color red="255" green="255" blue="0">
+      </color>
+    </background_color>
+  </widget>
+
+  <!-- Device Name -->
+  <widget type="label" version="2.0.0">
+    <name>DeviceLabel</name>
+    <text>$(DEVICE)</text>
+    <x>10</x>
+    <y>85</y>
+    <width>880</width>
+    <height>25</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0">
+      </font>
+    </font>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+
+  <!-- ADC Readings Group -->
+  <widget type="group" version="3.0.0">
+    <name>ADCGroup</name>
+    <x>10</x>
+    <y>120</y>
+    <width>430</width>
+    <height>200</height>
+    <style>3</style>
+    <widget type="label" version="2.0.0">
+      <name>ADCLabel</name>
+      <text>ADC Readings (Raw Values)</text>
+      <height>25</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+    </widget>
+    
+    <!-- ADC Channel 0 -->
+    <widget type="label" version="2.0.0">
+      <name>ADC0Label</name>
+      <text>ADC 0 (Current):</text>
+      <x>20</x>
+      <y>35</y>
+      <width>120</width>
+      <height>25</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>ADC0</name>
+      <pv_name>$(DEVICE):ADC0_RB</pv_name>
+      <x>150</x>
+      <y>35</y>
+      <width>100</width>
+      <height>25</height>
+    </widget>
+    
+    <!-- ADC Channel 1 -->
+    <widget type="label" version="2.0.0">
+      <name>ADC1Label</name>
+      <text>ADC 1 (Voltage):</text>
+      <x>20</x>
+      <y>65</y>
+      <width>120</width>
+      <height>25</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>ADC1</name>
+      <pv_name>$(DEVICE):ADC1_RB</pv_name>
+      <x>150</x>
+      <y>65</y>
+      <width>100</width>
+      <height>25</height>
+    </widget>
+    
+    <!-- ADC Channel 2 -->
+    <widget type="label" version="2.0.0">
+      <name>ADC2Label</name>
+      <text>ADC 2 (+15V):</text>
+      <x>20</x>
+      <y>95</y>
+      <width>120</width>
+      <height>25</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>ADC2</name>
+      <pv_name>$(DEVICE):ADC2_RB</pv_name>
+      <x>150</x>
+      <y>95</y>
+      <width>100</width>
+      <height>25</height>
+    </widget>
+    
+    <!-- ADC Channel 3 -->
+    <widget type="label" version="2.0.0">
+      <name>ADC3Label</name>
+      <text>ADC 3 (+24V):</text>
+      <x>20</x>
+      <y>125</y>
+      <width>120</width>
+      <height>25</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>ADC3</name>
+      <pv_name>$(DEVICE):ADC3_RB</pv_name>
+      <x>150</x>
+      <y>125</y>
+      <width>100</width>
+      <height>25</height>
+    </widget>
+    
+    <!-- ADC Channel 4 -->
+    <widget type="label" version="2.0.0">
+      <name>ADC4Label</name>
+      <text>ADC 4 (Temp):</text>
+      <x>20</x>
+      <y>155</y>
+      <width>120</width>
+      <height>25</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>ADC4</name>
+      <pv_name>$(DEVICE):ADC4_RB</pv_name>
+      <x>150</x>
+      <y>155</y>
+      <width>100</width>
+      <height>25</height>
+    </widget>
+    
+    <widget type="action_button" version="3.0.0">
+      <name>ReadADCButton</name>
+      <pv_name>$(DEVICE):READ_ADC</pv_name>
+      <x>280</x>
+      <y>80</y>
+      <width>100</width>
+      <height>30</height>
+      <text>Read All ADC</text>
+    </widget>
+  </widget>
+
+  <!-- Status Bits Group -->
+  <widget type="group" version="3.0.0">
+    <name>StatusBitsGroup</name>
+    <x>460</x>
+    <y>120</y>
+    <width>430</width>
+    <height>200</height>
+    <style>3</style>
+    <widget type="label" version="2.0.0">
+      <name>StatusBitsLabel</name>
+      <text>Status Bits (Detailed)</text>
+      <height>25</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+    </widget>
+    
+    <widget type="led" version="2.0.0">
+      <name>PowerLED</name>
+      <pv_name>$(DEVICE):POWER_RB</pv_name>
+      <x>20</x>
+      <y>35</y>
+      <width>20</width>
+      <height>20</height>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>PowerBitLabel</name>
+      <text>Power On</text>
+      <x>45</x>
+      <y>35</y>
+      <width>80</width>
+      <height>20</height>
+    </widget>
+    
+    <widget type="led" version="2.0.0">
+      <name>RemoteLED</name>
+      <pv_name>$(DEVICE):REMOTE</pv_name>
+      <x>140</x>
+      <y>35</y>
+      <width>20</width>
+      <height>20</height>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>RemoteBitLabel</name>
+      <text>Remote</text>
+      <x>165</x>
+      <y>35</y>
+      <width>60</width>
+      <height>20</height>
+    </widget>
+    
+    <widget type="led" version="2.0.0">
+      <name>RegulatingLED</name>
+      <pv_name>$(DEVICE):REGULATING</pv_name>
+      <x>240</x>
+      <y>35</y>
+      <width>20</width>
+      <height>20</height>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>RegulatingBitLabel</name>
+      <text>Regulating</text>
+      <x>265</x>
+      <y>35</y>
+      <width>80</width>
+      <height>20</height>
+    </widget>
+    
+    <widget type="led" version="2.0.0">
+      <name>PolarityLED</name>
+      <pv_name>$(DEVICE):POL_BIT</pv_name>
+      <x>20</x>
+      <y>65</y>
+      <width>20</width>
+      <height>20</height>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>PolarityBitLabel</name>
+      <text>Positive Pol</text>
+      <x>45</x>
+      <y>65</y>
+      <width>80</width>
+      <height>20</height>
+    </widget>
+    
+    <widget type="led" version="2.0.0">
+      <name>CurrentLimitLED</name>
+      <pv_name>$(DEVICE):I_LIMIT</pv_name>
+      <x>140</x>
+      <y>65</y>
+      <width>20</width>
+      <height>20</height>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>CurrentLimitLabel</name>
+      <text>I Limit</text>
+      <x>165</x>
+      <y>65</y>
+      <width>60</width>
+      <height>20</height>
+    </widget>
+    
+    <widget type="led" version="2.0.0">
+      <name>VoltageLimitLED</name>
+      <pv_name>$(DEVICE):V_LIMIT</pv_name>
+      <x>240</x>
+      <y>65</y>
+      <width>20</width>
+      <height>20</height>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>VoltageLimitLabel</name>
+      <text>V Limit</text>
+      <x>265</x>
+      <y>65</y>
+      <width>60</width>
+      <height>20</height>
+    </widget>
+    
+    <!-- Raw Status Word -->
+    <widget type="label" version="2.0.0">
+      <name>StatusWordLabel</name>
+      <text>Raw Status Word:</text>
+      <x>20</x>
+      <y>95</y>
+      <width>120</width>
+      <height>25</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>StatusWord</name>
+      <pv_name>$(DEVICE):STATUS_RAW</pv_name>
+      <x>150</x>
+      <y>95</y>
+      <width>100</width>
+      <height>25</height>
+      <format>3</format>
+    </widget>
+    
+    <!-- Error Code -->
+    <widget type="label" version="2.0.0">
+      <name>ErrorCodeLabel</name>
+      <text>Error Code:</text>
+      <x>20</x>
+      <y>125</y>
+      <width>120</width>
+      <height>25</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>ErrorCode</name>
+      <pv_name>$(DEVICE):ERROR_CODE</pv_name>
+      <x>150</x>
+      <y>125</y>
+      <width>100</width>
+      <height>25</height>
+    </widget>
+    
+    <widget type="action_button" version="3.0.0">
+      <name>ReadStatusButton</name>
+      <pv_name>$(DEVICE):READ_STATUS</pv_name>
+      <x>280</x>
+      <y>80</y>
+      <width>100</width>
+      <height>30</height>
+      <text>Read Status</text>
+    </widget>
+  </widget>
+
+  <!-- Direct Command Group -->
+  <widget type="group" version="3.0.0">
+    <name>DirectCommandGroup</name>
+    <x>10</x>
+    <y>330</y>
+    <width>880</width>
+    <height>150</height>
+    <style>3</style>
+    <widget type="label" version="2.0.0">
+      <name>DirectCommandLabel</name>
+      <text>Direct Command Interface</text>
+      <height>25</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+    </widget>
+    
+    <widget type="label" version="2.0.0">
+      <name>CommandLabel</name>
+      <text>Command:</text>
+      <x>20</x>
+      <y>35</y>
+      <width>80</width>
+      <height>25</height>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>DirectCommand</name>
+      <pv_name>$(DEVICE):DIRECT_CMD</pv_name>
+      <x>110</x>
+      <y>35</y>
+      <width>200</width>
+      <height>25</height>
+      <font>
+        <font family="Liberation Mono" style="REGULAR" size="12.0">
+        </font>
+      </font>
+    </widget>
+    
+    <widget type="action_button" version="3.0.0">
+      <name>SendCommandButton</name>
+      <pv_name>$(DEVICE):SEND_CMD</pv_name>
+      <x>330</x>
+      <y>35</y>
+      <width>100</width>
+      <height>30</height>
+      <text>Send Command</text>
+      <background_color>
+        <color red="255" green="200" blue="100">
+        </color>
+      </background_color>
+    </widget>
+    
+    <widget type="label" version="2.0.0">
+      <name>ResponseLabel</name>
+      <text>Response:</text>
+      <x>20</x>
+      <y>75</y>
+      <width>80</width>
+      <height>25</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>DirectResponse</name>
+      <pv_name>$(DEVICE):DIRECT_RESP</pv_name>
+      <x>110</x>
+      <y>75</y>
+      <width>300</width>
+      <height>25</height>
+      <font>
+        <font family="Liberation Mono" style="REGULAR" size="12.0">
+        </font>
+      </font>
+      <background_color>
+        <color red="240" green="240" blue="240">
+        </color>
+      </background_color>
+    </widget>
+    
+    <widget type="label" version="2.0.0">
+      <name>ExampleLabel</name>
+      <text>Examples: "S1" (Status), "N" (Remote), "F1" (Power On), etc.</text>
+      <x>20</x>
+      <y>110</y>
+      <width>400</width>
+      <height>25</height>
+      <font>
+        <font family="Liberation Sans" style="ITALIC" size="11.0">
+        </font>
+      </font>
+      <foreground_color>
+        <color red="100" green="100" blue="100">
+        </color>
+      </foreground_color>
+    </widget>
+  </widget>
+
+  <!-- Calibration Group -->
+  <widget type="group" version="3.0.0">
+    <name>CalibrationGroup</name>
+    <x>10</x>
+    <y>490</y>
+    <width>430</width>
+    <height>180</height>
+    <style>3</style>
+    <widget type="label" version="2.0.0">
+      <name>CalibrationLabel</name>
+      <text>Calibration Parameters</text>
+      <height>25</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+    </widget>
+    
+    <!-- Current Gain -->
+    <widget type="label" version="2.0.0">
+      <name>CurrentGainLabel</name>
+      <text>Current Gain:</text>
+      <x>20</x>
+      <y>35</y>
+      <width>100</width>
+      <height>25</height>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>CurrentGain</name>
+      <pv_name>$(DEVICE):I_GAIN</pv_name>
+      <x>130</x>
+      <y>35</y>
+      <width>100</width>
+      <height>25</height>
+      <precision>6</precision>
+    </widget>
+    
+    <!-- Current Offset -->
+    <widget type="label" version="2.0.0">
+      <name>CurrentOffsetLabel</name>
+      <text>Current Offset:</text>
+      <x>20</x>
+      <y>65</y>
+      <width>100</width>
+      <height>25</height>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>CurrentOffset</name>
+      <pv_name>$(DEVICE):I_OFFSET</pv_name>
+      <x>130</x>
+      <y>65</y>
+      <width>100</width>
+      <height>25</height>
+      <precision>6</precision>
+    </widget>
+    
+    <!-- Voltage Gain -->
+    <widget type="label" version="2.0.0">
+      <name>VoltageGainLabel</name>
+      <text>Voltage Gain:</text>
+      <x>20</x>
+      <y>95</y>
+      <width>100</width>
+      <height>25</height>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>VoltageGain</name>
+      <pv_name>$(DEVICE):V_GAIN</pv_name>
+      <x>130</x>
+      <y>95</y>
+      <width>100</width>
+      <height>25</height>
+      <precision>6</precision>
+    </widget>
+    
+    <!-- Voltage Offset -->
+    <widget type="label" version="2.0.0">
+      <name>VoltageOffsetLabel</name>
+      <text>Voltage Offset:</text>
+      <x>20</x>
+      <y>125</y>
+      <width>100</width>
+      <height>25</height>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>VoltageOffset</name>
+      <pv_name>$(DEVICE):V_OFFSET</pv_name>
+      <x>130</x>
+      <y>125</y>
+      <width>100</width>
+      <height>25</height>
+      <precision>6</precision>
+    </widget>
+    
+    <widget type="action_button" version="3.0.0">
+      <name>SaveCalButton</name>
+      <pv_name>$(DEVICE):SAVE_CAL</pv_name>
+      <x>260</x>
+      <y>70</y>
+      <width>100</width>
+      <height>30</height>
+      <text>Save Calib.</text>
+      <background_color>
+        <color red="255" green="255" blue="0">
+        </color>
+      </background_color>
+    </widget>
+  </widget>
+
+  <!-- Communication Debug Group -->
+  <widget type="group" version="3.0.0">
+    <name>CommDebugGroup</name>
+    <x>460</x>
+    <y>490</y>
+    <width>430</width>
+    <height>180</height>
+    <style>3</style>
+    <widget type="label" version="2.0.0">
+      <name>CommDebugLabel</name>
+      <text>Communication Debug</text>
+      <height>25</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+    </widget>
+    
+    <widget type="label" version="2.0.0">
+      <name>CommStatsLabel</name>
+      <text>Statistics:</text>
+      <x>20</x>
+      <y>35</y>
+      <width>80</width>
+      <height>25</height>
+    </widget>
+    
+    <widget type="label" version="2.0.0">
+      <name>TxCountLabel</name>
+      <text>TX Count:</text>
+      <x>20</x>
+      <y>65</y>
+      <width>80</width>
+      <height>25</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>TxCount</name>
+      <pv_name>$(DEVICE):TX_COUNT</pv_name>
+      <x>110</x>
+      <y>65</y>
+      <width>80</width>
+      <height>25</height>
+    </widget>
+    
+    <widget type="label" version="2.0.0">
+      <name>RxCountLabel</name>
+      <text>RX Count:</text>
+      <x>200</x>
+      <y>65</y>
+      <width>80</width>
+      <height>25</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>RxCount</name>
+      <pv_name>$(DEVICE):RX_COUNT</pv_name>
+      <x>290</x>
+      <y>65</y>
+      <width>80</width>
+      <height>25</height>
+    </widget>
+    
+    <widget type="label" version="2.0.0">
+      <name>ErrorCountLabel</name>
+      <text>Comm Errors:</text>
+      <x>20</x>
+      <y>95</y>
+      <width>90</width>
+      <height>25</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>CommErrorCount</name>
+      <pv_name>$(DEVICE):COMM_ERR_COUNT</pv_name>
+      <x>120</x>
+      <y>95</y>
+      <width>80</width>
+      <height>25</height>
+      <foreground_color>
+        <color red="255" green="0" blue="0">
+        </color>
+      </foreground_color>
+    </widget>
+    
+    <widget type="action_button" version="3.0.0">
+      <name>ResetCountersButton</name>
+      <pv_name>$(DEVICE):RESET_COUNTERS</pv_name>
+      <x>220</x>
+      <y>95</y>
+      <width>120</width>
+      <height>30</height>
+      <text>Reset Counters</text>
+    </widget>
+    
+    <widget type="label" version="2.0.0">
+      <name>LastCmdLabel</name>
+      <text>Last Command:</text>
+      <x>20</x>
+      <y>135</y>
+      <width>100</width>
+      <height>25</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>LastCmd</name>
+      <pv_name>$(DEVICE):LAST_CMD</pv_name>
+      <x>130</x>
+      <y>135</y>
+      <width>150</width>
+      <height>25</height>
+      <font>
+        <font family="Liberation Mono" style="REGULAR" size="10.0">
+        </font>
+      </font>
+    </widget>
+  </widget>
+
+  <!-- Navigation Buttons -->
+  <widget type="action_button" version="3.0.0">
+    <name>MainPanelButton</name>
+    <x>10</x>
+    <y>690</y>
+    <width>120</width>
+    <height>40</height>
+    <text>Main Panel</text>
+    <actions>
+      <action type="open_display">
+        <file>danfysik_ps.bob</file>
+        <macros>
+          <DEVICE>$(DEVICE)</DEVICE>
+          <IMAX>$(IMAX)</IMAX>
+        </macros>
+        <target>tab</target>
+      </action>
+    </actions>
+    <background_color>
+      <color red="200" green="255" blue="200">
+      </color>
+    </background_color>
+  </widget>
+  
+  <widget type="action_button" version="3.0.0">
+    <name>UnimagPanelButton</name>
+    <x>140</x>
+    <y>690</y>
+    <width>120</width>
+    <height>40</height>
+    <text>UNIMAG Interface</text>
+    <actions>
+      <action type="open_display">
+        <file>danfysik_ps_unimag.bob</file>
+        <macros>
+          <DEVICE>$(DEVICE)</DEVICE>
+          <IMAX>$(IMAX)</IMAX>
+        </macros>
+        <target>tab</target>
+      </action>
+    </actions>
+    <background_color>
+      <color red="200" green="200" blue="255">
+      </color>
+    </background_color>
+  </widget>
+
+</display>

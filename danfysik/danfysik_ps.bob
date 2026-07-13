@@ -1,0 +1,652 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <name>Danfysik SYS8X00 Power Supply</name>
+  <width>800</width>
+  <height>900</height>
+  <background_color>
+    <color red="240" green="240" blue="240">
+    </color>
+  </background_color>
+  
+  <!-- Title -->
+  <widget type="label" version="2.0.0">
+    <name>Title</name>
+    <text>Danfysik SYS8X00 Power Supply</text>
+    <x>10</x>
+    <y>10</y>
+    <width>780</width>
+    <height>40</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="18.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="0" green="0" blue="128">
+      </color>
+    </foreground_color>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+
+  <!-- Device Name -->
+  <widget type="label" version="2.0.0">
+    <name>DeviceLabel</name>
+    <text>$(DEVICE)</text>
+    <x>10</x>
+    <y>50</y>
+    <width>780</width>
+    <height>25</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0">
+      </font>
+    </font>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+
+  <!-- Status Group -->
+  <widget type="group" version="3.0.0">
+    <name>StatusGroup</name>
+    <x>10</x>
+    <y>85</y>
+    <width>780</width>
+    <height>120</height>
+    <style>3</style>
+    <widget type="label" version="2.0.0">
+      <name>StatusLabel</name>
+      <text>Status</text>
+      <height>25</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+    </widget>
+    <widget type="led" version="2.0.0">
+      <name>PowerLED</name>
+      <pv_name>$(DEVICE):POWER_RB</pv_name>
+      <x>20</x>
+      <y>35</y>
+      <width>30</width>
+      <height>25</height>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>PowerLabel</name>
+      <text>Power On</text>
+      <x>55</x>
+      <y>35</y>
+      <width>80</width>
+      <height>25</height>
+    </widget>
+    <widget type="led" version="2.0.0">
+      <name>RemoteLED</name>
+      <pv_name>$(DEVICE):REMOTE</pv_name>
+      <x>150</x>
+      <y>35</y>
+      <width>30</width>
+      <height>25</height>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>RemoteLabel</name>
+      <text>Remote</text>
+      <x>185</x>
+      <y>35</y>
+      <width>60</width>
+      <height>25</height>
+    </widget>
+    <widget type="led" version="2.0.0">
+      <name>RegulatingLED</name>
+      <pv_name>$(DEVICE):REGULATING</pv_name>
+      <x>260</x>
+      <y>35</y>
+      <width>30</width>
+      <height>25</height>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>RegulatingLabel</name>
+      <text>Regulating</text>
+      <x>295</x>
+      <y>35</y>
+      <width>80</width>
+      <height>25</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>StatusText</name>
+      <pv_name>$(DEVICE):STATUS</pv_name>
+      <x>400</x>
+      <y>35</y>
+      <width>200</width>
+      <height>25</height>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="12.0">
+        </font>
+      </font>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>ErrorText</name>
+      <pv_name>$(DEVICE):ERROR_MSG</pv_name>
+      <x>20</x>
+      <y>70</y>
+      <width>400</width>
+      <height>25</height>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="12.0">
+        </font>
+      </font>
+      <foreground_color>
+        <color red="255" green="0" blue="0">
+        </color>
+      </foreground_color>
+    </widget>
+  </widget>
+
+  <!-- Power Control Group -->
+  <widget type="group" version="3.0.0">
+    <name>PowerControlGroup</name>
+    <x>10</x>
+    <y>215</y>
+    <width>380</width>
+    <height>100</height>
+    <style>3</style>
+    <widget type="label" version="2.0.0">
+      <name>PowerControlLabel</name>
+      <text>Power Control</text>
+      <height>25</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+    </widget>
+    <widget type="bool_button" version="2.0.0">
+      <name>PowerButton</name>
+      <pv_name>$(DEVICE):POWER_SP</pv_name>
+      <x>20</x>
+      <y>35</y>
+      <width>80</width>
+      <height>30</height>
+      <off_label>OFF</off_label>
+      <on_label>ON</on_label>
+      <off_color>
+        <color red="60" green="100" blue="60">
+        </color>
+      </off_color>
+      <on_color>
+        <color red="0" green="255" blue="0">
+        </color>
+      </on_color>
+    </widget>
+    <widget type="bool_button" version="2.0.0">
+      <name>RemoteButton</name>
+      <pv_name>$(DEVICE):REMOTE</pv_name>
+      <x>120</x>
+      <y>35</y>
+      <width>80</width>
+      <height>30</height>
+      <off_label>Local</off_label>
+      <on_label>Remote</on_label>
+      <off_color>
+        <color red="100" green="60" blue="60">
+        </color>
+      </off_color>
+      <on_color>
+        <color red="0" green="255" blue="0">
+        </color>
+      </on_color>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>ResetButton</name>
+      <pv_name>$(DEVICE):RESET</pv_name>
+      <x>220</x>
+      <y>35</y>
+      <width>80</width>
+      <height>30</height>
+      <text>Reset</text>
+      <background_color>
+        <color red="255" green="255" blue="0">
+        </color>
+      </background_color>
+    </widget>
+  </widget>
+
+  <!-- Polarity Control Group -->
+  <widget type="group" version="3.0.0">
+    <name>PolarityGroup</name>
+    <x>410</x>
+    <y>215</y>
+    <width>380</width>
+    <height>100</height>
+    <style>3</style>
+    <widget type="label" version="2.0.0">
+      <name>PolarityLabel</name>
+      <text>Polarity Control</text>
+      <height>25</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>PolarityCombo</name>
+      <pv_name>$(DEVICE):POL_SP</pv_name>
+      <x>20</x>
+      <y>35</y>
+      <width>100</width>
+      <height>25</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>PolarityReadback</name>
+      <pv_name>$(DEVICE):POL_RB</pv_name>
+      <x>140</x>
+      <y>35</y>
+      <width>100</width>
+      <height>25</height>
+    </widget>
+  </widget>
+
+  <!-- Current Control Group -->
+  <widget type="group" version="3.0.0">
+    <name>CurrentGroup</name>
+    <x>10</x>
+    <y>325</y>
+    <width>780</width>
+    <height>180</height>
+    <style>3</style>
+    <widget type="label" version="2.0.0">
+      <name>CurrentLabel</name>
+      <text>Current Control</text>
+      <height>25</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+    </widget>
+    
+    <!-- Current Setpoint -->
+    <widget type="label" version="2.0.0">
+      <name>CurrentSPLabel</name>
+      <text>Setpoint (A):</text>
+      <x>20</x>
+      <y>35</y>
+      <width>100</width>
+      <height>25</height>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>CurrentSP</name>
+      <pv_name>$(DEVICE):I_SP</pv_name>
+      <x>130</x>
+      <y>35</y>
+      <width>100</width>
+      <height>25</height>
+      <precision>3</precision>
+    </widget>
+    
+    <!-- Current Readback -->
+    <widget type="label" version="2.0.0">
+      <name>CurrentRBLabel</name>
+      <text>Readback (A):</text>
+      <x>250</x>
+      <y>35</y>
+      <width>100</width>
+      <height>25</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>CurrentRB</name>
+      <pv_name>$(DEVICE):I_RB</pv_name>
+      <x>360</x>
+      <y>35</y>
+      <width>100</width>
+      <height>25</height>
+      <precision>3</precision>
+    </widget>
+    
+    <!-- Bargraph -->
+    <widget type="progressbar" version="2.0.0">
+      <name>CurrentBar</name>
+      <pv_name>$(DEVICE):I_RB</pv_name>
+      <x>480</x>
+      <y>35</y>
+      <width>280</width>
+      <height>25</height>
+      <horizontal>true</horizontal>
+    </widget>
+    
+    <!-- Ramping Controls -->
+    <widget type="label" version="2.0.0">
+      <name>RampRateLabel</name>
+      <text>Ramp Rate (A/s):</text>
+      <x>20</x>
+      <y>70</y>
+      <width>120</width>
+      <height>25</height>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>RampRate</name>
+      <pv_name>$(DEVICE):RAMP_RATE_SP</pv_name>
+      <x>150</x>
+      <y>70</y>
+      <width>80</width>
+      <height>25</height>
+      <precision>2</precision>
+    </widget>
+    
+    <widget type="label" version="2.0.0">
+      <name>RampEndLabel</name>
+      <text>Ramp End (A):</text>
+      <x>250</x>
+      <y>70</y>
+      <width>100</width>
+      <height>25</height>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>RampEnd</name>
+      <pv_name>$(DEVICE):RAMP_END_SP</pv_name>
+      <x>360</x>
+      <y>70</y>
+      <width>80</width>
+      <height>25</height>
+      <precision>3</precision>
+    </widget>
+    
+    <widget type="action_button" version="3.0.0">
+      <name>RampGoButton</name>
+      <pv_name>$(DEVICE):RAMP_GO</pv_name>
+      <x>460</x>
+      <y>70</y>
+      <width>80</width>
+      <height>30</height>
+      <text>RAMP GO</text>
+      <background_color>
+        <color red="0" green="255" blue="0">
+        </color>
+      </background_color>
+    </widget>
+    
+    <widget type="action_button" version="3.0.0">
+      <name>RampStopButton</name>
+      <pv_name>$(DEVICE):RAMP_STOP</pv_name>
+      <x>560</x>
+      <y>70</y>
+      <width>80</width>
+      <height>30</height>
+      <text>RAMP STOP</text>
+      <background_color>
+        <color red="255" green="0" blue="0">
+        </color>
+      </background_color>
+    </widget>
+    
+    <!-- DAC Controls -->
+    <widget type="label" version="2.0.0">
+      <name>DACLabel</name>
+      <text>DAC Value:</text>
+      <x>20</x>
+      <y>110</y>
+      <width>100</width>
+      <height>25</height>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>DACSP</name>
+      <pv_name>$(DEVICE):DAC_SP</pv_name>
+      <x>130</x>
+      <y>110</y>
+      <width>100</width>
+      <height>25</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>DACRB</name>
+      <pv_name>$(DEVICE):DAC_RB</pv_name>
+      <x>250</x>
+      <y>110</y>
+      <width>100</width>
+      <height>25</height>
+    </widget>
+    
+    <!-- Zero Offset Controls -->
+    <widget type="label" version="2.0.0">
+      <name>ZeroOffsetLabel</name>
+      <text>Zero Offset:</text>
+      <x>370</x>
+      <y>110</y>
+      <width>100</width>
+      <height>25</height>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>ZeroOffset</name>
+      <pv_name>$(DEVICE):ZERO_OFFSET_SP</pv_name>
+      <x>480</x>
+      <y>110</y>
+      <width>100</width>
+      <height>25</height>
+    </widget>
+  </widget>
+
+  <!-- Voltage Monitoring Group -->
+  <widget type="group" version="3.0.0">
+    <name>VoltageGroup</name>
+    <x>10</x>
+    <y>515</y>
+    <width>780</width>
+    <height>120</height>
+    <style>3</style>
+    <widget type="label" version="2.0.0">
+      <name>VoltageLabel</name>
+      <text>Voltage Monitoring</text>
+      <height>25</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+    </widget>
+    
+    <widget type="label" version="2.0.0">
+      <name>VoltageRBLabel</name>
+      <text>Output Voltage (V):</text>
+      <x>20</x>
+      <y>35</y>
+      <width>120</width>
+      <height>25</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>VoltageRB</name>
+      <pv_name>$(DEVICE):V_RB</pv_name>
+      <x>150</x>
+      <y>35</y>
+      <width>100</width>
+      <height>25</height>
+      <precision>2</precision>
+    </widget>
+    
+    <widget type="progressbar" version="2.0.0">
+      <name>VoltageBar</name>
+      <pv_name>$(DEVICE):V_RB</pv_name>
+      <x>270</x>
+      <y>35</y>
+      <width>280</width>
+      <height>25</height>
+      <horizontal>true</horizontal>
+    </widget>
+    
+    <!-- Internal Supply Voltages -->
+    <widget type="label" version="2.0.0">
+      <name>SupplyVoltageLabel</name>
+      <text>Supply Voltages:</text>
+      <x>20</x>
+      <y>70</y>
+      <width>120</width>
+      <height>25</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Supply15V</name>
+      <pv_name>$(DEVICE):SUPPLY_15V</pv_name>
+      <x>150</x>
+      <y>70</y>
+      <width>80</width>
+      <height>25</height>
+      <precision>2</precision>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Supply24V</name>
+      <pv_name>$(DEVICE):SUPPLY_24V</pv_name>
+      <x>240</x>
+      <y>70</y>
+      <width>80</width>
+      <height>25</height>
+      <precision>2</precision>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>SupplyTemp</name>
+      <pv_name>$(DEVICE):TEMP</pv_name>
+      <x>330</x>
+      <y>70</y>
+      <width>80</width>
+      <height>25</height>
+      <precision>1</precision>
+    </widget>
+  </widget>
+
+  <!-- Expert Controls Group -->
+  <widget type="group" version="3.0.0">
+    <name>ExpertGroup</name>
+    <x>10</x>
+    <y>645</y>
+    <width>780</width>
+    <height>120</height>
+    <style>3</style>
+    <widget type="label" version="2.0.0">
+      <name>ExpertLabel</name>
+      <text>Expert Controls</text>
+      <height>25</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+    </widget>
+    
+    <widget type="label" version="2.0.0">
+      <name>AddressLabel</name>
+      <text>Address:</text>
+      <x>20</x>
+      <y>35</y>
+      <width>60</width>
+      <height>25</height>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Address</name>
+      <pv_name>$(DEVICE):ADDR_SP</pv_name>
+      <x>90</x>
+      <y>35</y>
+      <width>50</width>
+      <height>25</height>
+    </widget>
+    
+    <widget type="action_button" version="3.0.0">
+      <name>InitRemoteButton</name>
+      <pv_name>$(DEVICE):INIT_REMOTE</pv_name>
+      <x>160</x>
+      <y>35</y>
+      <width>100</width>
+      <height>30</height>
+      <text>Init Remote</text>
+    </widget>
+    
+    <widget type="action_button" version="3.0.0">
+      <name>ExpertPanelButton</name>
+      <x>280</x>
+      <y>35</y>
+      <width>100</width>
+      <height>30</height>
+      <text>Expert Panel</text>
+      <actions>
+        <action type="open_display">
+          <file>danfysik_ps_expert.bob</file>
+          <macros>
+            <DEVICE>$(DEVICE)</DEVICE>
+          </macros>
+          <target>tab</target>
+        </action>
+      </actions>
+    </widget>
+    
+    <widget type="action_button" version="3.0.0">
+      <name>UnimagButton</name>
+      <x>400</x>
+      <y>35</y>
+      <width>120</width>
+      <height>30</height>
+      <text>UNIMAG Interface</text>
+      <actions>
+        <action type="open_display">
+          <file>danfysik_ps_unimag.bob</file>
+          <macros>
+            <DEVICE>$(DEVICE)</DEVICE>
+          </macros>
+          <target>tab</target>
+        </action>
+      </actions>
+      <background_color>
+        <color red="0" green="200" blue="255">
+        </color>
+      </background_color>
+    </widget>
+  </widget>
+
+  <!-- Connection Status -->
+  <widget type="label" version="2.0.0">
+    <name>ConnectionLabel</name>
+    <text>Connection:</text>
+    <x>10</x>
+    <y>775</y>
+    <width>80</width>
+    <height>25</height>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>ConnectionLED</name>
+    <pv_name>$(DEVICE):I_RB.SEVR</pv_name>
+    <x>100</x>
+    <y>775</y>
+    <width>30</width>
+    <height>25</height>
+    <states>
+      <state>
+        <value>0</value>
+        <label>OK</label>
+        <color>
+          <color red="0" green="255" blue="0">
+          </color>
+        </color>
+      </state>
+      <state>
+        <value>1</value>
+        <label>MINOR</label>
+        <color>
+          <color red="255" green="255" blue="0">
+          </color>
+        </color>
+      </state>
+      <state>
+        <value>2</value>
+        <label>MAJOR</label>
+        <color>
+          <color red="255" green="0" blue="0">
+          </color>
+        </color>
+      </state>
+      <state>
+        <value>3</value>
+        <label>INVALID</label>
+        <color>
+          <color red="255" green="0" blue="255">
+          </color>
+        </color>
+      </state>
+    </states>
+  </widget>
+  
+  <!-- Timestamp -->
+  <widget type="textupdate" version="2.0.0">
+    <name>Timestamp</name>
+    <pv_name>$(DEVICE):I_RB.TIME</pv_name>
+    <x>150</x>
+    <y>775</y>
+    <width>200</width>
+    <height>25</height>
+  </widget>
+
+</display>

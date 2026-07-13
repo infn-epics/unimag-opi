@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <name>Danfysik UNIMAG Interface</name>
+  <macros>
+    <DEVICE>BTF:MAG:DANFYSIK:QUATM002</DEVICE>
+  </macros>
+  <background_color>
+    <color name="Display_Background" red="255" green="255" blue="255">
+    </color>
+  </background_color>
+  <grid_visible>false</grid_visible>
+  <grid_step_x>5</grid_step_x>
+  <grid_step_y>5</grid_step_y>
+  <widget type="label" version="2.0.0">
+    <name>Title</name>
+    <text>Danfysik UNIMAG Interface - Simplified Operation</text>
+    <x>20</x>
+    <y>10</y>
+    <width>500</width>
+    <height>30</height>
+    <font>
+      <font name="Header 1" family="Liberation Sans" style="BOLD" size="22.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color name="Header_ForeGround" red="255" green="255" blue="255">
+      </color>
+    </foreground_color>
+    <background_color>
+      <color name="Header_Background" red="77" green="77" blue="77">
+      </color>
+    </background_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>DeviceLabel</name>
+    <text>Device: $(DEVICE)</text>
+    <x>20</x>
+    <y>45</y>
+    <width>300</width>
+    <font>
+      <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="rectangle" version="2.0.0">
+    <name>UnimagControlFrame</name>
+    <x>20</x>
+    <y>80</y>
+    <width>760</width>
+    <height>150</height>
+    <line_color>
+      <color name="Grid" red="128" green="128" blue="128">
+      </color>
+    </line_color>
+    <background_color>
+      <color name="Write_Background" red="128" green="255" blue="255">
+      </color>
+    </background_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>UnimagTitle</name>
+    <text>UNIMAG Current Control</text>
+    <x>30</x>
+    <y>90</y>
+    <width>200</width>
+    <height>25</height>
+    <font>
+      <font name="Header 2" family="Liberation Sans" style="BOLD" size="18.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color name="OK" red="0" green="255" blue="0">
+      </color>
+    </foreground_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>UnimagCurrentLabel</name>
+    <text>Current Setpoint:</text>
+    <x>30</x>
+    <y>130</y>
+    <width>120</width>
+    <height>25</height>
+    <font>
+      <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>UnimagCurrentSP</name>
+    <pv_name>$(P):$(R):CURRENT_SP</pv_name>
+    <x>150</x>
+    <y>125</y>
+    <width>150</width>
+    <height>35</height>
+    <font>
+      <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+      </font>
+    </font>
+    <precision>3</precision>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>UnimagCurrentUnits</name>
+    <text>A</text>
+    <x>310</x>
+    <y>130</y>
+    <width>20</width>
+    <height>25</height>
+    <font>
+      <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>UnimagCurrentRBLabel</name>
+    <text>Current Readback:</text>
+    <x>350</x>
+    <y>130</y>
+    <width>130</width>
+    <height>25</height>
+    <font>
+      <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>UnimagCurrentRB</name>
+    <pv_name>$(P):$(R):CURRENT_RB</pv_name>
+    <x>480</x>
+    <y>125</y>
+    <width>150</width>
+    <height>35</height>
+    <font>
+      <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+      </font>
+    </font>
+    <precision>3</precision>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>UnimagCurrentRBUnits</name>
+    <text>A</text>
+    <x>640</x>
+    <y>130</y>
+    <width>20</width>
+    <height>25</height>
+    <font>
+      <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>AtSetpointLed</name>
+    <pv_name>$(P):$(R):AT_SETPOINT</pv_name>
+    <x>680</x>
+    <y>130</y>
+    <width>30</width>
+    <height>25</height>
+    <off_color>
+      <color name="MINOR" red="255" green="128" blue="0">
+      </color>
+    </off_color>
+    <on_color>
+      <color name="OK" red="0" green="255" blue="0">
+      </color>
+    </on_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>AtSetpointLabel</name>
+    <text>At SP</text>
+    <x>720</x>
+    <y>130</y>
+    <width>50</width>
+    <height>25</height>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>InfoText</name>
+    <text>Enter positive or negative current. System will automatically handle polarity switching.</text>
+    <x>30</x>
+    <y>180</y>
+    <width>600</width>
+    <font>
+      <font name="Comment" family="Liberation Sans" style="ITALIC" size="14.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="rectangle" version="2.0.0">
+    <name>StatusFrame</name>
+    <x>20</x>
+    <y>250</y>
+    <width>760</width>
+    <height>120</height>
+    <line_color>
+      <color name="Grid" red="128" green="128" blue="128">
+      </color>
+    </line_color>
+    <background_color>
+      <color name="Read_Background" red="240" green="240" blue="240">
+      </color>
+    </background_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>StatusTitle</name>
+    <text>System Status</text>
+    <x>30</x>
+    <y>260</y>
+    <width>150</width>
+    <font>
+      <font name="Header 2" family="Liberation Sans" style="BOLD" size="18.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>StateLabel</name>
+    <text>State:</text>
+    <x>30</x>
+    <y>290</y>
+    <width>50</width>
+    <height>25</height>
+    <font>
+      <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>StateDisplay</name>
+    <pv_name>$(P):$(R):STATE_RB</pv_name>
+    <x>80</x>
+    <y>290</y>
+    <width>120</width>
+    <height>25</height>
+    <font>
+      <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>StateControlLabel</name>
+    <text>Control:</text>
+    <x>220</x>
+    <y>290</y>
+    <width>60</width>
+    <height>25</height>
+  </widget>
+  <widget type="choice" version="2.0.0">
+    <name>StateControl</name>
+    <pv_name>$(P):$(R):STATE_SP</pv_name>
+    <x>280</x>
+    <y>290</y>
+    <width>120</width>
+    <height>25</height>
+    <items>
+      <item>OFF</item>
+      <item>ON</item>
+      <item>STANDBY</item>
+      <item>RESET</item>
+    </items>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>ReadyLabel</name>
+    <text>Ready:</text>
+    <x>420</x>
+    <y>290</y>
+    <width>50</width>
+    <height>25</height>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>ReadyLed</name>
+    <pv_name>$(P):$(R):READY</pv_name>
+    <x>470</x>
+    <y>290</y>
+    <width>25</width>
+    <height>25</height>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>InterlockLabel</name>
+    <text>Interlocked:</text>
+    <x>510</x>
+    <y>290</y>
+    <width>80</width>
+    <height>25</height>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>InterlockLed</name>
+    <pv_name>$(P):$(R):INTERLOCKED</pv_name>
+    <x>590</x>
+    <y>290</y>
+    <width>25</width>
+    <height>25</height>
+    <off_color>
+      <color name="OK" red="0" green="255" blue="0">
+      </color>
+    </off_color>
+    <on_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </on_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>SeqStepLabel</name>
+    <text>Sequence Step:</text>
+    <x>30</x>
+    <y>320</y>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>SeqStep</name>
+    <pv_name>$(P):$(R):SEQ_STEP</pv_name>
+    <x>130</x>
+    <y>320</y>
+    <width>120</width>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>PolChangingLabel</name>
+    <text>Pol Changing:</text>
+    <x>270</x>
+    <y>320</y>
+    <width>90</width>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>PolChangingLed</name>
+    <pv_name>$(P):$(R):POL_CHANGING</pv_name>
+    <x>360</x>
+    <y>320</y>
+    <off_color>
+      <color name="OK" red="0" green="255" blue="0">
+      </color>
+    </off_color>
+    <on_color>
+      <color name="MINOR" red="255" green="128" blue="0">
+      </color>
+    </on_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>RampingLabel</name>
+    <text>Ramping:</text>
+    <x>400</x>
+    <y>320</y>
+    <width>60</width>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>RampingLed</name>
+    <pv_name>$(P):$(R):RAMPING</pv_name>
+    <x>460</x>
+    <y>320</y>
+    <off_color>
+      <color name="OK" red="0" green="255" blue="0">
+      </color>
+    </off_color>
+    <on_color>
+      <color name="MINOR" red="255" green="128" blue="0">
+      </color>
+    </on_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>CurrentDiffLabel</name>
+    <text>Current Diff:</text>
+    <x>500</x>
+    <y>320</y>
+    <width>80</width>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>CurrentDiff</name>
+    <pv_name>$(P):$(R):CURR_DIFF</pv_name>
+    <x>580</x>
+    <y>320</y>
+    <width>80</width>
+    <precision>3</precision>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>CurrentDiffUnits</name>
+    <text>A</text>
+    <x>665</x>
+    <y>320</y>
+    <width>15</width>
+  </widget>
+  <widget type="rectangle" version="2.0.0">
+    <name>ExpertFrame</name>
+    <x>20</x>
+    <y>385</y>
+    <width>760</width>
+    <height>100</height>
+    <line_color>
+      <color name="Grid" red="128" green="128" blue="128">
+      </color>
+    </line_color>
+    <background_color>
+      <color name="Write_Background" red="128" green="255" blue="255">
+      </color>
+    </background_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>ExpertTitle</name>
+    <text>Expert Controls</text>
+    <x>30</x>
+    <y>395</y>
+    <width>150</width>
+    <font>
+      <font name="Header 2" family="Liberation Sans" style="BOLD" size="18.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color name="STOP" red="255" green="0" blue="0">
+      </color>
+    </foreground_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>AutoEnableLabel</name>
+    <text>Auto Operation:</text>
+    <x>30</x>
+    <y>420</y>
+  </widget>
+  <widget type="bool_button" version="2.0.0">
+    <name>AutoEnable</name>
+    <pv_name>$(P):$(R):AUTO_ENABLE</pv_name>
+    <x>130</x>
+    <y>420</y>
+    <width>80</width>
+    <height>20</height>
+    <off_label>DISABLED</off_label>
+    <off_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </off_color>
+    <on_label>ENABLED</on_label>
+    <on_color>
+      <color name="OK" red="0" green="255" blue="0">
+      </color>
+    </on_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>ManualPolLabel</name>
+    <text>Manual Polarity:</text>
+    <x>230</x>
+    <y>420</y>
+    <width>110</width>
+  </widget>
+  <widget type="bool_button" version="2.0.0">
+    <name>ManualPol</name>
+    <pv_name>$(P):$(R):MANUAL_POL</pv_name>
+    <x>340</x>
+    <y>420</y>
+    <width>80</width>
+    <height>20</height>
+    <off_label>AUTO</off_label>
+    <on_label>MANUAL</on_label>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>TimeoutLabel</name>
+    <text>Timeout:</text>
+    <x>440</x>
+    <y>420</y>
+    <width>60</width>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Timeout</name>
+    <pv_name>$(P):$(R):TIMEOUT</pv_name>
+    <x>500</x>
+    <y>420</y>
+    <width>60</width>
+    <precision>1</precision>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>TimeoutUnits</name>
+    <text>s</text>
+    <x>565</x>
+    <y>420</y>
+    <width>15</width>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>DebugLabel</name>
+    <text>Debug:</text>
+    <x>590</x>
+    <y>420</y>
+    <width>50</width>
+  </widget>
+  <widget type="choice" version="2.0.0">
+    <name>Debug</name>
+    <pv_name>$(P):$(R):DEBUG</pv_name>
+    <x>640</x>
+    <y>420</y>
+    <width>80</width>
+    <height>20</height>
+    <items>
+      <item>Item 1</item>
+      <item>Item 2</item>
+    </items>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>OpCountLabel</name>
+    <text>Operations:</text>
+    <x>30</x>
+    <y>450</y>
+    <width>80</width>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>OpCount</name>
+    <pv_name>$(P):$(R):OP_COUNT</pv_name>
+    <x>110</x>
+    <y>450</y>
+    <width>60</width>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>ErrorCountLabel</name>
+    <text>Errors:</text>
+    <x>190</x>
+    <y>450</y>
+    <width>50</width>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>ErrorCount</name>
+    <pv_name>$(P):$(R):ERROR_COUNT</pv_name>
+    <x>240</x>
+    <y>450</y>
+    <width>60</width>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>LastErrorLabel</name>
+    <text>Last Error:</text>
+    <x>320</x>
+    <y>450</y>
+    <width>70</width>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>LastError</name>
+    <pv_name>$(P):$(R):LAST_ERROR</pv_name>
+    <x>390</x>
+    <y>450</y>
+    <width>300</width>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>MainPanelButton</name>
+    <actions>
+      <action type="open_display">
+        <description>Open Main Control Panel</description>
+        <file>danfysik_main.bob</file>
+        <macros>
+          <P>$(P)</P>
+          <R>$(R)</R>
+        </macros>
+        <target>tab</target>
+      </action>
+    </actions>
+    <text>Main Panel</text>
+    <x>20</x>
+    <y>500</y>
+    <width>120</width>
+    <tooltip>$(actions)</tooltip>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>ExpertPanelButton</name>
+    <actions>
+      <action type="open_display">
+        <description>Open Expert Panel</description>
+        <file>danfysik_expert.bob</file>
+        <macros>
+          <P>$(P)</P>
+          <R>$(R)</R>
+        </macros>
+        <target>tab</target>
+      </action>
+    </actions>
+    <text>Expert Panel</text>
+    <x>150</x>
+    <y>500</y>
+    <width>120</width>
+    <tooltip>$(actions)</tooltip>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>HelpButton</name>
+    <actions>
+      <action type="open_webpage">
+        <description>Open Help Documentation</description>
+        <url>file:///app/IOC-DEVEL/danfysik-sys8x00/docs/README.md</url>
+      </action>
+    </actions>
+    <text>Help</text>
+    <x>650</x>
+    <y>500</y>
+    <width>80</width>
+    <tooltip>$(actions)</tooltip>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>WarningText</name>
+    <text>⚠️ UNIMAG Mode: Automatic polarity switching enabled. Monitor sequence step during operation.</text>
+    <x>20</x>
+    <y>540</y>
+    <width>700</width>
+    <height>25</height>
+    <font>
+      <font name="Comment" family="Liberation Sans" style="ITALIC" size="14.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color name="MINOR" red="255" green="128" blue="0">
+      </color>
+    </foreground_color>
+  </widget>
+</display>

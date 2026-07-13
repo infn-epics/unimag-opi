@@ -71,6 +71,9 @@
       <script file="../Scripts/SelectionAll.py">
         <pv_name>$(pv_name)</pv_name>
         <pv_name trigger="false">loc://magnets_selected&lt;VLong&gt;</pv_name>
+        <pv_name trigger="false">loc://ZONE_$(DID)</pv_name>
+        <pv_name trigger="false">loc://TYPE_$(DID)</pv_name>
+        <pv_name trigger="false">loc://FUNC_$(DID)</pv_name>
       </script>
     </scripts>
     <border_alarm_sensitive>false</border_alarm_sensitive>

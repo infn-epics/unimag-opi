@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Saved on 2026-01-09 12:00:00 by user-->
+<display version="2.0.0">
+  <name>Danfysik SYS8X00 Launcher</name>
+  <width>600</width>
+  <height>500</height>
+  <background_color>
+    <color name="Display_Background" red="255" green="255" blue="255">
+    </color>
+  </background_color>
+  
+  <!-- Title -->
+  <widget type="label" version="2.0.0">
+    <name>Title</name>
+    <text>Danfysik SYS8X00 Power Supply Control</text>
+    <x>20</x>
+    <y>10</y>
+    <width>400</width>
+    <height>30</height>
+    <font>
+      <font name="Header 1" family="Liberation Sans" style="BOLD" size="18.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color name="Header_ForeGround" red="0" green="0" blue="0">
+      </color>
+    </foreground_color>
+  </widget>
+  
+  <widget type="label" version="2.0.0">
+    <name>Subtitle</name>
+    <text>Select a power supply to control:</text>
+    <x>20</x>
+    <y>45</y>
+    <width>300</width>
+    <height>20</height>
+    <font>
+      <font name="Default" family="Liberation Sans" style="REGULAR" size="12.0">
+      </font>
+    </font>
+  </widget>
+  
+  <!-- Power Supply Selection Buttons -->
+  <widget type="rectangle" version="2.0.0">
+    <name>PSListFrame</name>
+    <x>20</x>
+    <y>80</y>
+    <width>560</width>
+    <height>300</height>
+    <line_color>
+      <color name="Grid" red="90" green="90" blue="90">
+      </color>
+    </line_color>
+    <background_color>
+      <color name="Read_Background" red="245" green="245" blue="245">
+      </color>
+    </background_color>
+  </widget>
+  
+  <!-- Power Supply 1 -->
+  <widget type="label" version="2.0.0">
+    <name>PS1Label</name>
+    <text>BTF:MAG:DANFYSIK:QUATM002 - Main Dipole</text>
+    <x>30</x>
+    <y>100</y>
+    <width>200</width>
+    <height>20</height>
+    <font>
+      <font name="Default Bold" family="Liberation Sans" style="BOLD" size="12.0">
+      </font>
+    </font>
+  </widget>
+  
+  <widget type="action_button" version="3.0.0">
+    <name>PS1MainButton</name>
+    <actions>
+      <action type="open_display">
+        <file>danfysik_main.bob</file>
+        <macros>
+          <P>BTF:MAG:DANFYSIK</P>
+          <R>QUATM002</R>
+        </macros>
+        <target>tab</target>
+        <description>Open Main Control Panel</description>
+      </action>
+    </actions>
+    <text>Main Panel</text>
+    <x>250</x>
+    <y>95</y>
+    <width>100</width>
+    <height>30</height>
+    <background_color>
+      <color name="OK" red="0" green="255" blue="0">
+      </color>
+    </background_color>
+  </widget>
+  
+  <widget type="action_button" version="3.0.0">
+    <name>PS1UnimagButton</name>
+    <actions>
+      <action type="open_display">
+        <file>danfysik_unimag.bob</file>
+        <macros>
+          <P>BTF:MAG:DANFYSIK</P>
+<R>QUATM002</R>
+        </macros>
+        <target>tab</target>
+        <description>Open UNIMAG Interface</description>
+      </action>
+    </actions>
+    <text>UNIMAG</text>
+    <x>360</x>
+    <y>95</y>
+    <width>100</width>
+    <height>30</height>
+    <background_color>
+      <color name="Button_Background" red="135" green="206" blue="250">
+      </color>
+    </background_color>
+  </widget>
+  
+  <widget type="action_button" version="3.0.0">
+    <name>PS1ExpertButton</name>
+    <actions>
+      <action type="open_display">
+        <file>danfysik_expert.bob</file>
+        <macros>
+          <P>BTF:MAG:DANFYSIK</P>
+<R>QUATM002</R>
+        </macros>
+        <target>tab</target>
+        <description>Open Expert Panel</description>
+      </action>
+    </actions>
+    <text>Expert</text>
+    <x>470</x>
+    <y>95</y>
+    <width>100</width>
+    <height>30</height>
+    <background_color>
+      <color name="MINOR" red="255" green="255" blue="0">
+      </color>
+    </background_color>
+  </widget>
+  
+  <!-- Power Supply 2 -->
+  <widget type="label" version="2.0.0">
+    <name>PS2Label</name>
+    <text>BTF:MAG:DANFYSIK:QUATM003 - Quadrupole</text>
+    <x>30</x>
+    <y>140</y>
+    <width>200</width>
+    <height>20</height>
+    <font>
+      <font name="Default Bold" family="Liberation Sans" style="BOLD" size="12.0">
+      </font>
+    </font>
+  </widget>
+  
+  <widget type="action_button" version="3.0.0">
+    <name>PS2MainButton</name>
+    <actions>
+      <action type="open_display">
+        <file>danfysik_main.bob</file>
+        <macros>
+          <P>BTF:MAG:DANFYSIK</P>
+<R>QUATM003</R>
+        </macros>
+        <target>tab</target>
+        <description>Open Main Control Panel</description>
+      </action>
+    </actions>
+    <text>Main Panel</text>
+    <x>250</x>
+    <y>135</y>
+    <width>100</width>
+    <height>30</height>
+    <background_color>
+      <color name="OK" red="0" green="255" blue="0">
+      </color>
+    </background_color>
+  </widget>
+  
+  <widget type="action_button" version="3.0.0">
+    <name>PS2UnimagButton</name>
+    <actions>
+      <action type="open_display">
+        <file>danfysik_unimag.bob</file>
+        <macros>
+          <P>BTF:MAG:DANFYSIK</P>
+<R>QUATM003</R>
+        </macros>
+        <target>tab</target>
+        <description>Open UNIMAG Interface</description>
+      </action>
+    </actions>
+    <text>UNIMAG</text>
+    <x>360</x>
+    <y>135</y>
+    <width>100</width>
+    <height>30</height>
+    <background_color>
+      <color name="Button_Background" red="135" green="206" blue="250">
+      </color>
+    </background_color>
+  </widget>
+  
+  <widget type="action_button" version="3.0.0">
+    <name>PS2ExpertButton</name>
+    <actions>
+      <action type="open_display">
+        <file>danfysik_expert.bob</file>
+        <macros>
+          <P>BTF:MAG:DANFYSIK</P>
+<R>QUATM003</R>
+        </macros>
+        <target>tab</target>
+        <description>Open Expert Panel</description>
+      </action>
+    </actions>
+    <text>Expert</text>
+    <x>470</x>
+    <y>135</y>
+    <width>100</width>
+    <height>30</height>
+    <background_color>
+      <color name="MINOR" red="255" green="255" blue="0">
+      </color>
+    </background_color>
+  </widget>
+  
+  <!-- Power Supply 3 -->
+  <widget type="label" version="2.0.0">
+    <name>PS3Label</name>
+    <text>BTF:MAG:DANFYSIK:DHRTB101 - Sextupole</text>
+    <x>30</x>
+    <y>180</y>
+    <width>200</width>
+    <height>20</height>
+    <font>
+      <font name="Default Bold" family="Liberation Sans" style="BOLD" size="12.0">
+      </font>
+    </font>
+  </widget>
+  
+  <widget type="action_button" version="3.0.0">
+    <name>PS3MainButton</name>
+    <actions>
+      <action type="open_display">
+        <file>danfysik_main.bob</file>
+        <macros>
+          <DEVICE>BTF:MAG:DANFYSIK:DHRTB101</DEVICE>
+        </macros>
+        <target>tab</target>
+        <description>Open Main Control Panel</description>
+      </action>
+    </actions>
+    <text>Main Panel</text>
+    <x>250</x>
+    <y>175</y>
+    <width>100</width>
+    <height>30</height>
+    <background_color>
+      <color name="OK" red="0" green="255" blue="0">
+      </color>
+    </background_color>
+  </widget>
+  
+  <widget type="action_button" version="3.0.0">
+    <name>PS3UnimagButton</name>
+    <actions>
+      <action type="open_display">
+        <file>danfysik_unimag.bob</file>
+        <macros>
+          <DEVICE>BTF:MAG:DANFYSIK:DHRTB101</DEVICE>
+        </macros>
+        <target>tab</target>
+        <description>Open UNIMAG Interface</description>
+      </action>
+    </actions>
+    <text>UNIMAG</text>
+    <x>360</x>
+    <y>175</y>
+    <width>100</width>
+    <height>30</height>
+    <background_color>
+      <color name="Button_Background" red="135" green="206" blue="250">
+      </color>
+    </background_color>
+  </widget>
+  
+  <widget type="action_button" version="3.0.0">
+    <name>PS3ExpertButton</name>
+    <actions>
+      <action type="open_display">
+        <file>danfysik_expert.bob</file>
+        <macros>
+          <DEVICE>BTF:MAG:DANFYSIK:DHRTB101</DEVICE>
+        </macros>
+        <target>tab</target>
+        <description>Open Expert Panel</description>
+      </action>
+    </actions>
+    <text>Expert</text>
+    <x>470</x>
+    <y>175</y>
+    <width>100</width>
+    <height>30</height>
+    <background_color>
+      <color name="MINOR" red="255" green="255" blue="0">
+      </color>
+    </background_color>
+  </widget>
+  
+  <!-- Information Section -->
+  <widget type="rectangle" version="2.0.0">
+    <name>InfoFrame</name>
+    <x>20</x>
+    <y>240</y>
+    <width>560</width>
+    <height>80</height>
+    <line_color>
+      <color name="Grid" red="90" green="90" blue="90">
+      </color>
+    </line_color>
+    <background_color>
+      <color name="Read_Background" red="240" green="248" blue="255">
+      </color>
+    </background_color>
+  </widget>
+  
+  <widget type="label" version="2.0.0">
+    <name>InfoTitle</name>
+    <text>Interface Guide:</text>
+    <x>30</x>
+    <y>250</y>
+    <width>100</width>
+    <height>20</height>
+    <font>
+      <font name="Default Bold" family="Liberation Sans" style="BOLD" size="12.0">
+      </font>
+    </font>
+  </widget>
+  
+  <widget type="label" version="2.0.0">
+    <name>InfoMain</name>
+    <text>• Main Panel: Full control with all parameters and monitoring</text>
+    <x>30</x>
+    <y>270</y>
+    <width>520</width>
+    <height>15</height>
+  </widget>
+  
+  <widget type="label" version="2.0.0">
+    <name>InfoUnimag</name>
+    <text>• UNIMAG: Simplified operation with automatic polarity switching</text>
+    <x>30</x>
+    <y>285</y>
+    <width>520</width>
+    <height>15</height>
+  </widget>
+  
+  <widget type="label" version="2.0.0">
+    <name>InfoExpert</name>
+    <text>• Expert: Advanced diagnostics and direct hardware access</text>
+    <x>30</x>
+    <y>300</y>
+    <width>520</width>
+    <height>15</height>
+  </widget>
+  
+  <!-- System Information -->
+  <widget type="rectangle" version="2.0.0">
+    <name>SystemFrame</name>
+    <x>20</x>
+    <y>330</y>
+    <width>560</width>
+    <height>60</height>
+    <line_color>
+      <color name="Grid" red="90" green="90" blue="90">
+      </color>
+    </line_color>
+    <background_color>
+      <color name="Read_Background" red="240" green="255" blue="240">
+      </color>
+    </background_color>
+  </widget>
+  
+  <widget type="label" version="2.0.0">
+    <name>SystemTitle</name>
+    <text>System Information:</text>
+    <x>30</x>
+    <y>340</y>
+    <width>130</width>
+    <height>20</height>
+    <font>
+      <font name="Default Bold" family="Liberation Sans" style="BOLD" size="12.0">
+      </font>
+    </font>
+  </widget>
+  
+  <widget type="label" version="2.0.0">
+    <name>SystemInfo1</name>
+    <text>IOC: danfysik-sys8x00 | Protocol: StreamDevice | Hardware: Danfysik SYS8X00</text>
+    <x>30</x>
+    <y>360</y>
+    <width>520</width>
+    <height>15</height>
+    <font>
+      <font name="Default" family="Liberation Sans" style="REGULAR" size="10.0">
+      </font>
+    </font>
+  </widget>
+  
+  <!-- Help and Documentation -->
+  <widget type="action_button" version="3.0.0">
+    <name>HelpButton</name>
+    <actions>
+      <action type="open_webpage">
+        <url>file:///app/IOC-DEVEL/danfysik-sys8x00/docs/README.md</url>
+        <description>Open Documentation</description>
+      </action>
+    </actions>
+    <text>Documentation</text>
+    <x>20</x>
+    <y>410</y>
+    <width>120</width>
+    <height>30</height>
+    <background_color>
+      <color name="Button_Background" red="210" green="210" blue="210">
+      </color>
+    </background_color>
+  </widget>
+  
+  <widget type="action_button" version="3.0.0">
+    <name>ProtocolButton</name>
+    <actions>
+      <action type="open_file">
+        <file>/app/IOC-DEVEL/danfysik-sys8x00/docs/Danfysik-sys8x00-clean.txt</file>
+        <description>Open Protocol Reference</description>
+      </action>
+    </actions>
+    <text>Protocol Reference</text>
+    <x>150</x>
+    <y>410</y>
+    <width>140</width>
+    <height>30</height>
+    <background_color>
+      <color name="Button_Background" red="210" green="210" blue="210">
+      </color>
+    </background_color>
+  </widget>
+  
+  <!-- Exit Button -->
+  <widget type="action_button" version="3.0.0">
+    <name>ExitButton</name>
+    <actions>
+      <action type="execute">
+        <script>exit</script>
+        <description>Exit Application</description>
+      </action>
+    </actions>
+    <text>Exit</text>
+    <x>500</x>
+    <y>410</y>
+    <width>80</width>
+    <height>30</height>
+    <background_color>
+      <color name="STOP" red="255" green="60" blue="60">
+      </color>
+    </background_color>
+  </widget>
+  
+</display>

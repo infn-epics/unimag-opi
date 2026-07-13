@@ -1,0 +1,1430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <name>Danfysik Expert Panel</name>
+  <macros>
+    <DEVICE>BTF:MAG:DANFYSIK:QUATM002</DEVICE>
+  </macros>
+  <width>1000</width>
+  <height>1010</height>
+  <background_color>
+    <color name="Display_Background" red="255" green="255" blue="255">
+    </color>
+  </background_color>
+  <widget type="label" version="2.0.0">
+    <name>Title</name>
+    <text>Danfysik SYS8X00 - Expert/Debug Panel</text>
+    <x>20</x>
+    <y>10</y>
+    <width>400</width>
+    <height>30</height>
+    <font>
+      <font name="Header 1" family="Liberation Sans" style="BOLD" size="22.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color name="STOP" red="255" green="0" blue="0">
+      </color>
+    </foreground_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Warning</name>
+    <text>⚠️ EXPERT MODE - Use with caution! Direct hardware control.</text>
+    <x>20</x>
+    <y>45</y>
+    <width>600</width>
+    <font>
+      <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </foreground_color>
+  </widget>
+  <widget type="rectangle" version="2.0.0">
+    <name>HardwareFrame</name>
+    <x>20</x>
+    <y>80</y>
+    <width>960</width>
+    <height>150</height>
+    <line_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </line_color>
+    <background_color>
+      <color name="Write_Background" red="128" green="255" blue="255">
+      </color>
+    </background_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>HardwareTitle</name>
+    <text>Direct Hardware Control</text>
+    <x>30</x>
+    <y>90</y>
+    <width>200</width>
+    <font>
+      <font name="Header 2" family="Liberation Sans" style="BOLD" size="18.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>DirectCurrentLabel</name>
+    <text>Direct Current (DAC):</text>
+    <x>30</x>
+    <y>120</y>
+    <width>130</width>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>DirectCurrent</name>
+    <pv_name>$(P):$(R):I_SP</pv_name>
+    <x>160</x>
+    <y>120</y>
+    <width>120</width>
+    <precision>3</precision>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>DirectCurrentSPRB</name>
+    <text>SP RB:</text>
+    <x>290</x>
+    <y>120</y>
+    <width>40</width>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>DirectCurrentReadback</name>
+    <pv_name>$(P):$(R):I_SP_RB</pv_name>
+    <x>330</x>
+    <y>120</y>
+    <precision>3</precision>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>RawWaLabel</name>
+    <text>Raw WA (DAC 0-999999):</text>
+    <x>30</x>
+    <y>180</y>
+    <width>150</width>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>RawWaEntry</name>
+    <pv_name>$(P):$(R):RAW_WA</pv_name>
+    <x>185</x>
+    <y>180</y>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>RawRaLabel2</name>
+    <text>RA RB:</text>
+    <x>300</x>
+    <y>180</y>
+    <width>50</width>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>RawRaReadback2</name>
+    <pv_name>$(P):$(R):RAW_RA</pv_name>
+    <x>355</x>
+    <y>180</y>
+    <width>80</width>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>AddressSetLabel</name>
+    <text>Set Address:</text>
+    <x>450</x>
+    <y>120</y>
+    <width>80</width>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>AddressSet</name>
+    <pv_name>$(P):$(R):ADDR_SP</pv_name>
+    <x>530</x>
+    <y>120</y>
+    <width>60</width>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>InitRemoteButton</name>
+    <actions>
+      <action type="write_pv">
+        <description>Initialize Remote Control</description>
+        <pv_name>$(P):$(R):INIT_REMOTE</pv_name>
+        <value>1</value>
+      </action>
+    </actions>
+    <text>INIT REMOTE</text>
+    <x>620</x>
+    <y>120</y>
+    <height>25</height>
+    <tooltip>$(actions)</tooltip>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>ErrorTextButton</name>
+    <actions>
+      <action type="write_pv">
+        <description>Enable Text Error Messages</description>
+        <pv_name>$(P):$(R):ERROR_TEXT</pv_name>
+        <value>1</value>
+      </action>
+    </actions>
+    <text>ERROR TEXT</text>
+    <x>730</x>
+    <y>120</y>
+    <height>25</height>
+    <tooltip>$(actions)</tooltip>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>AdvRampLabel</name>
+    <text>Advanced Ramping:</text>
+    <x>30</x>
+    <y>150</y>
+    <width>120</width>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>RampEndLabel2</name>
+    <text>End:</text>
+    <x>150</x>
+    <y>150</y>
+    <width>30</width>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>RampEndExpert</name>
+    <pv_name>$(P):$(R):RAMP_END_SP</pv_name>
+    <x>180</x>
+    <y>150</y>
+    <precision>3</precision>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>RampRateLabel2</name>
+    <text>Rate:</text>
+    <x>290</x>
+    <y>150</y>
+    <width>40</width>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>RampRateExpert</name>
+    <pv_name>$(P):$(R):RAMP_RATE_SP</pv_name>
+    <x>330</x>
+    <y>150</y>
+    <precision>2</precision>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>SeqTrigLabel</name>
+    <text>Seq Trigger:</text>
+    <x>450</x>
+    <y>150</y>
+    <width>80</width>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>SeqTrigger</name>
+    <pv_name>$(P):$(R):SEQ_TRIGGER</pv_name>
+    <x>530</x>
+    <y>150</y>
+    <width>60</width>
+  </widget>
+  <widget type="rectangle" version="2.0.0">
+    <name>AdcFrame</name>
+    <x>20</x>
+    <y>250</y>
+    <width>480</width>
+    <height>200</height>
+    <line_color>
+      <color name="Grid" red="128" green="128" blue="128">
+      </color>
+    </line_color>
+    <background_color>
+      <color name="Read_Background" red="240" green="240" blue="240">
+      </color>
+    </background_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>AdcTitle</name>
+    <text>Scaled ADC Values (converted using IMAX/VMAX)</text>
+    <x>30</x>
+    <y>260</y>
+    <width>150</width>
+    <font>
+      <font name="Header 2" family="Liberation Sans" style="BOLD" size="18.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Adc0Label</name>
+    <text>CH0 (I out %):</text>
+    <x>30</x>
+    <y>290</y>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Adc0Value</name>
+    <pv_name>$(P):$(R):I_RB</pv_name>
+    <x>130</x>
+    <y>290</y>
+    <width>80</width>
+    <precision>3</precision>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Adc1Label</name>
+    <text>CH1 (Tesla):</text>
+    <x>250</x>
+    <y>290</y>
+    <width>80</width>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Adc1Value</name>
+    <pv_name>$(P):$(R):TESLA_RB</pv_name>
+    <x>330</x>
+    <y>290</y>
+    <width>80</width>
+    <precision>2</precision>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Adc2Label</name>
+    <text>CH2 (V out %):</text>
+    <x>30</x>
+    <y>315</y>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Adc2Value</name>
+    <pv_name>$(P):$(R):V_RB</pv_name>
+    <x>130</x>
+    <y>315</y>
+    <width>80</width>
+    <precision>2</precision>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Adc3Label</name>
+    <text>CH3 (+15V):</text>
+    <x>250</x>
+    <y>315</y>
+    <width>80</width>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Adc3Value</name>
+    <pv_name>$(P):$(R):P15V_RB</pv_name>
+    <x>330</x>
+    <y>315</y>
+    <width>80</width>
+    <precision>1</precision>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Adc4Label</name>
+    <text>CH4 (-15V):</text>
+    <x>30</x>
+    <y>340</y>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Adc4Value</name>
+    <pv_name>$(P):$(R):M15V_RB</pv_name>
+    <x>130</x>
+    <y>340</y>
+    <width>80</width>
+    <precision>1</precision>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Adc5Label</name>
+    <text>CH5 (+5V):</text>
+    <x>250</x>
+    <y>340</y>
+    <width>80</width>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Adc5Value</name>
+    <pv_name>$(P):$(R):P5V_RB</pv_name>
+    <x>330</x>
+    <y>340</y>
+    <width>80</width>
+    <precision>1</precision>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Adc6Label</name>
+    <text>CH6 (ΔTemp):</text>
+    <x>30</x>
+    <y>365</y>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Adc6Value</name>
+    <pv_name>$(P):$(R):TEMP_DELTA_RB</pv_name>
+    <x>130</x>
+    <y>365</y>
+    <width>80</width>
+    <precision>1</precision>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Adc7Label</name>
+    <text>CH7 (Vce):</text>
+    <x>250</x>
+    <y>365</y>
+    <width>80</width>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Adc7Value</name>
+    <pv_name>$(P):$(R):VCE_RB</pv_name>
+    <x>330</x>
+    <y>365</y>
+    <width>80</width>
+    <precision>1</precision>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Adc8Label</name>
+    <text>CH8 (HiRes I):</text>
+    <x>30</x>
+    <y>390</y>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Adc8Value</name>
+    <pv_name>$(P):$(R):I_HIRES_RB</pv_name>
+    <x>130</x>
+    <y>390</y>
+    <width>80</width>
+    <precision>5</precision>
+  </widget>
+  <widget type="rectangle" version="2.0.0">
+    <name>StatusDecodeFrame</name>
+    <x>520</x>
+    <y>250</y>
+    <width>460</width>
+    <height>200</height>
+    <line_color>
+      <color name="Grid" red="128" green="128" blue="128">
+      </color>
+    </line_color>
+    <background_color>
+      <color name="Read_Background" red="240" green="240" blue="240">
+      </color>
+    </background_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>StatusDecodeTitle</name>
+    <text>Status String Decoding</text>
+    <x>530</x>
+    <y>260</y>
+    <width>180</width>
+    <font>
+      <font name="Header 2" family="Liberation Sans" style="BOLD" size="18.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>StatusStringLabel2</name>
+    <text>Raw String:</text>
+    <x>530</x>
+    <y>290</y>
+    <width>80</width>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>StatusString2</name>
+    <pv_name>$(P):$(R):STATUS</pv_name>
+    <x>610</x>
+    <y>290</y>
+    <width>360</width>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>StatusBitsLabel</name>
+    <text>Status Bits:</text>
+    <x>530</x>
+    <y>320</y>
+    <width>80</width>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Bit0Label</name>
+    <text>Pwr:</text>
+    <x>530</x>
+    <y>345</y>
+    <width>30</width>
+    <height>15</height>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>Bit0Led</name>
+    <pv_name>$(P):$(R):MAIN_PWR_ON</pv_name>
+    <x>560</x>
+    <y>345</y>
+    <width>15</width>
+    <height>15</height>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Bit1Label</name>
+    <text>Pol+:</text>
+    <x>580</x>
+    <y>345</y>
+    <width>30</width>
+    <height>15</height>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>Bit1Led</name>
+    <pv_name>$(P):$(R):POL_NORMAL</pv_name>
+    <x>610</x>
+    <y>345</y>
+    <width>15</width>
+    <height>15</height>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Bit2Label</name>
+    <text>Pol-:</text>
+    <x>630</x>
+    <y>345</y>
+    <width>30</width>
+    <height>15</height>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>Bit2Led</name>
+    <pv_name>$(P):$(R):POL_REVERSED</pv_name>
+    <x>660</x>
+    <y>345</y>
+    <width>15</width>
+    <height>15</height>
+  </widget>
+  <widget type="rectangle" version="2.0.0">
+    <name>UnimagDebugFrame</name>
+    <x>20</x>
+    <y>470</y>
+    <width>960</width>
+    <height>150</height>
+    <line_color>
+      <color name="Grid" red="128" green="128" blue="128">
+      </color>
+    </line_color>
+    <background_color>
+      <color name="Read_Background" red="240" green="240" blue="240">
+      </color>
+    </background_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>UnimagDebugTitle</name>
+    <text>UNIMAG Debug Information</text>
+    <x>30</x>
+    <y>480</y>
+    <width>200</width>
+    <font>
+      <font name="Header 2" family="Liberation Sans" style="BOLD" size="18.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>UnimagStateLabel</name>
+    <text>State:</text>
+    <x>30</x>
+    <y>510</y>
+    <width>50</width>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>UnimagState</name>
+    <pv_name>$(P):$(R):STATE_RB</pv_name>
+    <x>80</x>
+    <y>510</y>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>UnimagSeqStepLabel</name>
+    <text>Seq Step:</text>
+    <x>200</x>
+    <y>510</y>
+    <width>70</width>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>UnimagSeqStep</name>
+    <pv_name>$(P):$(R):SEQ_STEP</pv_name>
+    <x>270</x>
+    <y>510</y>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>UnimagTargetPolLabel</name>
+    <text>Target Pol:</text>
+    <x>390</x>
+    <y>510</y>
+    <width>70</width>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>UnimagTargetPol</name>
+    <pv_name>$(P):$(R):TARGET_POL</pv_name>
+    <x>460</x>
+    <y>510</y>
+    <width>80</width>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>UnimagTargetCurrLabel</name>
+    <text>Target I:</text>
+    <x>560</x>
+    <y>510</y>
+    <width>60</width>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>UnimagTargetCurr</name>
+    <pv_name>$(P):$(R):TARGET_ABS_CURR</pv_name>
+    <x>620</x>
+    <y>510</y>
+    <width>80</width>
+    <precision>3</precision>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>MainPanelButton2</name>
+    <actions>
+      <action type="open_display">
+        <description>Open Main Control Panel</description>
+        <file>danfysik_main.bob</file>
+        <macros>
+          <DEVICE>$(DEVICE)</DEVICE>
+        </macros>
+        <target>tab</target>
+      </action>
+    </actions>
+    <text>Main Panel</text>
+    <x>20</x>
+    <y>640</y>
+    <width>120</width>
+    <tooltip>$(actions)</tooltip>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>UnimagPanelButton2</name>
+    <actions>
+      <action type="open_display">
+        <description>Open UNIMAG Interface</description>
+        <file>danfysik_unimag.bob</file>
+        <macros>
+          <DEVICE>$(DEVICE)</DEVICE>
+        </macros>
+        <target>tab</target>
+      </action>
+    </actions>
+    <text>UNIMAG Panel</text>
+    <x>150</x>
+    <y>640</y>
+    <width>120</width>
+    <tooltip>$(actions)</tooltip>
+  </widget>
+  <widget type="rectangle" version="2.0.0">
+    <name>FaultDetailFrame</name>
+    <x>20</x>
+    <y>685</y>
+    <width>960</width>
+    <height>135</height>
+    <line_color>
+      <color name="Grid" red="90" green="90" blue="90">
+      </color>
+    </line_color>
+    <background_color>
+      <color name="Read_Background" red="255" green="245" blue="245">
+      </color>
+    </background_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>FaultDetailTitle</name>
+    <text>Interlock / Fault Detail (S1 status bits, per INFN Frascati ITA 4546 manual)</text>
+    <x>30</x>
+    <y>690</y>
+    <width>600</width>
+    <height>20</height>
+    <font>
+      <font name="Default Bold" family="Liberation Sans" style="BOLD" size="12.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>FaultLabel_B30</name>
+    <text>UserIL 1:</text>
+    <x>30</x>
+    <y>715</y>
+    <width>105</width>
+    <height>18</height>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>FaultLed_B30</name>
+    <pv_name>$(P):$(R):STATUS_BITS.B30</pv_name>
+    <x>140</x>
+    <y>715</y>
+    <width>15</width>
+    <height>15</height>
+    <off_color>
+      <color name="OK" red="0" green="255" blue="0">
+      </color>
+    </off_color>
+    <on_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </on_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>FaultLabel_B29</name>
+    <text>UserIL 2:</text>
+    <x>185</x>
+    <y>715</y>
+    <width>105</width>
+    <height>18</height>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>FaultLed_B29</name>
+    <pv_name>$(P):$(R):STATUS_BITS.B29</pv_name>
+    <x>295</x>
+    <y>715</y>
+    <width>15</width>
+    <height>15</height>
+    <off_color>
+      <color name="OK" red="0" green="255" blue="0">
+      </color>
+    </off_color>
+    <on_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </on_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>FaultLabel_B28</name>
+    <text>UserIL 3:</text>
+    <x>340</x>
+    <y>715</y>
+    <width>105</width>
+    <height>18</height>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>FaultLed_B28</name>
+    <pv_name>$(P):$(R):STATUS_BITS.B28</pv_name>
+    <x>450</x>
+    <y>715</y>
+    <width>15</width>
+    <height>15</height>
+    <off_color>
+      <color name="OK" red="0" green="255" blue="0">
+      </color>
+    </off_color>
+    <on_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </on_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>FaultLabel_B27</name>
+    <text>UserIL 4:</text>
+    <x>495</x>
+    <y>715</y>
+    <width>105</width>
+    <height>18</height>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>FaultLed_B27</name>
+    <pv_name>$(P):$(R):STATUS_BITS.B27</pv_name>
+    <x>605</x>
+    <y>715</y>
+    <width>15</width>
+    <height>15</height>
+    <off_color>
+      <color name="OK" red="0" green="255" blue="0">
+      </color>
+    </off_color>
+    <on_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </on_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>FaultLabel_B26</name>
+    <text>UserIL 5:</text>
+    <x>650</x>
+    <y>715</y>
+    <width>105</width>
+    <height>18</height>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>FaultLed_B26</name>
+    <pv_name>$(P):$(R):STATUS_BITS.B26</pv_name>
+    <x>760</x>
+    <y>715</y>
+    <width>15</width>
+    <height>15</height>
+    <off_color>
+      <color name="OK" red="0" green="255" blue="0">
+      </color>
+    </off_color>
+    <on_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </on_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>FaultLabel_B25</name>
+    <text>UserIL 6:</text>
+    <x>805</x>
+    <y>715</y>
+    <width>105</width>
+    <height>18</height>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>FaultLed_B25</name>
+    <pv_name>$(P):$(R):STATUS_BITS.B25</pv_name>
+    <x>915</x>
+    <y>715</y>
+    <width>15</width>
+    <height>15</height>
+    <off_color>
+      <color name="OK" red="0" green="255" blue="0">
+      </color>
+    </off_color>
+    <on_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </on_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>FaultLabel_B24</name>
+    <text>Freewheel OT:</text>
+    <x>30</x>
+    <y>740</y>
+    <width>105</width>
+    <height>18</height>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>FaultLed_B24</name>
+    <pv_name>$(P):$(R):STATUS_BITS.B24</pv_name>
+    <x>140</x>
+    <y>740</y>
+    <width>15</width>
+    <height>15</height>
+    <off_color>
+      <color name="OK" red="0" green="255" blue="0">
+      </color>
+    </off_color>
+    <on_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </on_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>FaultLabel_B23</name>
+    <text>Low H2O Flow:</text>
+    <x>185</x>
+    <y>740</y>
+    <width>105</width>
+    <height>18</height>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>FaultLed_B23</name>
+    <pv_name>$(P):$(R):STATUS_BITS.B23</pv_name>
+    <x>295</x>
+    <y>740</y>
+    <width>15</width>
+    <height>15</height>
+    <off_color>
+      <color name="OK" red="0" green="255" blue="0">
+      </color>
+    </off_color>
+    <on_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </on_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>FaultLabel_B22</name>
+    <text>Door Open:</text>
+    <x>340</x>
+    <y>740</y>
+    <width>105</width>
+    <height>18</height>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>FaultLed_B22</name>
+    <pv_name>$(P):$(R):STATUS_BITS.B22</pv_name>
+    <x>450</x>
+    <y>740</y>
+    <width>15</width>
+    <height>15</height>
+    <off_color>
+      <color name="OK" red="0" green="255" blue="0">
+      </color>
+    </off_color>
+    <on_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </on_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>FaultLabel_B21</name>
+    <text>Pol Positive:</text>
+    <x>495</x>
+    <y>740</y>
+    <width>105</width>
+    <height>18</height>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>FaultLed_B21</name>
+    <pv_name>$(P):$(R):STATUS_BITS.B21</pv_name>
+    <x>605</x>
+    <y>740</y>
+    <width>15</width>
+    <height>15</height>
+    <off_color>
+      <color name="OK" red="0" green="255" blue="0">
+      </color>
+    </off_color>
+    <on_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </on_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>FaultLabel_B20</name>
+    <text>Pol Negative:</text>
+    <x>650</x>
+    <y>740</y>
+    <width>105</width>
+    <height>18</height>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>FaultLed_B20</name>
+    <pv_name>$(P):$(R):STATUS_BITS.B20</pv_name>
+    <x>760</x>
+    <y>740</y>
+    <width>15</width>
+    <height>15</height>
+    <off_color>
+      <color name="OK" red="0" green="255" blue="0">
+      </color>
+    </off_color>
+    <on_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </on_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>FaultLabel_B15</name>
+    <text>Diode HS OT:</text>
+    <x>805</x>
+    <y>740</y>
+    <width>105</width>
+    <height>18</height>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>FaultLed_B15</name>
+    <pv_name>$(P):$(R):STATUS_BITS.B15</pv_name>
+    <x>915</x>
+    <y>740</y>
+    <width>15</width>
+    <height>15</height>
+    <off_color>
+      <color name="OK" red="0" green="255" blue="0">
+      </color>
+    </off_color>
+    <on_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </on_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>FaultLabel_B14</name>
+    <text>Chassis OT:</text>
+    <x>30</x>
+    <y>765</y>
+    <width>105</width>
+    <height>18</height>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>FaultLed_B14</name>
+    <pv_name>$(P):$(R):STATUS_BITS.B14</pv_name>
+    <x>140</x>
+    <y>765</y>
+    <width>15</width>
+    <height>15</height>
+    <off_color>
+      <color name="OK" red="0" green="255" blue="0">
+      </color>
+    </off_color>
+    <on_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </on_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>FaultLabel_B13</name>
+    <text>IGBT HS OT:</text>
+    <x>185</x>
+    <y>765</y>
+    <width>105</width>
+    <height>18</height>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>FaultLed_B13</name>
+    <pv_name>$(P):$(R):STATUS_BITS.B13</pv_name>
+    <x>295</x>
+    <y>765</y>
+    <width>15</width>
+    <height>15</height>
+    <off_color>
+      <color name="OK" red="0" green="255" blue="0">
+      </color>
+    </off_color>
+    <on_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </on_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>FaultLabel_B12</name>
+    <text>HF Diode OT:</text>
+    <x>340</x>
+    <y>765</y>
+    <width>105</width>
+    <height>18</height>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>FaultLed_B12</name>
+    <pv_name>$(P):$(R):STATUS_BITS.B12</pv_name>
+    <x>450</x>
+    <y>765</y>
+    <width>15</width>
+    <height>15</height>
+    <off_color>
+      <color name="OK" red="0" green="255" blue="0">
+      </color>
+    </off_color>
+    <on_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </on_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>FaultLabel_B11</name>
+    <text>SwReg DCCT Flt:</text>
+    <x>495</x>
+    <y>765</y>
+    <width>105</width>
+    <height>18</height>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>FaultLed_B11</name>
+    <pv_name>$(P):$(R):STATUS_BITS.B11</pv_name>
+    <x>605</x>
+    <y>765</y>
+    <width>15</width>
+    <height>15</height>
+    <off_color>
+      <color name="OK" red="0" green="255" blue="0">
+      </color>
+    </off_color>
+    <on_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </on_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>FaultLabel_B10</name>
+    <text>SwReg Sply Flt:</text>
+    <x>650</x>
+    <y>765</y>
+    <width>105</width>
+    <height>18</height>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>FaultLed_B10</name>
+    <pv_name>$(P):$(R):STATUS_BITS.B10</pv_name>
+    <x>760</x>
+    <y>765</y>
+    <width>15</width>
+    <height>15</height>
+    <off_color>
+      <color name="OK" red="0" green="255" blue="0">
+      </color>
+    </off_color>
+    <on_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </on_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>FaultLabel_B9</name>
+    <text>IGBT Drv Flt:</text>
+    <x>805</x>
+    <y>765</y>
+    <width>105</width>
+    <height>18</height>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>FaultLed_B9</name>
+    <pv_name>$(P):$(R):STATUS_BITS.B9</pv_name>
+    <x>915</x>
+    <y>765</y>
+    <width>15</width>
+    <height>15</height>
+    <off_color>
+      <color name="OK" red="0" green="255" blue="0">
+      </color>
+    </off_color>
+    <on_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </on_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>FaultLabel_B6</name>
+    <text>AC Undervolt:</text>
+    <x>30</x>
+    <y>790</y>
+    <width>105</width>
+    <height>18</height>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>FaultLed_B6</name>
+    <pv_name>$(P):$(R):STATUS_BITS.B6</pv_name>
+    <x>140</x>
+    <y>790</y>
+    <width>15</width>
+    <height>15</height>
+    <off_color>
+      <color name="OK" red="0" green="255" blue="0">
+      </color>
+    </off_color>
+    <on_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </on_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>FaultLabel_B4</name>
+    <text>Curr Ripple:</text>
+    <x>185</x>
+    <y>790</y>
+    <width>105</width>
+    <height>18</height>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>FaultLed_B4</name>
+    <pv_name>$(P):$(R):STATUS_BITS.B4</pv_name>
+    <x>295</x>
+    <y>790</y>
+    <width>15</width>
+    <height>15</height>
+    <off_color>
+      <color name="OK" red="0" green="255" blue="0">
+      </color>
+    </off_color>
+    <on_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </on_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>FaultLabel_B3</name>
+    <text>Gnd Leak:</text>
+    <x>340</x>
+    <y>790</y>
+    <width>105</width>
+    <height>18</height>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>FaultLed_B3</name>
+    <pv_name>$(P):$(R):STATUS_BITS.B3</pv_name>
+    <x>450</x>
+    <y>790</y>
+    <width>15</width>
+    <height>15</height>
+    <off_color>
+      <color name="OK" red="0" green="255" blue="0">
+      </color>
+    </off_color>
+    <on_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </on_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>FaultLabel_B2</name>
+    <text>Overcurrent:</text>
+    <x>495</x>
+    <y>790</y>
+    <width>105</width>
+    <height>18</height>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>FaultLed_B2</name>
+    <pv_name>$(P):$(R):STATUS_BITS.B2</pv_name>
+    <x>605</x>
+    <y>790</y>
+    <width>15</width>
+    <height>15</height>
+    <off_color>
+      <color name="OK" red="0" green="255" blue="0">
+      </color>
+    </off_color>
+    <on_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </on_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>FaultLabel_B1</name>
+    <text>Main Pwr ON:</text>
+    <x>650</x>
+    <y>790</y>
+    <width>105</width>
+    <height>18</height>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>FaultLed_B1</name>
+    <pv_name>$(P):$(R):STATUS_BITS.B1</pv_name>
+    <x>760</x>
+    <y>790</y>
+    <width>15</width>
+    <height>15</height>
+    <off_color>
+      <color name="OK" red="0" green="255" blue="0">
+      </color>
+    </off_color>
+    <on_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </on_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>FaultLabel_B0</name>
+    <text>Ready:</text>
+    <x>805</x>
+    <y>790</y>
+    <width>105</width>
+    <height>18</height>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>FaultLed_B0</name>
+    <pv_name>$(P):$(R):STATUS_BITS.B0</pv_name>
+    <x>915</x>
+    <y>790</y>
+    <width>15</width>
+    <height>15</height>
+    <off_color>
+      <color name="OK" red="0" green="255" blue="0">
+      </color>
+    </off_color>
+    <on_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </on_color>
+  </widget>
+
+
+
+  <widget type="rectangle" version="2.0.0">
+    <name>RawAdcFrame</name>
+    <x>20</x>
+    <y>855</y>
+    <width>960</width>
+    <height>135</height>
+    <line_color>
+      <color name="Grid" red="128" green="128" blue="128">
+      </color>
+    </line_color>
+    <background_color>
+      <color name="Read_Background" red="240" green="240" blue="240">
+      </color>
+    </background_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>RawAdcTitle</name>
+    <text>Raw ADC Diagnostics (unscaled - no IMAX/VMAX applied)</text>
+    <x>30</x>
+    <y>860</y>
+    <width>500</width>
+    <font>
+      <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>RawLabel_RAW_AD0</name>
+    <text>AD0: Iout (I/In)*100:</text>
+    <x>30</x>
+    <y>890</y>
+    <width>170</width>
+    <height>18</height>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>RawValue_RAW_AD0</name>
+    <pv_name>$(P):$(R):RAW_AD0</pv_name>
+    <x>205</x>
+    <y>890</y>
+    <height>18</height>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>RawLabel_RAW_AD1</name>
+    <text>AD1: Tesla T*100:</text>
+    <x>340</x>
+    <y>890</y>
+    <width>170</width>
+    <height>18</height>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>RawValue_RAW_AD1</name>
+    <pv_name>$(P):$(R):RAW_AD1</pv_name>
+    <x>515</x>
+    <y>890</y>
+    <height>18</height>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>RawLabel_RAW_AD2</name>
+    <text>AD2: Vout (V/Vn)*100:</text>
+    <x>650</x>
+    <y>890</y>
+    <width>170</width>
+    <height>18</height>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>RawValue_RAW_AD2</name>
+    <pv_name>$(P):$(R):RAW_AD2</pv_name>
+    <x>825</x>
+    <y>890</y>
+    <height>18</height>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>RawLabel_RAW_AD3</name>
+    <text>AD3: +15V *10:</text>
+    <x>30</x>
+    <y>914</y>
+    <width>170</width>
+    <height>18</height>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>RawValue_RAW_AD3</name>
+    <pv_name>$(P):$(R):RAW_AD3</pv_name>
+    <x>205</x>
+    <y>914</y>
+    <height>18</height>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>RawLabel_RAW_AD4</name>
+    <text>AD4: -15V *10:</text>
+    <x>340</x>
+    <y>914</y>
+    <width>170</width>
+    <height>18</height>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>RawValue_RAW_AD4</name>
+    <pv_name>$(P):$(R):RAW_AD4</pv_name>
+    <x>515</x>
+    <y>914</y>
+    <height>18</height>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>RawLabel_RAW_AD5</name>
+    <text>AD5: +5V *10:</text>
+    <x>650</x>
+    <y>914</y>
+    <width>170</width>
+    <height>18</height>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>RawValue_RAW_AD5</name>
+    <pv_name>$(P):$(R):RAW_AD5</pv_name>
+    <x>825</x>
+    <y>914</y>
+    <height>18</height>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>RawLabel_RAW_AD6</name>
+    <text>AD6: dTemp *10:</text>
+    <x>30</x>
+    <y>938</y>
+    <width>170</width>
+    <height>18</height>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>RawValue_RAW_AD6</name>
+    <pv_name>$(P):$(R):RAW_AD6</pv_name>
+    <x>205</x>
+    <y>938</y>
+    <height>18</height>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>RawLabel_RAW_AD7</name>
+    <text>AD7: Trans Vce (V):</text>
+    <x>340</x>
+    <y>938</y>
+    <width>170</width>
+    <height>18</height>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>RawValue_RAW_AD7</name>
+    <pv_name>$(P):$(R):RAW_AD7</pv_name>
+    <x>515</x>
+    <y>938</y>
+    <height>18</height>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>RawLabel_RAW_AD8</name>
+    <text>AD8: HiRes I (I/In)*1e5:</text>
+    <x>650</x>
+    <y>938</y>
+    <width>170</width>
+    <height>18</height>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>RawValue_RAW_AD8</name>
+    <pv_name>$(P):$(R):RAW_AD8</pv_name>
+    <x>825</x>
+    <y>938</y>
+    <height>18</height>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>RawLabel_RAW_AD9</name>
+    <text>AD9: Aux I (I/In)*120:</text>
+    <x>30</x>
+    <y>962</y>
+    <width>170</width>
+    <height>18</height>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>RawValue_RAW_AD9</name>
+    <pv_name>$(P):$(R):RAW_AD9</pv_name>
+    <x>205</x>
+    <y>962</y>
+    <height>18</height>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>RawLabel_RAW_RA</name>
+    <text>RA: DAC Setpoint:</text>
+    <x>340</x>
+    <y>962</y>
+    <width>170</width>
+    <height>18</height>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>RawValue_RAW_RA</name>
+    <pv_name>$(P):$(R):RAW_RA</pv_name>
+    <x>515</x>
+    <y>962</y>
+    <height>18</height>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>CtrlStateLabel</name>
+    <text>Ctrl State (CMDSTATE):</text>
+    <x>30</x>
+    <y>635</y>
+    <width>150</width>
+    <height>18</height>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>CtrlStateValue</name>
+    <pv_name>$(P):$(R):CTRL_STATE</pv_name>
+    <x>185</x>
+    <y>635</y>
+    <height>18</height>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>MaxRbLabel</name>
+    <text>Max Current (MAX, raw):</text>
+    <x>320</x>
+    <y>635</y>
+    <width>150</width>
+    <height>18</height>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>MaxRbValue</name>
+    <pv_name>$(P):$(R):MAX_RB</pv_name>
+    <x>475</x>
+    <y>635</y>
+    <height>18</height>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>InfoLabel</name>
+    <text>Unit Info (PRINT):</text>
+    <x>610</x>
+    <y>635</y>
+    <width>110</width>
+    <height>18</height>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>InfoValue</name>
+    <pv_name>$(P):$(R):INFO</pv_name>
+    <x>720</x>
+    <y>635</y>
+    <width>260</width>
+    <height>18</height>
+  </widget>
+</display>

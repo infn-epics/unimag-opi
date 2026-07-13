@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <name>Danfysik SYS8X00 Launcher</name>
+  <width>800</width>
+  <height>400</height>
+  <background_color>
+    <color red="240" green="240" blue="240">
+    </color>
+  </background_color>
+  
+  <!-- Title -->
+  <widget type="label" version="2.0.0">
+    <name>Title</name>
+    <text>Danfysik SYS8X00 Power Supply - Interface Launcher</text>
+    <x>10</x>
+    <y>10</y>
+    <width>780</width>
+    <height>40</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="18.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="0" green="0" blue="128">
+      </color>
+    </foreground_color>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+
+  <!-- Instructions -->
+  <widget type="label" version="2.0.0">
+    <name>Instructions</name>
+    <text>Select the appropriate interface for your power supply operations:</text>
+    <x>10</x>
+    <y>60</y>
+    <width>780</width>
+    <height>25</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="14.0">
+      </font>
+    </font>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+
+  <!-- Main Power Supply Interface -->
+  <widget type="group" version="3.0.0">
+    <name>MainInterfaceGroup</name>
+    <x>10</x>
+    <y>100</y>
+    <width>380</width>
+    <height>120</height>
+    <style>3</style>
+    <widget type="label" version="2.0.0">
+      <name>MainInterfaceLabel</name>
+      <text>Standard Power Supply Interface</text>
+      <height>25</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>MainDescription</name>
+      <text>Full control interface with all power supply functions including current/voltage control, ramping, polarity switching, and detailed monitoring.</text>
+      <x>10</x>
+      <y>30</y>
+      <width>360</width>
+      <height>50</height>
+      <wrap_words>true</wrap_words>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>MainPanelButton</name>
+      <x>10</x>
+      <y>85</y>
+      <width>150</width>
+      <height>30</height>
+      <text>Open Main Panel</text>
+      <actions>
+        <action type="open_display">
+          <file>danfysik_ps.bob</file>
+          <macros>
+            <DEVICE>BTF:MAG:DANFYSIK:QUATM002</DEVICE>
+            <IMAX>100</IMAX>
+            <VMAX>50</VMAX>
+          </macros>
+          <target>window</target>
+        </action>
+      </actions>
+      <background_color>
+        <color red="0" green="200" blue="0">
+        </color>
+      </background_color>
+    </widget>
+  </widget>
+
+  <!-- UNIMAG Interface -->
+  <widget type="group" version="3.0.0">
+    <name>UnimagInterfaceGroup</name>
+    <x>410</x>
+    <y>100</y>
+    <width>380</width>
+    <height>120</height>
+    <style>3</style>
+    <widget type="label" version="2.0.0">
+      <name>UnimagInterfaceLabel</name>
+      <text>UNIMAG Bipolar Interface</text>
+      <height>25</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+      <foreground_color>
+        <color red="0" green="0" blue="200">
+        </color>
+      </foreground_color>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>UnimagDescription</name>
+      <text>Simplified bipolar current control interface with automatic polarity switching. Allows setting signed current values (-IMAX to +IMAX).</text>
+      <x>10</x>
+      <y>30</y>
+      <width>360</width>
+      <height>50</height>
+      <wrap_words>true</wrap_words>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>UnimagPanelButton</name>
+      <x>10</x>
+      <y>85</y>
+      <width>150</width>
+      <height>30</height>
+      <text>Open UNIMAG Panel</text>
+      <actions>
+        <action type="open_display">
+          <file>danfysik_ps_unimag.bob</file>
+          <macros>
+            <DEVICE>BTF:MAG:DANFYSIK:QUATM002</DEVICE>
+            <IMAX>100</IMAX>
+          </macros>
+          <target>window</target>
+        </action>
+      </actions>
+      <background_color>
+        <color red="0" green="150" blue="255">
+        </color>
+      </background_color>
+    </widget>
+  </widget>
+
+  <!-- Expert Interface -->
+  <widget type="group" version="3.0.0">
+    <name>ExpertInterfaceGroup</name>
+    <x>10</x>
+    <y>240</y>
+    <width>380</width>
+    <height>120</height>
+    <style>3</style>
+    <widget type="label" version="2.0.0">
+      <name>ExpertInterfaceLabel</name>
+      <text>Expert/Debug Interface</text>
+      <height>25</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+      <foreground_color>
+        <color red="200" green="0" blue="0">
+        </color>
+      </foreground_color>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>ExpertDescription</name>
+      <text>Advanced interface for experts with raw ADC values, status bits, direct command access, calibration parameters, and communication debugging.</text>
+      <x>10</x>
+      <y>30</y>
+      <width>360</width>
+      <height>50</height>
+      <wrap_words>true</wrap_words>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>ExpertPanelButton</name>
+      <x>10</x>
+      <y>85</y>
+      <width>150</width>
+      <height>30</height>
+      <text>Open Expert Panel</text>
+      <actions>
+        <action type="open_display">
+          <file>danfysik_ps_expert.bob</file>
+          <macros>
+            <DEVICE>BTF:MAG:DANFYSIK:QUATM002</DEVICE>
+            <IMAX>100</IMAX>
+          </macros>
+          <target>window</target>
+        </action>
+      </actions>
+      <background_color>
+        <color red="255" green="150" blue="0">
+        </color>
+      </background_color>
+    </widget>
+  </widget>
+
+  <!-- Configuration Notes -->
+  <widget type="group" version="3.0.0">
+    <name>ConfigNotesGroup</name>
+    <x>410</x>
+    <y>240</y>
+    <width>380</width>
+    <height>120</height>
+    <style>3</style>
+    <widget type="label" version="2.0.0">
+      <name>ConfigNotesLabel</name>
+      <text>Configuration Notes</text>
+      <height>25</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>ConfigText</name>
+      <text>• Modify macro values above for your specific setup
+• DEVICE: PV prefix (e.g., BTF:MAG:DANFYSIK:QUATM002)
+• IMAX: Maximum current in Amperes
+• VMAX: Maximum voltage in Volts
+• Ensure IOC is running before opening panels</text>
+      <x>10</x>
+      <y>30</y>
+      <width>360</width>
+      <height>80</height>
+      <wrap_words>true</wrap_words>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="11.0">
+        </font>
+      </font>
+    </widget>
+  </widget>
+
+</display>

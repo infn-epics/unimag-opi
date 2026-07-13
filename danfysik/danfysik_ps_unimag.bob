@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <name>Danfysik SYS8X00 UNIMAG Interface</name>
+  <width>600</width>
+  <height>700</height>
+  <background_color>
+    <color red="240" green="240" blue="240">
+    </color>
+  </background_color>
+  
+  <!-- Title -->
+  <widget type="label" version="2.0.0">
+    <name>Title</name>
+    <text>Danfysik Power Supply - UNIMAG Interface</text>
+    <x>10</x>
+    <y>10</y>
+    <width>580</width>
+    <height>40</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="18.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="0" green="0" blue="128">
+      </color>
+    </foreground_color>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+
+  <!-- Device Name -->
+  <widget type="label" version="2.0.0">
+    <name>DeviceLabel</name>
+    <text>$(DEVICE)</text>
+    <x>10</x>
+    <y>50</y>
+    <width>580</width>
+    <height>25</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0">
+      </font>
+    </font>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+
+  <!-- Status Group -->
+  <widget type="group" version="3.0.0">
+    <name>StatusGroup</name>
+    <x>10</x>
+    <y>85</y>
+    <width>580</width>
+    <height>140</height>
+    <style>3</style>
+    <widget type="label" version="2.0.0">
+      <name>StatusLabel</name>
+      <text>UNIMAG Status</text>
+      <height>25</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+    </widget>
+    
+    <widget type="label" version="2.0.0">
+      <name>StateLabel</name>
+      <text>State:</text>
+      <x>20</x>
+      <y>35</y>
+      <width>60</width>
+      <height>25</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>StateText</name>
+      <pv_name>$(DEVICE):UNIMAG:STATE</pv_name>
+      <x>90</x>
+      <y>35</y>
+      <width>150</width>
+      <height>25</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="12.0">
+        </font>
+      </font>
+    </widget>
+    
+    <widget type="label" version="2.0.0">
+      <name>StatusTextLabel</name>
+      <text>Status:</text>
+      <x>260</x>
+      <y>35</y>
+      <width>60</width>
+      <height>25</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>StatusText</name>
+      <pv_name>$(DEVICE):UNIMAG:STATUS</pv_name>
+      <x>330</x>
+      <y>35</y>
+      <width>200</width>
+      <height>25</height>
+    </widget>
+    
+    <widget type="led" version="2.0.0">
+      <name>EnabledLED</name>
+      <pv_name>$(DEVICE):UNIMAG:ENABLE</pv_name>
+      <x>20</x>
+      <y>70</y>
+      <width>30</width>
+      <height>25</height>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>EnabledLabel</name>
+      <text>UNIMAG Enabled</text>
+      <x>55</x>
+      <y>70</y>
+      <width>120</width>
+      <height>25</height>
+    </widget>
+    
+    <widget type="led" version="2.0.0">
+      <name>BusyLED</name>
+      <pv_name>$(DEVICE):UNIMAG:BUSY</pv_name>
+      <x>200</x>
+      <y>70</y>
+      <width>30</width>
+      <height>25</height>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>BusyLabel</name>
+      <text>Busy (Sequencing)</text>
+      <x>235</x>
+      <y>70</y>
+      <width>140</width>
+      <height>25</height>
+    </widget>
+    
+    <widget type="textupdate" version="2.0.0">
+      <name>ErrorText</name>
+      <pv_name>$(DEVICE):UNIMAG:ERROR_MSG</pv_name>
+      <x>20</x>
+      <y>105</y>
+      <width>400</width>
+      <height>25</height>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="12.0">
+        </font>
+      </font>
+      <foreground_color>
+        <color red="255" green="0" blue="0">
+        </color>
+      </foreground_color>
+    </widget>
+  </widget>
+
+  <!-- UNIMAG Current Control Group -->
+  <widget type="group" version="3.0.0">
+    <name>UnimagCurrentGroup</name>
+    <x>10</x>
+    <y>235</y>
+    <width>580</width>
+    <height>200</height>
+    <style>3</style>
+    <widget type="label" version="2.0.0">
+      <name>UnimagCurrentLabel</name>
+      <text>UNIMAG Current Control (Bipolar)</text>
+      <height>25</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+    </widget>
+    
+    <!-- Enable/Disable -->
+    <widget type="bool_button" version="2.0.0">
+      <name>EnableButton</name>
+      <pv_name>$(DEVICE):UNIMAG:ENABLE</pv_name>
+      <x>20</x>
+      <y>35</y>
+      <width>100</width>
+      <height>30</height>
+      <off_label>DISABLED</off_label>
+      <on_label>ENABLED</on_label>
+      <off_color>
+        <color red="100" green="60" blue="60">
+        </color>
+      </off_color>
+      <on_color>
+        <color red="0" green="255" blue="0">
+        </color>
+      </on_color>
+    </widget>
+    
+    <!-- Current Setpoint (Bipolar) -->
+    <widget type="label" version="2.0.0">
+      <name>CurrentSPLabel</name>
+      <text>Current Setpoint (A):</text>
+      <x>20</x>
+      <y>75</y>
+      <width>140</width>
+      <height>25</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="12.0">
+        </font>
+      </font>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>CurrentSP</name>
+      <pv_name>$(DEVICE):UNIMAG:I_SP</pv_name>
+      <x>170</x>
+      <y>75</y>
+      <width>120</width>
+      <height>25</height>
+      <precision>3</precision>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+      <background_color>
+        <color red="255" green="255" blue="200">
+        </color>
+      </background_color>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>RangeLabel</name>
+      <text>Range: ±$(IMAX) A</text>
+      <x>300</x>
+      <y>75</y>
+      <width>120</width>
+      <height>25</height>
+      <font>
+        <font family="Liberation Sans" style="ITALIC" size="10.0">
+        </font>
+      </font>
+    </widget>
+    
+    <!-- Current Readback -->
+    <widget type="label" version="2.0.0">
+      <name>CurrentRBLabel</name>
+      <text>Current Readback (A):</text>
+      <x>20</x>
+      <y>110</y>
+      <width>140</width>
+      <height>25</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>CurrentRB</name>
+      <pv_name>$(DEVICE):UNIMAG:I_RB</pv_name>
+      <x>170</x>
+      <y>110</y>
+      <width>120</width>
+      <height>25</height>
+      <precision>3</precision>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+      <background_color>
+        <color red="200" green="255" blue="200">
+        </color>
+      </background_color>
+    </widget>
+    
+    <!-- Bargraph with bipolar scale -->
+    <widget type="progressbar" version="2.0.0">
+      <name>CurrentBar</name>
+      <pv_name>$(DEVICE):UNIMAG:I_RB</pv_name>
+      <x>300</x>
+      <y>110</y>
+      <width>260</width>
+      <height>25</height>
+      <horizontal>true</horizontal>
+      <limits_from_pv>false</limits_from_pv>
+    </widget>
+    
+    <!-- Quick Set Buttons -->
+    <widget type="label" version="2.0.0">
+      <name>QuickSetLabel</name>
+      <text>Quick Set:</text>
+      <x>20</x>
+      <y>145</y>
+      <width>80</width>
+      <height>25</height>
+    </widget>
+    
+    <widget type="action_button" version="3.0.0">
+      <name>ZeroButton</name>
+      <x>110</x>
+      <y>145</y>
+      <width>60</width>
+      <height>30</height>
+      <text>ZERO</text>
+      <actions>
+        <action type="write_pv">
+          <pv_name>$(DEVICE):UNIMAG:I_SP</pv_name>
+          <value>0</value>
+        </action>
+      </actions>
+      <background_color>
+        <color red="200" green="200" blue="255">
+        </color>
+      </background_color>
+    </widget>
+    
+    <widget type="action_button" version="3.0.0">
+      <name>MaxPosButton</name>
+      <x>180</x>
+      <y>145</y>
+      <width>80</width>
+      <height>30</height>
+      <text>+MAX</text>
+      <actions>
+        <action type="write_pv">
+          <pv_name>$(DEVICE):UNIMAG:I_SP</pv_name>
+          <value>$(IMAX)</value>
+        </action>
+      </actions>
+      <background_color>
+        <color red="255" green="200" blue="200">
+        </color>
+      </background_color>
+    </widget>
+    
+    <widget type="action_button" version="3.0.0">
+      <name>MaxNegButton</name>
+      <x>270</x>
+      <y>145</y>
+      <width>80</width>
+      <height>30</height>
+      <text>-MAX</text>
+      <actions>
+        <action type="write_pv">
+          <pv_name>$(DEVICE):UNIMAG:I_SP</pv_name>
+          <value>-$(IMAX)</value>
+        </action>
+      </actions>
+      <background_color>
+        <color red="255" green="200" blue="200">
+        </color>
+      </background_color>
+    </widget>
+  </widget>
+
+  <!-- Sequence Control Group -->
+  <widget type="group" version="3.0.0">
+    <name>SequenceGroup</name>
+    <x>10</x>
+    <y>445</y>
+    <width>580</width>
+    <height>120</height>
+    <style>3</style>
+    <widget type="label" version="2.0.0">
+      <name>SequenceLabel</name>
+      <text>Sequence Control</text>
+      <height>25</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+    </widget>
+    
+    <widget type="label" version="2.0.0">
+      <name>TimeoutLabel</name>
+      <text>Timeout (s):</text>
+      <x>20</x>
+      <y>35</y>
+      <width>80</width>
+      <height>25</height>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Timeout</name>
+      <pv_name>$(DEVICE):UNIMAG:TIMEOUT</pv_name>
+      <x>110</x>
+      <y>35</y>
+      <width>60</width>
+      <height>25</height>
+    </widget>
+    
+    <widget type="label" version="2.0.0">
+      <name>DebugLabel</name>
+      <text>Debug Level:</text>
+      <x>200</x>
+      <y>35</y>
+      <width>80</width>
+      <height>25</height>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>DebugLevel</name>
+      <pv_name>$(DEVICE):UNIMAG:DEBUG_LEVEL</pv_name>
+      <x>290</x>
+      <y>35</y>
+      <width>100</width>
+      <height>25</height>
+    </widget>
+    
+    <widget type="action_button" version="3.0.0">
+      <name>AbortButton</name>
+      <pv_name>$(DEVICE):UNIMAG:ABORT</pv_name>
+      <x>420</x>
+      <y>35</y>
+      <width>80</width>
+      <height>30</height>
+      <text>ABORT</text>
+      <background_color>
+        <color red="255" green="0" blue="0">
+        </color>
+      </background_color>
+    </widget>
+    
+    <!-- Sequence Statistics -->
+    <widget type="label" version="2.0.0">
+      <name>StatsLabel</name>
+      <text>Statistics:</text>
+      <x>20</x>
+      <y>75</y>
+      <width>80</width>
+      <height>25</height>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>SeqCountLabel</name>
+      <text>Sequences:</text>
+      <x>110</x>
+      <y>75</y>
+      <width>80</width>
+      <height>25</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>SeqCount</name>
+      <pv_name>$(DEVICE):UNIMAG:SEQ_COUNT</pv_name>
+      <x>190</x>
+      <y>75</y>
+      <width>60</width>
+      <height>25</height>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>ErrorCountLabel</name>
+      <text>Errors:</text>
+      <x>260</x>
+      <y>75</y>
+      <width>60</width>
+      <height>25</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>ErrorCount</name>
+      <pv_name>$(DEVICE):UNIMAG:ERROR_COUNT</pv_name>
+      <x>320</x>
+      <y>75</y>
+      <width>60</width>
+      <height>25</height>
+      <foreground_color>
+        <color red="255" green="0" blue="0">
+        </color>
+      </foreground_color>
+    </widget>
+  </widget>
+
+  <!-- Underlying Power Supply Group -->
+  <widget type="group" version="3.0.0">
+    <name>UnderlyingPSGroup</name>
+    <x>10</x>
+    <y>575</y>
+    <width>580</width>
+    <height>80</height>
+    <style>3</style>
+    <widget type="label" version="2.0.0">
+      <name>UnderlyingPSLabel</name>
+      <text>Underlying Power Supply Status</text>
+      <height>25</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+    </widget>
+    
+    <widget type="led" version="2.0.0">
+      <name>PSPowerLED</name>
+      <pv_name>$(DEVICE):POWER_RB</pv_name>
+      <x>20</x>
+      <y>35</y>
+      <width>25</width>
+      <height>20</height>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>PSPowerLabel</name>
+      <text>Power</text>
+      <x>50</x>
+      <y>35</y>
+      <width>50</width>
+      <height>20</height>
+    </widget>
+    
+    <widget type="textupdate" version="2.0.0">
+      <name>PSPolarity</name>
+      <pv_name>$(DEVICE):POL_RB</pv_name>
+      <x>110</x>
+      <y>35</y>
+      <width>80</width>
+      <height>20</height>
+    </widget>
+    
+    <widget type="textupdate" version="2.0.0">
+      <name>PSCurrent</name>
+      <pv_name>$(DEVICE):I_RB</pv_name>
+      <x>200</x>
+      <y>35</y>
+      <width>80</width>
+      <height>20</height>
+      <precision>3</precision>
+    </widget>
+    
+    <widget type="textupdate" version="2.0.0">
+      <name>PSVoltage</name>
+      <pv_name>$(DEVICE):V_RB</pv_name>
+      <x>290</x>
+      <y>35</y>
+      <width>80</width>
+      <height>20</height>
+      <precision>2</precision>
+    </widget>
+    
+    <widget type="action_button" version="3.0.0">
+      <name>MainPanelButton</name>
+      <x>400</x>
+      <y>30</y>
+      <width>100</width>
+      <height>30</height>
+      <text>Main Panel</text>
+      <actions>
+        <action type="open_display">
+          <file>danfysik_ps.bob</file>
+          <macros>
+            <DEVICE>$(DEVICE)</DEVICE>
+            <IMAX>$(IMAX)</IMAX>
+          </macros>
+          <target>tab</target>
+        </action>
+      </actions>
+      <background_color>
+        <color red="200" green="255" blue="200">
+        </color>
+      </background_color>
+    </widget>
+  </widget>
+
+</display>
