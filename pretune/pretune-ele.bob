@@ -3,7 +3,7 @@
 <display version="2.0.0">
   <name>MagnetChannelSet</name>
   <y>2</y>
-  <width>595</width>
+  <width>795</width>
   <height>30</height>
   <widget type="group" version="3.0.0">
     <name>Settings</name>
@@ -25,7 +25,7 @@
     </widget>
     <widget type="textupdate" version="2.0.0">
       <name>entryCurrent_1</name>
-      <pv_name>$(P):$(R):current_rb</pv_name>
+      <pv_name>$(P):$(R):CURRENT_RB</pv_name>
       <x>1</x>
       <y>2</y>
       <width>60</width>
@@ -68,8 +68,8 @@
     <height>30</height>
     <style>2</style>
     <widget type="textentry" version="3.0.0">
-      <name>entryCurrent_3</name>
-      <pv_name>loc://apply:unimag:$(P):$(R):current</pv_name>
+      <name>entryNext</name>
+      <pv_name>loc://apply:unimag:$(P):$(R):CURRENT_NEXT_SP</pv_name>
       <x>129</x>
       <y>1</y>
       <width>60</width>
@@ -93,5 +93,46 @@
       </actions>
       <border_alarm_sensitive>false</border_alarm_sensitive>
     </widget>
+  </widget>
+  <widget type="group" version="3.0.0">
+    <name>Settings_2</name>
+    <x>595</x>
+    <width>70</width>
+    <height>30</height>
+    <style>2</style>
+    <widget type="textentry" version="3.0.0">
+      <name>entryPrev</name>
+      <pv_name>loc://apply:unimag:$(P):$(R):CURRENT_PREV_SP</pv_name>
+      <x>1</x>
+      <y>1</y>
+      <width>60</width>
+      <precision>3</precision>
+      <horizontal_alignment>1</horizontal_alignment>
+      <actions>
+      </actions>
+      <border_alarm_sensitive>false</border_alarm_sensitive>
+    </widget>
+  </widget>
+  <widget type="checkbox" version="2.0.0">
+    <name>chkApply</name>
+    <label></label>
+    <pv_name>loc://apply:unimag:$(P):$(R):enabled&lt;VLong&gt;(1)</pv_name>
+    <x>675</x>
+    <y>6</y>
+    <width>20</width>
+    <height>20</height>
+    <tooltip>Uncheck to keep this power supply's current setting unchanged when StepUp/StepDown is applied</tooltip>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>entryDelta</name>
+    <pv_name>=('loc://apply:unimag:$(P):$(R):I1'-'$(P):$(R):CURRENT_RB')</pv_name>
+    <x>705</x>
+    <y>6</y>
+    <width>60</width>
+    <precision>3</precision>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
 </display>

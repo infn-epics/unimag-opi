@@ -236,5 +236,22 @@
         </font>
       </font>
     </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>Action Button</name>
+      <actions>
+        <action type="open_display">
+          <description>Preture</description>
+          <file>pretune/pretune.bob</file>
+          <macros>
+            <P>$(P)</P>
+            <CONFFILE>$(CONFFILE)</CONFFILE>
+          </macros>
+          <target>window</target>
+        </action>
+      </actions>
+      <x>699</x>
+      <y>12</y>
+      <tooltip>$(actions)</tooltip>
+    </widget>
   </widget>
 </display>

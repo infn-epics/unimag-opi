@@ -2,8 +2,14 @@
 <!--Saved on 2025-03-24 18:22:56 by andreamichelotti-->
 <display version="2.0.0">
   <name>ApplyMainDisplay</name>
-  <width>682</width>
+  <width>882</width>
   <height>1077</height>
+  <scripts>
+    <script file="scripts/ComputeStep.py">
+      <pv_name>loc://nsteps_$(DID)&lt;VLong&gt;</pv_name>
+      <pv_name>loc://counter_$(DID)&lt;VLong&gt;</pv_name>
+    </script>
+  </scripts>
   <widget type="label" version="2.0.0">
     <name>Label</name>
     <class>TITLE</class>
@@ -68,7 +74,7 @@
     <name>DataSet</name>
     <x>27</x>
     <y>127</y>
-    <width>655</width>
+    <width>855</width>
     <height>950</height>
     <style>2</style>
     <widget type="label" version="2.0.0">
@@ -131,11 +137,42 @@
         </font>
       </font>
     </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_11</name>
+      <text>PREV SET</text>
+      <x>602</x>
+      <y>2</y>
+      <font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_13</name>
+      <text>APPLY</text>
+      <x>672</x>
+      <y>2</y>
+      <width>55</width>
+      <font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_14</name>
+      <text>DELTA</text>
+      <x>702</x>
+      <y>2</y>
+      <font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+    </widget>
     <widget type="embedded" version="2.0.0">
       <name>Display-apply</name>
       <file>pretune-display.bob</file>
       <y>20</y>
-      <width>653</width>
+      <width>853</width>
       <height>900</height>
     </widget>
   </widget>
@@ -143,12 +180,34 @@
     <name>LoadSetting</name>
     <actions>
       <action type="execute">
-        <description>Step Down</description>
+        <description>StepDown</description>
         <script file="EmbeddedPy">
           <text><![CDATA[# Embedded python script
 from org.csstudio.display.builder.runtime.script import PVUtil, ScriptUtil
-pv = ScriptUtil.getPrimaryPV(widget)
+from org.phoebus.pv import PVPool
+from java.lang import Exception
 
+TAG = "loc://apply:unimag:"
+SUFFIX = ":CURRENT_PREV_SP"
+
+for pvr in PVPool.getPVReferences():
+    pvname = pvr.getEntry().getName()
+    if pvname.startswith(TAG) and pvname.endswith(SUFFIX):
+        root = pvname[len(TAG):-len(SUFFIX)]
+        try:
+            enabled = PVUtil.createPV(TAG+root+":enabled", 10)
+            if PVUtil.getLong(enabled) == 0:
+                print("SKIP "+root+" (deselected)")
+                continue
+            local = PVUtil.createPV(pvname, 10)
+            value = PVUtil.getDouble(local)
+            remote = PVUtil.createPV(root+":CURRENT_SP", 100)
+            remote.write(value)
+            print("APPLY "+root+":CURRENT_SP = "+str(value))
+        except Exception as e:
+            print("## Error applying "+root+": "+str(e))
+
+pv = ScriptUtil.getPrimaryPV(widget)
 pvInt0 = PVUtil.getLong(pv) - 1
 pv.write(pvInt0)
 ]]></text>
@@ -182,8 +241,30 @@ pv.write(pvInt0)
         <script file="EmbeddedPy">
           <text><![CDATA[# Embedded python script
 from org.csstudio.display.builder.runtime.script import PVUtil, ScriptUtil
-pv = ScriptUtil.getPrimaryPV(widget)
+from org.phoebus.pv import PVPool
+from java.lang import Exception
 
+TAG = "loc://apply:unimag:"
+SUFFIX = ":CURRENT_NEXT_SP"
+
+for pvr in PVPool.getPVReferences():
+    pvname = pvr.getEntry().getName()
+    if pvname.startswith(TAG) and pvname.endswith(SUFFIX):
+        root = pvname[len(TAG):-len(SUFFIX)]
+        try:
+            enabled = PVUtil.createPV(TAG+root+":enabled", 10)
+            if PVUtil.getLong(enabled) == 0:
+                print("SKIP "+root+" (deselected)")
+                continue
+            local = PVUtil.createPV(pvname, 10)
+            value = PVUtil.getDouble(local)
+            remote = PVUtil.createPV(root+":CURRENT_SP", 100)
+            remote.write(value)
+            print("APPLY "+root+":CURRENT_SP = "+str(value))
+        except Exception as e:
+            print("## Error applying "+root+": "+str(e))
+
+pv = ScriptUtil.getPrimaryPV(widget)
 pvInt0 = PVUtil.getLong(pv) + 1
 pv.write(pvInt0)
 ]]></text>

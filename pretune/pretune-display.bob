@@ -3,6 +3,9 @@
 <display version="2.0.0">
   <name>pretunedisplay</name>
   <width>600</width>
+  <macros>
+    <GROUP>mag</GROUP>
+  </macros>
   <scripts>
     <script file="scripts/LoadPretuneDataSet.py">
       <pv_name>loc://confload-$(DID)&lt;VString&gt;</pv_name>
@@ -11,7 +14,7 @@
   <widget type="embedded" version="2.0.0">
     <name>element_template</name>
     <file>pretune-ele.bob</file>
-    <width>650</width>
+    <width>850</width>
     <height>35</height>
     <visible>false</visible>
     <transparent>true</transparent>
