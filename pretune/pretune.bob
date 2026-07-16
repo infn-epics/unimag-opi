@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2025-03-24 18:22:56 by andreamichelotti-->
 <display version="2.0.0">
   <name>ApplyMainDisplay</name>
-  <width>882</width>
+  <width>1082</width>
   <height>1077</height>
   <scripts>
-    <script file="scripts/ComputeStep.py">
+    <script file="scripts/ComputeCalcStep.py">
       <pv_name>loc://nsteps_$(DID)&lt;VLong&gt;</pv_name>
+      <pv_name>loc://confload-$(DID)&lt;VString&gt;</pv_name>
+    </script>
+    <script file="scripts/ComputeStep.py">
       <pv_name>loc://counter_$(DID)&lt;VLong&gt;</pv_name>
     </script>
   </scripts>
@@ -61,7 +63,7 @@
     <pv_name>loc://confload-${DID}&lt;VString&gt;("")</pv_name>
     <x>140</x>
     <y>51</y>
-    <width>400</width>
+    <width>785</width>
     <height>17</height>
     <horizontal_alignment>1</horizontal_alignment>
     <vertical_alignment>1</vertical_alignment>
@@ -74,7 +76,7 @@
     <name>DataSet</name>
     <x>27</x>
     <y>127</y>
-    <width>855</width>
+    <width>1055</width>
     <height>950</height>
     <style>2</style>
     <widget type="label" version="2.0.0">
@@ -98,9 +100,19 @@
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_6</name>
-      <text>STEP</text>
+      <text>MANUAL SET</text>
       <x>172</x>
       <width>55</width>
+      <font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_15</name>
+      <text>STATE</text>
+      <x>317</x>
+      <width>50</width>
       <font>
         <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
         </font>
@@ -148,20 +160,29 @@
       </font>
     </widget>
     <widget type="label" version="2.0.0">
-      <name>Label_13</name>
-      <text>APPLY</text>
-      <x>672</x>
+      <name>Label_14</name>
+      <text>DELTA</text>
+      <x>713</x>
       <y>2</y>
-      <width>55</width>
       <font>
         <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
         </font>
       </font>
     </widget>
     <widget type="label" version="2.0.0">
-      <name>Label_14</name>
-      <text>DELTA</text>
-      <x>702</x>
+      <name>Label_16</name>
+      <text>STEP DELTA</text>
+      <x>797</x>
+      <y>2</y>
+      <font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_18</name>
+      <text>State</text>
+      <x>897</x>
       <y>2</y>
       <font>
         <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
@@ -172,7 +193,7 @@
       <name>Display-apply</name>
       <file>pretune-display.bob</file>
       <y>20</y>
-      <width>853</width>
+      <width>1053</width>
       <height>900</height>
     </widget>
   </widget>
@@ -204,6 +225,12 @@ for pvr in PVPool.getPVReferences():
             remote = PVUtil.createPV(root+":CURRENT_SP", 100)
             remote.write(value)
             print("APPLY "+root+":CURRENT_SP = "+str(value))
+
+            state_local = PVUtil.createPV(TAG+root+":STATE_SP", 10)
+            state_value = PVUtil.getString(state_local)
+            state_remote = PVUtil.createPV(root+":STATE_SP", 100)
+            state_remote.write(state_value)
+            print("APPLY "+root+":STATE_SP = "+str(state_value))
         except Exception as e:
             print("## Error applying "+root+": "+str(e))
 
@@ -261,6 +288,12 @@ for pvr in PVPool.getPVReferences():
             remote = PVUtil.createPV(root+":CURRENT_SP", 100)
             remote.write(value)
             print("APPLY "+root+":CURRENT_SP = "+str(value))
+
+            state_local = PVUtil.createPV(TAG+root+":STATE_SP", 10)
+            state_value = PVUtil.getString(state_local)
+            state_remote = PVUtil.createPV(root+":STATE_SP", 100)
+            state_remote.write(state_value)
+            print("APPLY "+root+":STATE_SP = "+str(state_value))
         except Exception as e:
             print("## Error applying "+root+": "+str(e))
 
@@ -309,6 +342,85 @@ pv.write(pvInt0)
     <name>Label_10</name>
     <text>STEP counter</text>
     <x>410</x>
+    <y>90</y>
+    <font>
+      <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Entry Tolerance</name>
+    <pv_name>loc://tolerance_$(DID)&lt;VDouble&gt;(0.1)</pv_name>
+    <x>760</x>
+    <y>80</y>
+    <height>30</height>
+    <tooltip>Delta/step-delta values within +/- this tolerance are shown green, otherwise red</tooltip>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_19</name>
+    <text>Show only differences</text>
+    <x>180</x>
+    <y>110</y>
+    <width>160</width>
+    <font>
+      <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="checkbox" version="2.0.0">
+    <name>chkFilterDiff</name>
+    <pv_name>loc://filterdiff_$(DID)&lt;VLong&gt;(0)</pv_name>
+    <label></label>
+    <x>360</x>
+    <y>110</y>
+    <width>20</width>
+    <tooltip>Show only power supplies whose current or state differs from their desired target</tooltip>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>btnApplyStates</name>
+    <actions>
+      <action type="execute">
+        <description>Bring selected PS to desired state</description>
+        <script file="EmbeddedPy">
+          <text><![CDATA[# Embedded python script
+from org.csstudio.display.builder.runtime.script import PVUtil
+from org.phoebus.pv import PVPool
+from java.lang import Exception
+
+TAG = "loc://apply:unimag:"
+SUFFIX = ":STATE_SP"
+
+for pvr in PVPool.getPVReferences():
+    pvname = pvr.getEntry().getName()
+    if pvname.startswith(TAG) and pvname.endswith(SUFFIX):
+        root = pvname[len(TAG):-len(SUFFIX)]
+        try:
+            enabled = PVUtil.createPV(TAG+root+":enabled", 10)
+            if PVUtil.getLong(enabled) == 0:
+                print("SKIP "+root+" (deselected)")
+                continue
+            local = PVUtil.createPV(pvname, 10)
+            value = PVUtil.getString(local)
+            remote = PVUtil.createPV(root+":STATE_SP", 100)
+            remote.write(value)
+            print("APPLY "+root+":STATE_SP = "+str(value))
+        except Exception as e:
+            print("## Error applying state for "+root+": "+str(e))
+]]></text>
+        </script>
+      </action>
+    </actions>
+    <text>Set Selected States</text>
+    <x>925</x>
+    <y>80</y>
+    <width>115</width>
+    <tooltip>Push every selected (checked) power supply's desired state to hardware</tooltip>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_17</name>
+    <text>Tolerance</text>
+    <x>680</x>
     <y>90</y>
     <font>
       <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">

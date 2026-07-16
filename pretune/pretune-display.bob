@@ -14,7 +14,7 @@
   <widget type="embedded" version="2.0.0">
     <name>element_template</name>
     <file>pretune-ele.bob</file>
-    <width>850</width>
+    <width>1050</width>
     <height>35</height>
     <visible>false</visible>
     <transparent>true</transparent>

@@ -4,12 +4,7 @@ from java.lang import Exception
 
 TAG = "loc://apply:unimag:"
 
-nsteps = PVUtil.getLong(pvs[0])
-counter = PVUtil.getLong(pvs[1])
-
-## nsteps<=0 means "single direct step": jump straight from I0 to I1
-if nsteps <= 0:
-    nsteps = 1
+counter = PVUtil.getLong(pvs[0])
 
 roots = set()
 for pvr in PVPool.getPVReferences():
@@ -19,20 +14,19 @@ for pvr in PVPool.getPVReferences():
 
 for root in roots:
     try:
-        i1_pv = PVUtil.createPV(TAG+root+":I1", 10)
-        i1 = PVUtil.getDouble(i1_pv)
+        ## Reuse the fixed baseline/step from ComputeCalcStep.py (set only when nsteps
+        ## changes) instead of re-reading the live CURRENT_RB on every counter move.
+        i0set = PVUtil.getDouble(PVUtil.createPV(TAG+root+":I0SET", 10))
+        calcstep = PVUtil.getDouble(PVUtil.createPV(TAG+root+":calcstep", 10))
 
-        i0_pv = PVUtil.createPV(root+":CURRENT_RB", 100)
-        i0 = PVUtil.getDouble(i0_pv)
+        current_set_sp = i0set + calcstep * counter
+        next_sp = i0set + calcstep * (counter + 1)
+        prev_sp = i0set + calcstep * (counter - 1)
 
-        calcstep = (i1 - i0) / float(nsteps)
-        next_sp = i0 + calcstep * (counter + 1)
-        prev_sp = i0 + calcstep * (counter - 1)
-
-        PVUtil.createPV(TAG+root+":calcstep", 10).write(calcstep)
+        PVUtil.createPV(TAG+root+":CURRENT_SET_SP", 10).write(current_set_sp)
         PVUtil.createPV(TAG+root+":CURRENT_NEXT_SP", 10).write(next_sp)
         PVUtil.createPV(TAG+root+":CURRENT_PREV_SP", 10).write(prev_sp)
 
-        print("STEP "+root+" I0="+str(i0)+" I1="+str(i1)+" calcstep="+str(calcstep)+" nextSet="+str(next_sp)+" prevSet="+str(prev_sp))
+        print("STEP "+root+" counter="+str(counter)+" currentSet="+str(current_set_sp)+" nextSet="+str(next_sp)+" prevSet="+str(prev_sp))
     except Exception as e:
-        print("## Error computing step for "+root+": "+str(e))
+        print("## Error computing next/prev for "+root+": "+str(e))

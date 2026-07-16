@@ -43,7 +43,7 @@ embedded_height = wtemplate.getPropertyValue("height") +interlinea
 offy=0
 cnt=0
 
-def addElement(identifier, prefix, current):
+def addElement(identifier, prefix, current, state_sp=None):
     global cnt
     x=0
     y= offy+ cnt * (embedded_height)
@@ -60,6 +60,11 @@ def addElement(identifier, prefix, current):
     loc_i1.write(current)
     loc_next_sp.write(current)
     loc_prev_sp.write(current)
+
+    if state_sp is not None:
+        loc_state_sp = PVUtil.createPV("loc://apply:unimag:"+prefix+":"+identifier+":STATE_SP",10)
+        loc_state_sp.write(state_sp)
+
     cnt=cnt+1
 
 if name:
@@ -70,7 +75,7 @@ if name:
             print("ELE "+str(d))
             addElement(d['Name'], d['Prefix'], d['Current'])
     else:
-        ## plain text dataset: [index] Name Current Pol Type , whitespace separated, no header
+        ## plain text dataset: [index] Name Current Pol StateCode , whitespace separated, no header
         ## look up each device's real prefix from the same YAML config used elsewhere (e.g. mag_dynamic.bob),
         ## since a single P macro isn't reliably forwarded through every "open in window" action
         prefix_by_name = {}
@@ -83,31 +88,33 @@ if name:
                     continue
                 parts = line.split()
                 if len(parts) == 5:
-                    _, identifier, value, pol, _ = parts
+                    _, identifier, value, pol, statecode = parts
                 elif len(parts) == 4:
-                    identifier, value, pol, _ = parts
+                    identifier, value, pol, statecode = parts
                 else:
                     continue
 
                 value = float(value)
-                if pol == "+":
-                    current = abs(value)
-                    state = "ON"
-                elif pol == "-":
-                    current = -abs(value)
-                    state = "ON"
-                elif pol == "*":
-                    current = 0
-                    state = "STANDBY"
+                ## '*' and '+' : take the value as given (its own sign, if any); '-' : sign inverted
+                if pol == "-":
+                    current = -value
                 else:
                     current = value
-                    state = "ON"
+
+                ## file StateCode 1 -> desired state "OFF"; StateCode 2 -> desired state "ON"
+                if statecode == "1":
+                    state_sp = "OFF"
+                elif statecode == "2":
+                    state_sp = "ON"
+                else:
+                    state_sp = None
+                    print("%% "+identifier+" unrecognized state code \""+statecode+"\", leaving STATE_SP untouched")
 
                 prefix = prefix_by_name.get(identifier, device_prefix)
                 if identifier not in prefix_by_name:
                     print("%% "+identifier+" not found in configuration, using prefix \""+prefix+"\"")
 
-                print("ELE "+identifier+" "+prefix+" "+str(current)+" "+state)
-                addElement(identifier, prefix, current)
+                print("ELE "+identifier+" "+prefix+" current="+str(current)+" STATE_SP="+str(state_sp))
+                addElement(identifier, prefix, current, state_sp)
 
     
