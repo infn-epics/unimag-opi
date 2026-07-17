@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <display version="2.0.0">
   <name>EEI Power Supply Control $(R)</name>
-  <macros>
-  </macros>
   <width>1200</width>
   <height>1040</height>
   <background_color>
@@ -112,9 +110,10 @@
   </widget>
   <widget type="group" version="3.0.0">
     <name>Control Group</name>
-    <x>400</x>
+    <x>408</x>
     <y>60</y>
-    <width>380</width>
+    <width>472</width>
+    <height>210</height>
     <widget type="label" version="2.0.0">
       <name>Control Label</name>
       <text>Control</text>
@@ -272,6 +271,74 @@
         </color>
       </background_color>
     </widget>
+    <widget type="label" version="2.0.0">
+      <name>Mode Status Label</name>
+      <text>Mode:</text>
+      <x>10</x>
+      <y>162</y>
+      <width>60</width>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Mode Status</name>
+      <pv_name>$(P):$(R):MODE_SW_ENABLE</pv_name>
+      <x>80</x>
+      <y>160</y>
+      <width>150</width>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>SW Mode Button</name>
+      <actions>
+        <action type="write_pv">
+          <description>Enable Software Mode</description>
+          <pv_name>$(P):$(R):MODE_SW_ENABLE</pv_name>
+          <value>1</value>
+        </action>
+      </actions>
+      <pv_name>$(P):$(R):MODE_SW_ENABLE</pv_name>
+      <text>SW Mode</text>
+      <x>344</x>
+      <y>35</y>
+      <background_color>
+        <color red="100" green="200" blue="255">
+        </color>
+      </background_color>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>Triggered Mode Button</name>
+      <actions>
+        <action type="write_pv">
+          <description>Enable Triggered Mode</description>
+          <pv_name>$(P):$(R):MODE_SW_ENABLE</pv_name>
+          <value>0</value>
+        </action>
+      </actions>
+      <pv_name>$(P):$(R):MODE_SW_ENABLE</pv_name>
+      <text>Triggered Mode</text>
+      <x>344</x>
+      <y>75</y>
+      <background_color>
+        <color red="200" green="200" blue="100">
+        </color>
+      </background_color>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>Trigger Button</name>
+      <actions>
+        <action type="write_pv">
+          <description>Trigger</description>
+          <pv_name>$(P):$(R):CMD_START_RAMP</pv_name>
+          <value>1</value>
+        </action>
+      </actions>
+      <pv_name>$(P):$(R):CMD_START_RAMP</pv_name>
+      <text>Trigger</text>
+      <x>344</x>
+      <y>130</y>
+      <background_color>
+        <color red="100" green="255" blue="100">
+        </color>
+      </background_color>
+    </widget>
   </widget>
   <widget type="group" version="3.0.0">
     <name>Current Group</name>
@@ -392,8 +459,8 @@
   </widget>
   <widget type="group" version="3.0.0">
     <name>Voltage Group</name>
-    <x>10</x>
-    <y>430</y>
+    <x>790</x>
+    <y>280</y>
     <width>380</width>
     <height>100</height>
     <widget type="label" version="2.0.0">
@@ -436,10 +503,10 @@
   </widget>
   <widget type="group" version="3.0.0">
     <name>Temperatures Group</name>
-    <x>400</x>
-    <y>430</y>
+    <x>780</x>
+    <y>720</y>
     <width>380</width>
-    <height>270</height>
+    <height>320</height>
     <widget type="label" version="2.0.0">
       <name>Temp Label</name>
       <text>Temperatures &amp; AC/DC Outputs</text>
@@ -849,5 +916,45 @@
       <x>390</x>
       <y>250</y>
     </widget>
+  </widget>
+  <widget type="stripchart" version="2.1.0">
+    <name>Strip Chart</name>
+    <x>10</x>
+    <y>420</y>
+    <width>748</width>
+    <height>280</height>
+    <show_grid>true</show_grid>
+    <show_toolbar>false</show_toolbar>
+    <y_axes>
+      <y_axis>
+        <title>Y</title>
+        <autoscale>true</autoscale>
+        <log_scale>false</log_scale>
+        <minimum>0.0</minimum>
+        <maximum>100.0</maximum>
+        <show_grid>false</show_grid>
+        <visible>true</visible>
+        <color>
+          <color name="Text" red="0" green="0" blue="0">
+          </color>
+        </color>
+      </y_axis>
+    </y_axes>
+    <traces>
+      <trace>
+        <name>$(traces[0].y_pv)</name>
+        <y_pv>$(P):$(R):CURRENT_RB</y_pv>
+        <axis>0</axis>
+        <trace_type>2</trace_type>
+        <color>
+          <color red="0" green="0" blue="255">
+          </color>
+        </color>
+        <line_width>2</line_width>
+        <point_type>0</point_type>
+        <point_size>10</point_size>
+        <visible>true</visible>
+      </trace>
+    </traces>
   </widget>
 </display>
