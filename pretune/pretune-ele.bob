@@ -147,13 +147,19 @@
       <wrap_words>false</wrap_words>
       <rules>
         <rule name="ToleranceColor" prop_id="background_color" out_exp="false">
+          <exp bool_exp="pv2==0">
+            <value>
+              <color name="Alarm" red="220" green="0" blue="0">
+              </color>
+            </value>
+          </exp>
           <exp bool_exp="abs(pv0)&lt;=pv1">
             <value>
               <color name="OK" red="0" green="255" blue="0">
               </color>
             </value>
           </exp>
-          <exp bool_exp="abs(pv0)&gt;pv1">
+          <exp bool_exp="true">
             <value>
               <color name="Alarm" red="220" green="0" blue="0">
               </color>
@@ -161,9 +167,10 @@
           </exp>
           <pv_name>=('loc://apply:unimag:$(P):$(R):CURRENT_SET_SP'-'$(P):$(R):CURRENT_RB')</pv_name>
           <pv_name>loc://tolerance_$(DID)&lt;VDouble&gt;(0.1)</pv_name>
+          <pv_name>loc://apply:unimag:$(P):$(R):calcstep</pv_name>
         </rule>
       </rules>
-      <tooltip>Step delta: this step's setpoint (CURRENT_SET_SP) - I0 (readback)</tooltip>
+      <tooltip>Step delta: this step's setpoint (CURRENT_SET_SP) - I0 (readback). Never shown green when STEP CALC is zero.</tooltip>
       <border_alarm_sensitive>false</border_alarm_sensitive>
     </widget>
     <widget type="textupdate" version="2.0.0">

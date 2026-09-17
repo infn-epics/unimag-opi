@@ -71,9 +71,9 @@
         <symbol>icons/icons-2407/off.png</symbol>
         <symbol>icons/icons-2407/oper.png</symbol>
         <symbol>icons/icons-2407/stby.png</symbol>
-        <symbol>icons/icons-2407/none.png</symbol>
-        <symbol>icons/icons-2407/bad.png</symbol>
         <symbol>icons/icons-2407/fault.png</symbol>
+        <symbol>icons/icons-2407/fault.png</symbol>
+        <symbol>icons/icons-2407/bad.png</symbol>
       </symbols>
       <x>261</x>
       <y>2</y>
