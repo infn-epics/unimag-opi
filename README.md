@@ -26,11 +26,13 @@ The `mag_channel.bob` OPI provides a unified interface for monitoring and contro
 
 The status PVs represent the operational state of the magnet channel. Possible values include:
 
-- `OFF` – Magnet is powered off or inactive
-- `ON` – Magnet is active and powered
-- `STANDBY` – Magnet is in standby mode
-- `FAULT` – Magnet has detected a fault condition
-- `RESET` – Magnet is being reset
+- 0 `OFF` – Magnet is powered off or inactive
+- 1 `ON` – Magnet is active and powered
+- 2 `STANDBY` – Magnet is in standby mode
+- 3 `FAULT` – Magnet has detected a fault condition (alarm high)
+- 4 `EXT_INTLK`  –triggered by external interlock (alarm high)
+- 5 `CONN_FAULT` -triggered by communication errors (alarm high)
+
 - Additional states may be supported depending on IOC implementation
 
 These values are displayed in the status widgets and can be set using the action buttons in the OPI.
