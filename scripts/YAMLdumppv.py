@@ -54,6 +54,8 @@ iocs = epics_config.get("iocs")
 if iocs is None:
     ScriptUtil.showMessageDialog(widget, "Cannot find iocs section, please provide a valid values.yaml file")
     exit()
+if hasattr(iocs, "values"):
+    iocs = list(iocs.values())
 # Merge iocDefaults into each IOC so per-template fields (e.g. devtype, opi) are available
 ioc_defaults = data.get("iocDefaults")
 if ioc_defaults:
