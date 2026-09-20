@@ -29,9 +29,9 @@
           <value>true</value>
         </exp>
         <pv_name>loc://filterdiff_$(DID)&lt;VLong&gt;(0)</pv_name>
-        <pv_name>=('loc://apply:unimag:$(P):$(R):I1'-'$(P):$(R):CURRENT_RB')</pv_name>
+        <pv_name>=('loc://pretune-$(DID):$(P):$(R):I1'-'$(P):$(R):CURRENT_RB')</pv_name>
         <pv_name>loc://tolerance_$(DID)&lt;VDouble&gt;(0.1)</pv_name>
-        <pv_name>loc://apply:unimag:$(P):$(R):STATE_SP&lt;VString&gt;("OFF")</pv_name>
+        <pv_name>loc://pretune-$(DID):$(P):$(R):STATE_SP&lt;VString&gt;("")</pv_name>
         <pv_name>$(P):$(R):STATE_RB</pv_name>
       </rule>
     </rules>
@@ -70,7 +70,7 @@
       </widget>
       <widget type="textentry" version="3.0.0">
         <name>entryCurrent_2</name>
-        <pv_name>loc://apply:unimag:$(P):$(R):I1</pv_name>
+        <pv_name>loc://pretune-$(DID):$(P):$(R):I1</pv_name>
         <x>152</x>
         <y>2</y>
         <width>60</width>
@@ -106,7 +106,7 @@
     </widget>
     <widget type="textupdate" version="2.0.0">
       <name>entryDelta</name>
-      <pv_name>=('loc://apply:unimag:$(P):$(R):I1'-'$(P):$(R):CURRENT_RB')</pv_name>
+      <pv_name>=('loc://pretune-$(DID):$(P):$(R):I1'-'$(P):$(R):CURRENT_RB')</pv_name>
       <x>705</x>
       <y>6</y>
       <width>60</width>
@@ -128,7 +128,7 @@
               </color>
             </value>
           </exp>
-          <pv_name>=('loc://apply:unimag:$(P):$(R):I1'-'$(P):$(R):CURRENT_RB')</pv_name>
+          <pv_name>=('loc://pretune-$(DID):$(P):$(R):I1'-'$(P):$(R):CURRENT_RB')</pv_name>
           <pv_name>loc://tolerance_$(DID)&lt;VDouble&gt;(0.1)</pv_name>
         </rule>
       </rules>
@@ -137,7 +137,7 @@
     </widget>
     <widget type="textupdate" version="2.0.0">
       <name>entryStepDelta</name>
-      <pv_name>=('loc://apply:unimag:$(P):$(R):CURRENT_SET_SP'-'$(P):$(R):CURRENT_RB')</pv_name>
+      <pv_name>=('loc://pretune-$(DID):$(P):$(R):CURRENT_SET_SP'-'$(P):$(R):CURRENT_RB')</pv_name>
       <x>800</x>
       <y>6</y>
       <width>60</width>
@@ -165,9 +165,9 @@
               </color>
             </value>
           </exp>
-          <pv_name>=('loc://apply:unimag:$(P):$(R):CURRENT_SET_SP'-'$(P):$(R):CURRENT_RB')</pv_name>
+          <pv_name>=('loc://pretune-$(DID):$(P):$(R):CURRENT_SET_SP'-'$(P):$(R):CURRENT_RB')</pv_name>
           <pv_name>loc://tolerance_$(DID)&lt;VDouble&gt;(0.1)</pv_name>
-          <pv_name>loc://apply:unimag:$(P):$(R):calcstep</pv_name>
+          <pv_name>loc://pretune-$(DID):$(P):$(R):calcstep</pv_name>
         </rule>
       </rules>
       <tooltip>Step delta: this step's setpoint (CURRENT_SET_SP) - I0 (readback). Never shown green when STEP CALC is zero.</tooltip>
@@ -175,7 +175,7 @@
     </widget>
     <widget type="textupdate" version="2.0.0">
       <name>entryStateSP</name>
-      <pv_name>loc://apply:unimag:$(P):$(R):STATE_SP&lt;VString&gt;("OFF")</pv_name>
+      <pv_name>loc://pretune-$(DID):$(P):$(R):STATE_SP&lt;VString&gt;("")</pv_name>
       <x>870</x>
       <y>6</y>
       <width>60</width>
@@ -184,6 +184,12 @@
       <wrap_words>false</wrap_words>
       <rules>
         <rule name="MismatchColor" prop_id="background_color" out_exp="false">
+          <exp bool_exp="pvStr0==''">
+            <value>
+              <color name="Read_Background" red="240" green="240" blue="240">
+              </color>
+            </value>
+          </exp>
           <exp bool_exp="pvStr0==pvStr1">
             <value>
               <color name="OK" red="0" green="255" blue="0">
@@ -202,11 +208,11 @@
               </color>
             </value>
           </exp>
-          <pv_name>loc://apply:unimag:$(P):$(R):STATE_SP&lt;VString&gt;("OFF")</pv_name>
+          <pv_name>loc://pretune-$(DID):$(P):$(R):STATE_SP&lt;VString&gt;("")</pv_name>
           <pv_name>$(P):$(R):STATE_RB</pv_name>
         </rule>
       </rules>
-      <tooltip>Desired state (ON/OFF). Red if it differs from the actual state readback (STANDBY counts as OFF).</tooltip>
+      <tooltip>Desired state (ON/OFF), blank when the file has none (left untouched). Red if it differs from the actual state readback (STANDBY counts as OFF).</tooltip>
       <border_alarm_sensitive>false</border_alarm_sensitive>
     </widget>
     <widget type="group" version="3.0.0">
@@ -217,7 +223,7 @@
       <style>2</style>
       <widget type="textentry" version="3.0.0">
         <name>entryPrev</name>
-        <pv_name>loc://apply:unimag:$(P):$(R):CURRENT_PREV_SP</pv_name>
+        <pv_name>loc://pretune-$(DID):$(P):$(R):CURRENT_PREV_SP</pv_name>
         <x>1</x>
         <y>1</y>
         <width>60</width>
@@ -237,7 +243,7 @@
       <style>2</style>
       <widget type="textentry" version="3.0.0">
         <name>entryNext</name>
-        <pv_name>loc://apply:unimag:$(P):$(R):CURRENT_NEXT_SP</pv_name>
+        <pv_name>loc://pretune-$(DID):$(P):$(R):CURRENT_NEXT_SP</pv_name>
         <x>129</x>
         <y>1</y>
         <width>60</width>
@@ -249,7 +255,7 @@
       </widget>
       <widget type="textupdate" version="2.0.0">
         <name>entryCurrent_4</name>
-        <pv_name>loc://apply:unimag:$(P):$(R):calcstep</pv_name>
+        <pv_name>loc://pretune-$(DID):$(P):$(R):calcstep</pv_name>
         <x>1</x>
         <y>2</y>
         <width>60</width>
@@ -264,7 +270,7 @@
     </widget>
     <widget type="checkbox" version="2.0.0">
       <name>chkApply</name>
-      <pv_name>loc://apply:unimag:$(P):$(R):enabled&lt;VLong&gt;(1)</pv_name>
+      <pv_name>loc://pretune-$(DID):$(P):$(R):enabled&lt;VLong&gt;(1)</pv_name>
       <label></label>
       <x>682</x>
       <y>3</y>

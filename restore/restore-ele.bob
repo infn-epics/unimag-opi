@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <name>RestoreElement</name>
+  <width>760</width>
+  <height>30</height>
+  <widget type="checkbox" version="2.0.0">
+    <name>chkApply</name>
+    <pv_name>loc://restore-$(RID):$(P):$(R):enabled&lt;VLong&gt;(1)</pv_name>
+    <label></label>
+    <x>5</x>
+    <y>5</y>
+    <width>20</width>
+    <height>20</height>
+    <tooltip>Uncheck to leave this power supply untouched by "Restore Selected"</tooltip>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Name</name>
+    <text>$(R)</text>
+    <x>30</x>
+    <y>5</y>
+    <width>120</width>
+    <font>
+      <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+      </font>
+    </font>
+    <tooltip>$(P):$(R)</tooltip>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>NowSet</name>
+    <pv_name>$(P):$(R):CURRENT_SP</pv_name>
+    <x>155</x>
+    <y>3</y>
+    <width>70</width>
+    <height>24</height>
+    <precision>3</precision>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <actions>
+    </actions>
+    <tooltip>Current setpoint of the power supply (CURRENT_SP)</tooltip>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>NowRB</name>
+    <pv_name>$(P):$(R):CURRENT_RB</pv_name>
+    <x>230</x>
+    <y>3</y>
+    <width>70</width>
+    <height>24</height>
+    <precision>3</precision>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <actions>
+    </actions>
+    <tooltip>Actual current (CURRENT_RB)</tooltip>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>RestoreSet</name>
+    <pv_name>loc://restore-$(RID):$(P):$(R):SP&lt;VDouble&gt;(0)</pv_name>
+    <x>305</x>
+    <y>3</y>
+    <width>75</width>
+    <height>24</height>
+    <precision>3</precision>
+    <horizontal_alignment>1</horizontal_alignment>
+    <actions>
+    </actions>
+    <tooltip>Current to restore. Loaded from the file, can be edited before "Restore Selected"</tooltip>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>DeltaSet</name>
+    <pv_name>=('loc://restore-$(RID):$(P):$(R):SP'-'$(P):$(R):CURRENT_SP')</pv_name>
+    <x>385</x>
+    <y>3</y>
+    <width>70</width>
+    <height>24</height>
+    <precision>3</precision>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <rules>
+      <rule name="ToleranceColor" prop_id="background_color" out_exp="false">
+        <exp bool_exp="abs(pv0)&lt;=pv1">
+          <value>
+            <color name="OK" red="0" green="255" blue="0">
+            </color>
+          </value>
+        </exp>
+        <exp bool_exp="true">
+          <value>
+            <color name="Alarm" red="220" green="0" blue="0">
+            </color>
+          </value>
+        </exp>
+        <pv_name>=('loc://restore-$(RID):$(P):$(R):SP'-'$(P):$(R):CURRENT_SP')</pv_name>
+        <pv_name>loc://restore-tol-$(RID)&lt;VDouble&gt;(0.1)</pv_name>
+      </rule>
+    </rules>
+    <tooltip>Restore set - current setpoint. Green when within the tolerance.</tooltip>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>NowState</name>
+    <pv_name>$(P):$(R):STATE_RB</pv_name>
+    <x>460</x>
+    <y>3</y>
+    <width>65</width>
+    <height>24</height>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <tooltip>Actual state readback (STATE_RB)</tooltip>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="combo" version="2.0.0">
+    <name>RestoreState</name>
+    <pv_name>loc://restore-$(RID):$(P):$(R):STATE_SP&lt;VString&gt;("")</pv_name>
+    <items>
+      <item>ON</item>
+      <item>STANDBY</item>
+      <item>OFF</item>
+    </items>
+    <items_from_pv>false</items_from_pv>
+    <x>530</x>
+    <y>3</y>
+    <width>90</width>
+    <height>24</height>
+    <tooltip>State to restore. Blank when the file has no restorable state (then only the current is restored)</tooltip>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>StateDiff</name>
+    <text>DIFF</text>
+    <x>625</x>
+    <y>3</y>
+    <width>55</width>
+    <height>24</height>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+    <transparent>false</transparent>
+    <rules>
+      <rule name="StateText" prop_id="text" out_exp="false">
+        <exp bool_exp="pvStr0==''">
+          <value>-</value>
+        </exp>
+        <exp bool_exp="pvStr0==pvStr1 || (pvStr0=='OFF' &amp;&amp; pvStr1=='STANDBY')">
+          <value>=</value>
+        </exp>
+        <exp bool_exp="true">
+          <value>DIFF</value>
+        </exp>
+        <pv_name>loc://restore-$(RID):$(P):$(R):STATE_SP&lt;VString&gt;("")</pv_name>
+        <pv_name>$(P):$(R):STATE_RB</pv_name>
+      </rule>
+      <rule name="StateColor" prop_id="background_color" out_exp="false">
+        <exp bool_exp="pvStr0==''">
+          <value>
+            <color name="Read_Background" red="240" green="240" blue="240">
+            </color>
+          </value>
+        </exp>
+        <exp bool_exp="pvStr0==pvStr1 || (pvStr0=='OFF' &amp;&amp; pvStr1=='STANDBY')">
+          <value>
+            <color name="OK" red="0" green="255" blue="0">
+            </color>
+          </value>
+        </exp>
+        <exp bool_exp="true">
+          <value>
+            <color name="Alarm" red="220" green="0" blue="0">
+            </color>
+          </value>
+        </exp>
+        <pv_name>loc://restore-$(RID):$(P):$(R):STATE_SP&lt;VString&gt;("")</pv_name>
+        <pv_name>$(P):$(R):STATE_RB</pv_name>
+      </rule>
+    </rules>
+    <tooltip>Restore state vs actual state ("=" same, STANDBY counts as OFF, "-" no state to restore)</tooltip>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>ReachedLED</name>
+    <pv_name>loc://restore-$(RID):$(P):$(R):reached&lt;VLong&gt;(0)</pv_name>
+    <x>695</x>
+    <y>5</y>
+    <rules>
+      <rule name="ReachedOn" prop_id="on_color" out_exp="false">
+        <exp bool_exp="(pvStr2=='OFF' &amp;&amp; (pvStr3=='OFF' || pvStr3=='STANDBY')) || (pvStr2!='OFF' &amp;&amp; (pvStr2=='' || pvStr2==pvStr3) &amp;&amp; abs(pv0)&lt;=pv1)">
+          <value>
+            <color name="OK" red="0" green="255" blue="0">
+            </color>
+          </value>
+        </exp>
+        <exp bool_exp="true">
+          <value>
+            <color name="STOP" red="255" green="0" blue="0">
+            </color>
+          </value>
+        </exp>
+        <pv_name>=('loc://restore-$(RID):$(P):$(R):SP'-'$(P):$(R):CURRENT_RB')</pv_name>
+        <pv_name>loc://restore-tol-$(RID)&lt;VDouble&gt;(0.1)</pv_name>
+        <pv_name>loc://restore-$(RID):$(P):$(R):STATE_SP&lt;VString&gt;("")</pv_name>
+        <pv_name>$(P):$(R):STATE_RB</pv_name>
+      </rule>
+      <rule name="ReachedOff" prop_id="off_color" out_exp="false">
+        <exp bool_exp="(pvStr2=='OFF' &amp;&amp; (pvStr3=='OFF' || pvStr3=='STANDBY')) || (pvStr2!='OFF' &amp;&amp; (pvStr2=='' || pvStr2==pvStr3) &amp;&amp; abs(pv0)&lt;=pv1)">
+          <value>
+            <color name="OK" red="0" green="255" blue="0">
+            </color>
+          </value>
+        </exp>
+        <exp bool_exp="true">
+          <value>
+            <color name="STOP" red="255" green="0" blue="0">
+            </color>
+          </value>
+        </exp>
+        <pv_name>=('loc://restore-$(RID):$(P):$(R):SP'-'$(P):$(R):CURRENT_RB')</pv_name>
+        <pv_name>loc://restore-tol-$(RID)&lt;VDouble&gt;(0.1)</pv_name>
+        <pv_name>loc://restore-$(RID):$(P):$(R):STATE_SP&lt;VString&gt;("")</pv_name>
+        <pv_name>$(P):$(R):STATE_RB</pv_name>
+      </rule>
+    </rules>
+    <tooltip>Green when the restore state is reached and, unless the restore state is OFF, the actual current (CURRENT_RB) is within the tolerance of the restore set. Red otherwise.</tooltip>
+  </widget>
+</display>

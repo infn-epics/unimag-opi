@@ -202,42 +202,7 @@
     <actions>
       <action type="execute">
         <description>StepDown</description>
-        <script file="EmbeddedPy">
-          <text><![CDATA[# Embedded python script
-from org.csstudio.display.builder.runtime.script import PVUtil, ScriptUtil
-from org.phoebus.pv import PVPool
-from java.lang import Exception
-
-TAG = "loc://apply:unimag:"
-SUFFIX = ":CURRENT_PREV_SP"
-
-for pvr in PVPool.getPVReferences():
-    pvname = pvr.getEntry().getName()
-    if pvname.startswith(TAG) and pvname.endswith(SUFFIX):
-        root = pvname[len(TAG):-len(SUFFIX)]
-        try:
-            enabled = PVUtil.createPV(TAG+root+":enabled", 10)
-            if PVUtil.getLong(enabled) == 0:
-                print("SKIP "+root+" (deselected)")
-                continue
-            local = PVUtil.createPV(pvname, 10)
-            value = PVUtil.getDouble(local)
-            remote = PVUtil.createPV(root+":CURRENT_SP", 100)
-            remote.write(value)
-            print("APPLY "+root+":CURRENT_SP = "+str(value))
-
-            state_local = PVUtil.createPV(TAG+root+":STATE_SP", 10)
-            state_value = PVUtil.getString(state_local)
-            state_remote = PVUtil.createPV(root+":STATE_SP", 100)
-            state_remote.write(state_value)
-            print("APPLY "+root+":STATE_SP = "+str(state_value))
-        except Exception as e:
-            print("## Error applying "+root+": "+str(e))
-
-pv = ScriptUtil.getPrimaryPV(widget)
-pvInt0 = PVUtil.getLong(pv) - 1
-pv.write(pvInt0)
-]]></text>
+        <script file="scripts/StepDown.py">
         </script>
       </action>
     </actions>
@@ -265,42 +230,7 @@ pv.write(pvInt0)
     <actions>
       <action type="execute">
         <description>Stepup</description>
-        <script file="EmbeddedPy">
-          <text><![CDATA[# Embedded python script
-from org.csstudio.display.builder.runtime.script import PVUtil, ScriptUtil
-from org.phoebus.pv import PVPool
-from java.lang import Exception
-
-TAG = "loc://apply:unimag:"
-SUFFIX = ":CURRENT_NEXT_SP"
-
-for pvr in PVPool.getPVReferences():
-    pvname = pvr.getEntry().getName()
-    if pvname.startswith(TAG) and pvname.endswith(SUFFIX):
-        root = pvname[len(TAG):-len(SUFFIX)]
-        try:
-            enabled = PVUtil.createPV(TAG+root+":enabled", 10)
-            if PVUtil.getLong(enabled) == 0:
-                print("SKIP "+root+" (deselected)")
-                continue
-            local = PVUtil.createPV(pvname, 10)
-            value = PVUtil.getDouble(local)
-            remote = PVUtil.createPV(root+":CURRENT_SP", 100)
-            remote.write(value)
-            print("APPLY "+root+":CURRENT_SP = "+str(value))
-
-            state_local = PVUtil.createPV(TAG+root+":STATE_SP", 10)
-            state_value = PVUtil.getString(state_local)
-            state_remote = PVUtil.createPV(root+":STATE_SP", 100)
-            state_remote.write(state_value)
-            print("APPLY "+root+":STATE_SP = "+str(state_value))
-        except Exception as e:
-            print("## Error applying "+root+": "+str(e))
-
-pv = ScriptUtil.getPrimaryPV(widget)
-pvInt0 = PVUtil.getLong(pv) + 1
-pv.write(pvInt0)
-]]></text>
+        <script file="scripts/StepUp.py">
         </script>
       </action>
     </actions>
@@ -377,36 +307,28 @@ pv.write(pvInt0)
     <tooltip>Show only power supplies whose current or state differs from their desired target</tooltip>
   </widget>
   <widget type="action_button" version="3.0.0">
+    <name>btnRetry</name>
+    <actions>
+      <action type="execute">
+        <description>Retry the current step</description>
+        <script file="scripts/RetryStep.py">
+        </script>
+      </action>
+    </actions>
+    <text>Retry</text>
+    <x>10</x>
+    <y>112</y>
+    <width>100</width>
+    <height>25</height>
+    <tooltip>Redo the current step for the selected power supplies that have not reached it: state first, then current</tooltip>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="action_button" version="3.0.0">
     <name>btnApplyStates</name>
     <actions>
       <action type="execute">
         <description>Bring selected PS to desired state</description>
-        <script file="EmbeddedPy">
-          <text><![CDATA[# Embedded python script
-from org.csstudio.display.builder.runtime.script import PVUtil
-from org.phoebus.pv import PVPool
-from java.lang import Exception
-
-TAG = "loc://apply:unimag:"
-SUFFIX = ":STATE_SP"
-
-for pvr in PVPool.getPVReferences():
-    pvname = pvr.getEntry().getName()
-    if pvname.startswith(TAG) and pvname.endswith(SUFFIX):
-        root = pvname[len(TAG):-len(SUFFIX)]
-        try:
-            enabled = PVUtil.createPV(TAG+root+":enabled", 10)
-            if PVUtil.getLong(enabled) == 0:
-                print("SKIP "+root+" (deselected)")
-                continue
-            local = PVUtil.createPV(pvname, 10)
-            value = PVUtil.getString(local)
-            remote = PVUtil.createPV(root+":STATE_SP", 100)
-            remote.write(value)
-            print("APPLY "+root+":STATE_SP = "+str(value))
-        except Exception as e:
-            print("## Error applying state for "+root+": "+str(e))
-]]></text>
+        <script file="scripts/SetStates.py">
         </script>
       </action>
     </actions>

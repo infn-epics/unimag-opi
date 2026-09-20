@@ -35,10 +35,14 @@
     <widget type="action_button" version="3.0.0">
       <name>RestoreBtn</name>
       <actions>
-        <action type="execute">
+        <action type="open_display">
           <description>Restore snapshot</description>
-          <script file="scripts/RestoreDynamic.py">
-          </script>
+          <file>restore/restore.bob</file>
+          <macros>
+            <P>$(P)</P>
+            <CONFFILE>$(CONFFILE)</CONFFILE>
+          </macros>
+          <target>window</target>
         </action>
       </actions>
       <text>Restore Snapshot</text>
@@ -46,7 +50,7 @@
       <y>2</y>
       <width>130</width>
       <height>25</height>
-      <tooltip>Load a CSV snapshot, review differences, then restore setpoints and states</tooltip>
+      <tooltip>Open the restore display: load a snapshot (.csv) or dataset (.dat), compare it with the power supplies, edit and restore</tooltip>
     </widget>
     <widget type="label" version="2.0.0">
       <name>SelLabel</name>

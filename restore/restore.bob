@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <name>Restore</name>
+  <width>800</width>
+  <height>780</height>
+  <widget type="label" version="2.0.0">
+    <name>Label</name>
+    <class>TITLE</class>
+    <text>Restore</text>
+    <x use_class="true">0</x>
+    <y use_class="true">0</y>
+    <width>550</width>
+    <height>31</height>
+    <font use_class="true">
+      <font name="Header 1" family="Liberation Sans" style="BOLD" size="22.0">
+      </font>
+    </font>
+    <foreground_color use_class="true">
+      <color name="Text" red="0" green="0" blue="0">
+      </color>
+    </foreground_color>
+    <transparent use_class="true">true</transparent>
+  </widget>
+  <widget type="fileselector" version="2.0.0">
+    <name>Load</name>
+    <pv_name>loc://restorefile-$(DID)&lt;VString&gt;("")</pv_name>
+    <x>10</x>
+    <y>50</y>
+    <width>100</width>
+    <height>20</height>
+    <actions>
+    </actions>
+    <tooltip>Choose a snapshot (.csv from Save Snapshot) or a dataset (.dat, e.g. BTF_RUN.dat)</tooltip>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Status</name>
+    <pv_name>loc://restore-status-$(DID)&lt;VString&gt;("Choose a snapshot (.csv) or dataset (.dat)")</pv_name>
+    <x>120</x>
+    <y>51</y>
+    <width>670</width>
+    <height>17</height>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <actions>
+    </actions>
+    <border_width>1</border_width>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_Tol</name>
+    <text>Tolerance</text>
+    <x>10</x>
+    <y>88</y>
+    <width>80</width>
+    <font>
+      <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Entry Tolerance</name>
+    <pv_name>loc://restore-tol-$(DID)&lt;VDouble&gt;(0.1)</pv_name>
+    <x>90</x>
+    <y>84</y>
+    <width>70</width>
+    <height>28</height>
+    <tooltip>Current tolerance (A): the delta is green and the LED can be green when the actual current is within +/- this value of the restore set</tooltip>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>btnRetry</name>
+    <actions>
+      <action type="execute">
+        <description>Retry restore of the power supplies not at their target</description>
+        <script file="scripts/RetryRestore.py">
+        </script>
+      </action>
+    </actions>
+    <text>Retry</text>
+    <x>520</x>
+    <y>82</y>
+    <width>110</width>
+    <height>30</height>
+    <tooltip>Redo the restore, state first then current, for the checked power supplies whose LED is not green</tooltip>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>btnRestore</name>
+    <actions>
+      <action type="execute">
+        <description>Restore selected power supplies</description>
+        <script file="scripts/ApplyRestore.py">
+        </script>
+      </action>
+    </actions>
+    <text>Restore Selected</text>
+    <x>640</x>
+    <y>82</y>
+    <width>150</width>
+    <height>30</height>
+    <tooltip>Push the restore set and state of every checked power supply to hardware (STATE first, then CURRENT)</tooltip>
+  </widget>
+  <widget type="group" version="3.0.0">
+    <name>DataSet</name>
+    <x>10</x>
+    <y>120</y>
+    <width>780</width>
+    <height>650</height>
+    <style>2</style>
+    <widget type="label" version="2.0.0">
+      <name>Head_Apply</name>
+      <text>Sel</text>
+      <x>5</x>
+      <width>25</width>
+      <font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Head_Name</name>
+      <text>Element</text>
+      <x>30</x>
+      <width>100</width>
+      <font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Head_NowSet</name>
+      <text>NOW SET</text>
+      <x>155</x>
+      <width>70</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Head_NowRB</name>
+      <text>READBACK</text>
+      <x>228</x>
+      <width>75</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="12.0">
+        </font>
+      </font>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Head_RestoreSet</name>
+      <text>RESTORE</text>
+      <x>305</x>
+      <width>75</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Head_Delta</name>
+      <text>DELTA</text>
+      <x>385</x>
+      <width>70</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Head_NowState</name>
+      <text>STATE</text>
+      <x>460</x>
+      <width>65</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Head_RestoreState</name>
+      <text>RESTORE ST.</text>
+      <x>530</x>
+      <width>90</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="12.0">
+        </font>
+      </font>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Head_StateDiff</name>
+      <text>ST. DIFF</text>
+      <x>620</x>
+      <width>65</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="12.0">
+        </font>
+      </font>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Head_Reached</name>
+      <text>OK</text>
+      <x>690</x>
+      <width>30</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+    </widget>
+    <widget type="embedded" version="2.0.0">
+      <name>Display-restore</name>
+      <file>restore-display.bob</file>
+      <y>22</y>
+      <width>778</width>
+      <height>625</height>
+    </widget>
+  </widget>
+</display>

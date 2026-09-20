@@ -3,6 +3,8 @@ from confutil import csv_to_list
 from org.csstudio.display.builder.model import WidgetFactory
 import os
 import epik8sutil
+import pretuneutil
+reload(pretuneutil)  # pick up edits without restarting Phoebus
 def createInstance(x, y,macros):
     embedded = WidgetFactory.getInstance().getWidgetDescriptor("embedded").createWidget()
     embedded.setPropertyValue("name", "item-"+str(y/embedded_height))
@@ -17,7 +19,22 @@ def createInstance(x, y,macros):
     embedded.setPropertyValue("file", "pretune-ele.bob")
     return embedded
 
+def clear_rows():
+    """Drop the rows of a previously loaded file. Returns False if this Phoebus cannot."""
+    children = widget.runtimeChildren()
+    try:
+        for child in list(children.getValue()):
+            if child.getName().startswith("item-"):
+                children.removeChild(child)
+        return True
+    except Exception as e:
+        print("## Cannot remove previous rows: " + str(e))
+        ScriptUtil.showMessageDialog(widget, "Cannot replace the loaded file: close and reopen this display")
+        return False
+
 # logger = ScriptUtil.getLogger()
+did = pretuneutil.window_id(widget)
+bases = []
 device_prefix = widget.getEffectiveMacros().getValue("P")
 
 # logger.info("device " +device_prefix )
@@ -29,7 +46,7 @@ name = PVUtil.getString(pvs[0])
 
 # pv = ScriptUtil.getPrimaryPV(filename)
 # name = PVUtil.getString(pv)
-print "Loading: "+name
+print("Loading: "+name)
 #dataset =  ScriptUtil.findWidgetByName(widget, "DataSet")
 #loadset = ScriptUtil.findWidgetByName(widget, "LoadSetting")
 #loadset.setPropertyValue("enabled",False)
@@ -43,7 +60,8 @@ embedded_height = wtemplate.getPropertyValue("height") +interlinea
 offy=0
 cnt=0
 
-def addElement(identifier, prefix, current, state_sp=None):
+def addElement(identifier, prefix, current, state_sp=""):
+    """state_sp "" : the file has no state to restore, the step leaves STATE_SP untouched"""
     global cnt
     x=0
     y= offy+ cnt * (embedded_height)
@@ -54,26 +72,30 @@ def addElement(identifier, prefix, current, state_sp=None):
     ## I1 (target), CURRENT_NEXT_SP (pushed to hardware on StepUp) and CURRENT_PREV_SP
     ## (pushed on StepDown) all start at the loaded value: no step is in progress yet,
     ## so target == next set == prev set. ComputeStep.py refines next/prev once nsteps is set.
-    loc_i1 = PVUtil.createPV("loc://apply:unimag:"+prefix+":"+identifier+":I1",10)
-    loc_next_sp = PVUtil.createPV("loc://apply:unimag:"+prefix+":"+identifier+":CURRENT_NEXT_SP",10)
-    loc_prev_sp = PVUtil.createPV("loc://apply:unimag:"+prefix+":"+identifier+":CURRENT_PREV_SP",10)
+    base = prefix+":"+identifier
+    loc_i1 = PVUtil.createPV(pretuneutil.local_name(did, base, "I1"),10)
+    loc_next_sp = PVUtil.createPV(pretuneutil.local_name(did, base, "CURRENT_NEXT_SP"),10)
+    loc_prev_sp = PVUtil.createPV(pretuneutil.local_name(did, base, "CURRENT_PREV_SP"),10)
+    loc_state_sp = PVUtil.createPV(pretuneutil.local_name(did, base, "STATE_SP"),10)
     loc_i1.write(current)
     loc_next_sp.write(current)
     loc_prev_sp.write(current)
+    loc_state_sp.write(state_sp)
 
-    if state_sp is not None:
-        loc_state_sp = PVUtil.createPV("loc://apply:unimag:"+prefix+":"+identifier+":STATE_SP",10)
-        loc_state_sp.write(state_sp)
-
+    bases.append(base)
     cnt=cnt+1
 
-if name:
+if name and clear_rows():
     if name.endswith(".csv"):
         ## Name, Prefix, Current, State
         devinfo = csv_to_list(name)
         for d in devinfo:
             print("ELE "+str(d))
-            addElement(d['Name'], d['Prefix'], d['Current'])
+            ## INTERLOCK, FAULT ... cannot be commanded: leave the desired state blank
+            state_sp = d.get('State', "")
+            if state_sp not in ("ON", "STANDBY", "OFF"):
+                state_sp = ""
+            addElement(d['Name'], d['Prefix'], float(d['Current']), state_sp)
     else:
         ## plain text dataset: [index] Name Current Pol StateCode , whitespace separated, no header
         ## look up each device's real prefix from the same YAML config used elsewhere (e.g. mag_dynamic.bob),
@@ -107,7 +129,7 @@ if name:
                 elif statecode == "2":
                     state_sp = "ON"
                 else:
-                    state_sp = None
+                    state_sp = ""
                     print("%% "+identifier+" unrecognized state code \""+statecode+"\", leaving STATE_SP untouched")
 
                 prefix = prefix_by_name.get(identifier, device_prefix)
@@ -118,3 +140,5 @@ if name:
                 addElement(identifier, prefix, current, state_sp)
 
     
+    ## the steps act on exactly the rows of this window, never on leftovers of an earlier load
+    PVUtil.createPV(pretuneutil.list_name(did), 10).write("\n".join(bases))
