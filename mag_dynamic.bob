@@ -160,6 +160,73 @@
       </background_color>
       <tooltip>Set CURRENT_SP to 0 for all selected magnets</tooltip>
     </widget>
+    <widget type="label" version="2.0.0">
+      <name>StepLabel</name>
+      <text>dI</text>
+      <x>632</x>
+      <y>7</y>
+      <width>24</width>
+      <height>16</height>
+      <tooltip>Quantity (A) added or subtracted by the - and + buttons</tooltip>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>StepEntry</name>
+      <pv_name>loc://currentstep-$(DID)&lt;VDouble&gt;(1.0)</pv_name>
+      <x>658</x>
+      <y>2</y>
+      <width>55</width>
+      <height>25</height>
+      <precision>3</precision>
+      <horizontal_alignment>1</horizontal_alignment>
+      <actions>
+      </actions>
+      <tooltip>Quantity (A) added or subtracted from CURRENT_SP of the selected magnets by the - and + buttons</tooltip>
+      <border_alarm_sensitive>false</border_alarm_sensitive>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>StepDownBtn</name>
+      <actions>
+        <action type="execute">
+          <description>Decrement selected</description>
+          <script file="scripts/StepSelectedDown.py">
+          </script>
+        </action>
+      </actions>
+      <pv_name>loc://currentstep-$(DID)&lt;VDouble&gt;(1.0)</pv_name>
+      <text>-</text>
+      <x>718</x>
+      <y>2</y>
+      <width>32</width>
+      <height>25</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="16.0">
+        </font>
+      </font>
+      <tooltip>Subtract dI from CURRENT_SP of all selected magnets</tooltip>
+      <border_alarm_sensitive>false</border_alarm_sensitive>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>StepUpBtn</name>
+      <actions>
+        <action type="execute">
+          <description>Increment selected</description>
+          <script file="scripts/StepSelectedUp.py">
+          </script>
+        </action>
+      </actions>
+      <pv_name>loc://currentstep-$(DID)&lt;VDouble&gt;(1.0)</pv_name>
+      <text>+</text>
+      <x>754</x>
+      <y>2</y>
+      <width>32</width>
+      <height>25</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="16.0">
+        </font>
+      </font>
+      <tooltip>Add dI to CURRENT_SP of all selected magnets</tooltip>
+      <border_alarm_sensitive>false</border_alarm_sensitive>
+    </widget>
   </widget>
   <widget type="embedded" version="2.0.0">
     <name>Embedded Display</name>
