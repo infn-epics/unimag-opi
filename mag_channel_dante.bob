@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--Saved on 2026-09-21 14:50:37 by riccardoesposito-->
 <display version="2.0.0">
   <name>MagnetChannel</name>
   <width>740</width>
@@ -194,7 +195,7 @@ else:
   <widget type="group" version="3.0.0">
     <name>Control PS</name>
     <x>370</x>
-    <width>360</width>
+    <width>370</width>
     <height>30</height>
     <style>2</style>
     <rules>
@@ -291,10 +292,10 @@ ScriptUtil.getPrimaryPV(widget).write(val)
         </action>
       </actions>
       <pv_name>$(P):$(R):STATE_SP</pv_name>
-      <text>OFF</text>
+      <text>Standby</text>
       <x>249</x>
       <y>4</y>
-      <width>50</width>
+      <width>60</width>
       <height>20</height>
       <background_color>
         <color name="STOP" red="255" green="0" blue="0">
@@ -325,7 +326,7 @@ ScriptUtil.getPrimaryPV(widget).write(val)
       </actions>
       <pv_name>$(P):$(R):STATE_SP</pv_name>
       <text>Reset</text>
-      <x>309</x>
+      <x>319</x>
       <y>4</y>
       <width>43</width>
       <height>20</height>
