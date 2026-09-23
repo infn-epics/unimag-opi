@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <name>MagSafe</name>
+  <macros>
+    <GROUP>mag</GROUP>
+    <SAFETY_TAG>machine-protection</SAFETY_TAG>
+    <CONFFILE>../../../deploy/values.yaml</CONFFILE>
+    <MAGSAFE_ID>magsafe</MAGSAFE_ID>
+  </macros>
+  <width>780</width>
+  <height>660</height>
+  <widget type="label" version="2.0.0">
+    <name>Title</name>
+    <class>TITLE</class>
+    <text>MagSafe - protected beam-routing magnets</text>
+    <x use_class="true">0</x>
+    <y use_class="true">0</y>
+    <width>780</width>
+    <height>34</height>
+    <font use_class="true">
+      <font name="Header 1" family="Liberation Sans" style="BOLD" size="22.0">
+      </font>
+    </font>
+    <foreground_color use_class="true">
+      <color name="Text" red="0" green="0" blue="0">
+      </color>
+    </foreground_color>
+    <transparent use_class="true">true</transparent>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Standby</name>
+    <actions>
+      <action type="execute">
+        <description>Save and enter standby</description>
+        <script file="scripts/MagSafeStandby.py">
+        </script>
+      </action>
+    </actions>
+    <text>STANDBY</text>
+    <x>20</x>
+    <y>55</y>
+    <width>220</width>
+    <height>45</height>
+    <foreground_color>
+      <color name="White" red="255" green="255" blue="255">
+      </color>
+    </foreground_color>
+    <background_color>
+      <color red="190" green="105" blue="0">
+      </color>
+    </background_color>
+    <tooltip>Save every tagged magnet setpoint and state to CSV and local PVs, set current to zero, then command STANDBY</tooltip>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Resume</name>
+    <actions>
+      <action type="execute">
+        <description>Resume local snapshot</description>
+        <script file="scripts/MagSafeResume.py">
+        </script>
+      </action>
+    </actions>
+    <text>RESUME</text>
+    <x>290</x>
+    <y>55</y>
+    <width>220</width>
+    <height>45</height>
+    <foreground_color>
+      <color name="White" red="255" green="255" blue="255">
+      </color>
+    </foreground_color>
+    <background_color>
+      <color red="0" green="130" blue="60">
+      </color>
+    </background_color>
+    <tooltip>Restore the states and setpoints saved by STANDBY in this Phoebus session</tooltip>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>ResumeFromFile</name>
+    <actions>
+      <action type="open_display">
+        <description>Resume from a saved file</description>
+        <file>restore/restore.bob</file>
+        <macros>
+          <P>$(P)</P>
+          <CONFFILE>$(CONFFILE)</CONFFILE>
+        </macros>
+        <target>window</target>
+      </action>
+    </actions>
+    <text>RESUME FROM FILE</text>
+    <x>560</x>
+    <y>55</y>
+    <width>220</width>
+    <height>45</height>
+    <tooltip>Open the standard restore procedure to load, review and apply a MagSafe CSV snapshot</tooltip>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Status</name>
+    <pv_name>loc://magsafe-$(MAGSAFE_ID):status&lt;VString&gt;("Loading tagged magnets...")</pv_name>
+    <x>230</x>
+    <y>112</y>
+    <width>530</width>
+    <height>70</height>
+    <border_width>1</border_width>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>AllZeroStandby</name>
+    <pv_name>loc://magsafe-$(MAGSAFE_ID):safe&lt;VLong&gt;(0)</pv_name>
+    <x>20</x>
+    <y>107</y>
+    <width>80</width>
+    <height>80</height>
+    <off_color>
+      <color red="230" green="0" blue="0">
+      </color>
+    </off_color>
+    <on_color>
+      <color red="0" green="220" blue="0">
+      </color>
+    </on_color>
+    <tooltip>GREEN only when every tagged magnet has CURRENT_SP and CURRENT_RB within the displayed zero tolerance and STATE_RB is STANDBY. RED otherwise.</tooltip>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>AllZeroStandbyLabel</name>
+    <text>ALL ZERO
+STANDBY</text>
+    <x>105</x>
+    <y>112</y>
+    <width>115</width>
+    <height>36</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>ZeroToleranceLabel</name>
+    <text>Tolerance [A]</text>
+    <x>105</x>
+    <y>160</y>
+    <width>82</width>
+    <height>20</height>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>ZeroTolerance</name>
+    <pv_name>loc://magsafe-$(MAGSAFE_ID):zero-tolerance&lt;VDouble&gt;(1.0)</pv_name>
+    <x>187</x>
+    <y>155</y>
+    <width>38</width>
+    <height>27</height>
+    <precision>2</precision>
+    <horizontal_alignment>1</horizontal_alignment>
+    <actions>
+    </actions>
+    <tooltip>Maximum absolute CURRENT_SP and CURRENT_RB considered zero. Used by the LED and standby procedure.</tooltip>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="group" version="3.0.0">
+    <name>Devices</name>
+    <x>20</x>
+    <y>200</y>
+    <width>760</width>
+    <height>460</height>
+    <style>2</style>
+    <widget type="label" version="2.0.0">
+      <name>HeadName</name>
+      <text>MAGNET</text>
+      <x>5</x>
+      <width>130</width>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="12.0">
+        </font>
+      </font>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>HeadSetpoint</name>
+      <text>SETPOINT</text>
+      <x>145</x>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="12.0">
+        </font>
+      </font>
+      <horizontal_alignment>1</horizontal_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>HeadReadback</name>
+      <text>READBACK</text>
+      <x>255</x>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="12.0">
+        </font>
+      </font>
+      <horizontal_alignment>1</horizontal_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>HeadState</name>
+      <text>STATE</text>
+      <x>365</x>
+      <width>105</width>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="12.0">
+        </font>
+      </font>
+      <horizontal_alignment>1</horizontal_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>HeadSaved</name>
+      <text>SAVED SET</text>
+      <x>480</x>
+      <width>105</width>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="12.0">
+        </font>
+      </font>
+      <horizontal_alignment>1</horizontal_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>HeadSavedState</name>
+      <text>SAVED STATE</text>
+      <x>595</x>
+      <width>120</width>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="12.0">
+        </font>
+      </font>
+      <horizontal_alignment>1</horizontal_alignment>
+    </widget>
+    <widget type="embedded" version="2.0.0">
+      <name>MagSafeDeviceList</name>
+      <file>magsafe-display.bob</file>
+      <y>25</y>
+      <width>758</width>
+      <height>424</height>
+    </widget>
+  </widget>
+</display>

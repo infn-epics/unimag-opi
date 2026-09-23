@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <name>MagSafe Devices</name>
+  <width>760</width>
+  <macros>
+    <GROUP>mag</GROUP>
+  </macros>
+  <scripts>
+    <script file="scripts/UpdateMagSafeLed.py">
+      <pv_name>loc://magsafe-$(MAGSAFE_ID):zero-tolerance&lt;VDouble&gt;(1.0)</pv_name>
+    </script>
+    <script file="scripts/LoadMagSafeDevices.py">
+      <pv_name trigger="false">loc://magsafe-$(MAGSAFE_ID):init&lt;VLong&gt;(0)</pv_name>
+    </script>
+  </scripts>
+</display>

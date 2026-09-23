@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <name>MagSafe Device</name>
+  <width>760</width>
+  <height>30</height>
+  <scripts>
+    <script file="scripts/UpdateMagSafeLed.py">
+      <pv_name>$(P):$(R):CURRENT_SP</pv_name>
+      <pv_name>$(P):$(R):CURRENT_RB</pv_name>
+      <pv_name>$(P):$(R):STATE_RB</pv_name>
+    </script>
+  </scripts>
+  <widget type="label" version="2.0.0">
+    <name>Name</name><text>$(NAME)</text><x>5</x><y>5</y><width>130</width><height>20</height>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>CurrentSetpoint</name><pv_name>$(P):$(R):CURRENT_SP</pv_name><x>145</x><y>3</y><width>100</width><height>24</height><precision>3</precision><horizontal_alignment>1</horizontal_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>CurrentReadback</name><pv_name>$(P):$(R):CURRENT_RB</pv_name><x>255</x><y>3</y><width>100</width><height>24</height><precision>3</precision><horizontal_alignment>1</horizontal_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>State</name><pv_name>$(P):$(R):STATE_RB</pv_name><x>365</x><y>3</y><width>105</width><height>24</height><horizontal_alignment>1</horizontal_alignment>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>SavedSetpoint</name><pv_name>loc://magsafe-$(MAGSAFE_ID):$(P):$(R):SP&lt;VDouble&gt;(0)</pv_name><x>480</x><y>3</y><width>105</width><height>24</height><precision>3</precision><horizontal_alignment>1</horizontal_alignment>
+    <actions></actions><tooltip>Editable setpoint used by RESUME. The CSV file keeps the originally saved value.</tooltip><border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>SavedState</name><pv_name>loc://magsafe-$(MAGSAFE_ID):$(P):$(R):STATE&lt;VString&gt;("-")</pv_name><x>595</x><y>3</y><width>120</width><height>24</height><horizontal_alignment>1</horizontal_alignment>
+  </widget>
+</display>
