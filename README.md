@@ -32,8 +32,22 @@ The status PVs represent the operational state of the magnet channel. Possible v
 - 3 `FAULT` – Magnet has detected a fault condition (alarm high)
 - 4 `EXT_INTLK`  –triggered by external interlock (alarm high)
 - 5 `CONN_FAULT` -triggered by communication errors (alarm high)
+- 6 `SP_NOT_REACHED` | Current setpoint not reached | MINOR |
+- 7 `ST_NOT_REACHED` | State not reached (UNIMAG failure) | MAJOR |
+
 
 - Additional states may be supported depending on IOC implementation
+
+#### UNIMAG Configuration
+
+| Parameter | Description | Default | Units |
+|-----------|-------------|---------|-------|
+| `SET_TOLERANCE` | Current setpoint tolerance | 1.0 | Amperes |
+| `ZERO_TOLERANCE` | Zero current tolerance | 0.5 | Amperes |
+| `SET_TIMEOUT_S` | Setpoint timeout (resets on progress) | 30 | Seconds |
+
+**Important**: The timeout timer resets whenever the power supply makes progress toward the target current.
+
 
 These values are displayed in the status widgets and can be set using the action buttons in the OPI.
 
