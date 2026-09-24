@@ -1,5 +1,8 @@
 from org.csstudio.display.builder.runtime.script import ScriptUtil, PVUtil
+from java.io import FileReader
+from org.yaml.snakeyaml import Yaml
 import time
+import os
 import epik8sutil
 import magapply
 
@@ -33,9 +36,69 @@ def status(widget, message):
 
 
 def tagged_devices(widget):
+    """Return the normal OPI inventory entries whose YAML device has SAFETY_TAG.
+
+    Keep generic epik8sutil.conf_to_dev() unchanged: many legacy OPI scripts
+    expect its objects to contain only the established fields.
+    """
     tag = safety_tag(widget)
+    bases = tagged_bases(widget, tag)
     devices = epik8sutil.conf_to_dev(widget, "ALL", "ALL", "ALL")
-    return [d for d in devices if tag in d.get("TAGS", [])]
+    return [d for d in devices if d["P"] + ":" + d["R"] in bases]
+
+
+def config_path(widget):
+    conffile = widget.getEffectiveMacros().getValue("CONFFILE")
+    if not conffile:
+        raise Exception("CONFFILE macro is not set")
+    display_path = os.path.dirname(
+        widget.getDisplayModel().getUserData(widget.getDisplayModel().USER_DATA_INPUT_FILE))
+    path = display_path + "/" + conffile
+    if os.path.exists(path):
+        return path
+    search_dir = display_path
+    for _ in range(5):
+        search_dir = os.path.dirname(search_dir)
+        if not search_dir:
+            break
+        candidate = search_dir + "/" + conffile
+        if os.path.exists(candidate):
+            return candidate
+    raise Exception("Cannot find configuration file \"" + conffile + "\"")
+
+
+def tagged_bases(widget, tag):
+    """Build P:R keys for tagged YAML devices, applying iocDefaults as conf_to_dev does."""
+    data = Yaml().load(FileReader(config_path(widget)))
+    epics = data.get("epicsConfiguration") or {}
+    iocs = epics.get("iocs") or []
+    if hasattr(iocs, "values"):
+        iocs = list(iocs.values())
+    defaults = data.get("iocDefaults") or {}
+    if defaults:
+        iocs = [epik8sutil._merge_ioc_defaults(defaults, ioc) for ioc in iocs]
+
+    group = widget.getEffectiveMacros().getValue("GROUP") or "mag"
+    bases = set()
+    for ioc in iocs:
+        if ioc.get("devgroup", "") != group:
+            continue
+        prefix = ioc.get("iocprefix", "")
+        root_prefix = ioc.get("iocroot", "")
+        if not prefix:
+            continue
+        for dev in ioc.get("devices", []):
+            tags = dev.get("tags", ioc.get("tags", []))
+            if isinstance(tags, basestring):
+                tags = [tags]
+            if tag not in (tags or []):
+                continue
+            name = dev.get("name", "")
+            if not name:
+                continue
+            root = root_prefix + ":" + name if root_prefix else name
+            bases.add(prefix + ":" + root)
+    return bases
 
 
 def managed_list_name(widget):
