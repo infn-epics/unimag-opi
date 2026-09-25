@@ -7,7 +7,7 @@
   </macros>
   <scripts>
     <script file="scripts/UpdateMagSafeLed.py">
-      <pv_name>loc://magsafe-$(MAGSAFE_ID):zero-tolerance&lt;VDouble&gt;(1.0)</pv_name>
+      <pv_name>loc://magsafe-$(MAGSAFE_ID):zero-tolerance&lt;VDouble&gt;(0.5)</pv_name>
     </script>
     <script file="scripts/LoadMagSafeDevices.py">
       <pv_name trigger="false">loc://magsafe-$(MAGSAFE_ID):init&lt;VLong&gt;(0)</pv_name>

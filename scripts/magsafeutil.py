@@ -8,8 +8,8 @@ import magapply
 
 reload(magapply)
 
-DEFAULT_ZERO_TOLERANCE = 1.0
-ZERO_TIMEOUT_S = 20.0
+DEFAULT_ZERO_TOLERANCE = 0.5
+DEFAULT_ZERO_TIMEOUT_S = 60.0
 POLL_S = 0.2
 
 
@@ -113,6 +113,19 @@ def zero_tolerance(widget):
         return DEFAULT_ZERO_TOLERANCE
 
 
+def zero_timeout_s(widget):
+    try:
+        value = PVUtil.getDouble(PVUtil.createPV(local_name(widget, "zero-timeout"), 10))
+        return value if value > 0 else DEFAULT_ZERO_TIMEOUT_S
+    except Exception:
+        return DEFAULT_ZERO_TIMEOUT_S
+
+
+def resume_file(widget):
+    directory = widget.getEffectiveMacros().getValue("MAGSAFEDIR") or "."
+    return os.path.join(directory, "makesafe-resume.csv")
+
+
 def update_safe_status(widget):
     """GREEN only when every managed magnet is set to zero, reads zero and is in STANDBY."""
     try:
@@ -185,7 +198,9 @@ def save_local(widget, filename, snapshot):
 
 def enter_standby(widget, snapshot):
     """Zero all setpoints, wait as a group, then command STANDBY for every device."""
-    result = {"zeroed": [], "zero_timeout": [], "standby": [], "errors": []}
+    timeout_s = zero_timeout_s(widget)
+    result = {"zeroed": [], "zero_timeout": [], "standby": [], "errors": [],
+              "zero_timeout_s": timeout_s}
     pvcache = {}
 
     def pv(name):
@@ -203,7 +218,7 @@ def enter_standby(widget, snapshot):
             result["errors"].append(d["base"] + " zero: " + str(e))
 
     waiting = list(active)
-    deadline = time.time() + ZERO_TIMEOUT_S
+    deadline = time.time() + timeout_s
     while waiting and time.time() < deadline:
         time.sleep(POLL_S)
         still = []
@@ -238,7 +253,7 @@ def standby_summary(result, total):
            str(total) + " tagged magnets.")
     if result["zero_timeout"]:
         msg += ("\n\nERROR: zero readback was not reached within " +
-                str(int(ZERO_TIMEOUT_S)) + " s; STANDBY was NOT commanded for:\n" +
+                str(int(result["zero_timeout_s"])) + " s; STANDBY was NOT commanded for:\n" +
                 ", ".join(result["zero_timeout"]))
     if result["errors"]:
         msg += "\n\nErrors:\n" + "\n".join(result["errors"])
