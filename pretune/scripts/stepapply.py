@@ -28,18 +28,23 @@ def selected_devices(did, field):
     return devices
 
 
+def _settings(did):
+    tolerance = PVUtil.getDouble(PVUtil.createPV("loc://tolerance_" + did, 10))
+    return {"tolerance": tolerance,
+            "timeout": magapply.read_timeout("loc://timeout_" + did),
+            "zero_tolerance": magapply.read_zero_tolerance("loc://zerotol_" + did)}
+
+
 def run(widget, field, counter_delta=0, retry=False):
     """counter_delta: moved on the step counter (the widget's primary PV) once applied.
     retry: redo only the rows that did not reach their target, re-sending the current."""
     did = pretuneutil.window_id(widget)
-    tolerance = PVUtil.getDouble(PVUtil.createPV("loc://tolerance_" + did, 10))
-
     devices = selected_devices(did, field)
-    result = magapply.apply(devices, tolerance, retry=retry, force_current=True)
+    result = magapply.apply(devices, retry=retry, force_current=True, **_settings(did))
 
     text = magapply.summary(result, len(devices))
     print(text)
-    if result["state_timeout"] or result["errors"]:
+    if magapply.incomplete(result):
         ScriptUtil.showMessageDialog(widget, text)
 
     if counter_delta:
@@ -48,14 +53,13 @@ def run(widget, field, counter_delta=0, retry=False):
 
 
 def set_states(widget):
-    """"Set Selected States": states only. Rows without a state to restore are left alone."""
+    """"Set Selected States": states only (ON -> OFF still brings the current to 0 first).
+    Rows without a state to restore are left alone."""
     did = pretuneutil.window_id(widget)
-    for d in selected_devices(did, None):
-        if d["state"] not in magapply.RESTORABLE_STATES:
-            print("SKIP " + d["base"] + " (no state to restore)")
-            continue
-        try:
-            PVUtil.createPV(d["base"] + ":STATE_SP", 100).write(d["state"])
-            print("APPLY " + d["base"] + ":STATE_SP = " + d["state"])
-        except Exception as e:
-            print("## Error applying state for " + d["base"] + ": " + str(e))
+    devices = selected_devices(did, None)
+    result = magapply.apply(devices, set_current=False, **_settings(did))
+
+    text = magapply.summary(result, len(devices))
+    print(text)
+    if magapply.incomplete(result):
+        ScriptUtil.showMessageDialog(widget, text)

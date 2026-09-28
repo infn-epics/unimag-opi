@@ -22,7 +22,7 @@
         <exp bool_exp="pvStr0==pvStr1">
           <value>false</value>
         </exp>
-        <exp bool_exp="pvStr0=='OFF' &amp;&amp; pvStr1=='STANDBY'">
+        <exp bool_exp="(pvStr0=='OFF' || pvStr0=='STANDBY') &amp;&amp; (pvStr1=='OFF' || pvStr1=='STANDBY')">
           <value>false</value>
         </exp>
         <exp bool_exp="true">
@@ -196,7 +196,7 @@
               </color>
             </value>
           </exp>
-          <exp bool_exp="pvStr0=='OFF' &amp;&amp; pvStr1=='STANDBY'">
+          <exp bool_exp="(pvStr0=='OFF' || pvStr0=='STANDBY') &amp;&amp; (pvStr1=='OFF' || pvStr1=='STANDBY')">
             <value>
               <color name="OK" red="0" green="255" blue="0">
               </color>

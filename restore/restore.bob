@@ -66,6 +66,46 @@
     <height>28</height>
     <tooltip>Current tolerance (A): the delta is green and the LED can be green when the actual current is within +/- this value of the restore set</tooltip>
   </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_Timeout</name>
+    <text>Timeout (s)</text>
+    <x>175</x>
+    <y>88</y>
+    <width>90</width>
+    <font>
+      <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Entry Timeout</name>
+    <pv_name>loc://restore-timeout-$(DID)&lt;VDouble&gt;(30)</pv_name>
+    <x>265</x>
+    <y>84</y>
+    <width>60</width>
+    <height>28</height>
+    <tooltip>Time (s) allowed to each phase of Restore/Retry (current to 0 before ON-&gt;OFF, state, current within tolerance) before the power supply is reported as not completed</tooltip>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_ZeroTol</name>
+    <text>Zero Tol.</text>
+    <x>340</x>
+    <y>88</y>
+    <width>75</width>
+    <font>
+      <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Entry ZeroTol</name>
+    <pv_name>loc://restore-zerotol-$(DID)&lt;VDouble&gt;(0.5)</pv_name>
+    <x>415</x>
+    <y>84</y>
+    <width>60</width>
+    <height>28</height>
+    <tooltip>Zero tolerance (A): before an ON power supply is switched OFF/STANDBY its current is set to 0, and the state is changed only once |CURRENT_RB| is within this value</tooltip>
+  </widget>
   <widget type="action_button" version="3.0.0">
     <name>btnRetry</name>
     <actions>
@@ -75,12 +115,14 @@
         </script>
       </action>
     </actions>
+    <pv_name>loc://restore-tol-$(DID)</pv_name>
     <text>Retry</text>
     <x>520</x>
     <y>82</y>
     <width>110</width>
     <height>30</height>
     <tooltip>Redo the restore, state first then current, for the checked power supplies whose LED is not green</tooltip>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="action_button" version="3.0.0">
     <name>btnRestore</name>
@@ -91,12 +133,14 @@
         </script>
       </action>
     </actions>
+    <pv_name>loc://restore-tol-$(DID)</pv_name>
     <text>Restore Selected</text>
     <x>640</x>
     <y>82</y>
     <width>150</width>
     <height>30</height>
     <tooltip>Push the restore set and state of every checked power supply to hardware (STATE first, then CURRENT)</tooltip>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="group" version="3.0.0">
     <name>DataSet</name>

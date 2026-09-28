@@ -306,6 +306,45 @@
     <width>20</width>
     <tooltip>Show only power supplies whose current or state differs from their desired target</tooltip>
   </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_Timeout</name>
+    <text>Timeout (s)</text>
+    <x>410</x>
+    <y>115</y>
+    <width>90</width>
+    <font>
+      <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Entry Timeout</name>
+    <pv_name>loc://timeout_$(DID)&lt;VDouble&gt;(30)</pv_name>
+    <x>500</x>
+    <y>112</y>
+    <width>60</width>
+    <height>25</height>
+    <tooltip>Time (s) allowed to each phase of a step/Retry (current to 0 before ON-&gt;OFF, state, current within tolerance) before the power supply is reported as not completed</tooltip>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_ZeroTol</name>
+    <text>Zero Tol.</text>
+    <x>680</x>
+    <y>115</y>
+    <width>80</width>
+    <font>
+      <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Entry ZeroTol</name>
+    <pv_name>loc://zerotol_$(DID)&lt;VDouble&gt;(0.5)</pv_name>
+    <x>760</x>
+    <y>112</y>
+    <height>25</height>
+    <tooltip>Zero tolerance (A): before an ON power supply is switched OFF/STANDBY its current is set to 0, and the state is changed only once |CURRENT_RB| is within this value</tooltip>
+  </widget>
   <widget type="action_button" version="3.0.0">
     <name>btnRetry</name>
     <actions>
@@ -315,6 +354,7 @@
         </script>
       </action>
     </actions>
+    <pv_name>loc://tolerance_$(DID)</pv_name>
     <text>Retry</text>
     <x>10</x>
     <y>112</y>
@@ -332,6 +372,7 @@
         </script>
       </action>
     </actions>
+    <pv_name>loc://tolerance_$(DID)</pv_name>
     <text>Set Selected States</text>
     <x>925</x>
     <y>80</y>

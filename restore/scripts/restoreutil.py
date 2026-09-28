@@ -1,4 +1,5 @@
 from org.csstudio.display.builder.runtime.script import ScriptUtil, PVUtil
+import re
 import epik8sutil
 import magapply
 reload(magapply)  # pick up edits without restarting Phoebus
@@ -16,8 +17,26 @@ RESTORABLE_STATES = magapply.RESTORABLE_STATES
 DAT_STATE_CODES = {"1": "OFF", "2": "ON"}
 
 
-def window_id(widget):
-    return widget.getEffectiveMacros().getValue("DID") or "0"
+def window_id(widget, pv=None):
+    """$(DID) of this window. Inside scripts getEffectiveMacros() does not reliably provide DID
+    (see Scripts/SelectionAll.py), while $(DID) is always resolved in a PV name: so it is taken
+    from `pv` (a script trigger PV) or from the widget's own pv_name, both named ...-$(DID) or
+    ..._$(DID). Every script of the window must agree with the PV names used in the .bob files."""
+    if pv is None:
+        try:
+            pv = ScriptUtil.getPrimaryPV(widget)
+        except Exception:
+            pv = None
+    if pv is not None:
+        name = pv.getName().split("<")[0].split("(")[0]
+        did = re.split("[-_]", name)[-1]
+        if did and "$" not in did:
+            return did
+    did = widget.getEffectiveMacros().getValue("DID")
+    if did:
+        return did
+    print("## Cannot determine the window id (DID): local PVs will not match the display")
+    return "0"
 
 
 def local_name(did, base, field):
@@ -34,6 +53,14 @@ def status_name(did):
 
 def tolerance_name(did):
     return "loc://restore-tol-" + did
+
+
+def timeout_name(did):
+    return "loc://restore-timeout-" + did
+
+
+def zero_tolerance_name(did):
+    return "loc://restore-zerotol-" + did
 
 
 def read_csv(filename):
@@ -140,7 +167,14 @@ def run(widget, retry):
     if not retry and not ScriptUtil.showConfirmationDialog(widget, "Restore " + str(len(devices)) + " power supplies?"):
         return
 
-    tolerance = PVUtil.getDouble(PVUtil.createPV(tolerance_name(window_id(widget)), 10))
-    result = magapply.apply(devices, tolerance, retry=retry, force_current=retry)
+    did = window_id(widget)
+    tolerance = PVUtil.getDouble(PVUtil.createPV(tolerance_name(did), 10))
+    timeout = magapply.read_timeout(timeout_name(did))
+    zero_tolerance = magapply.read_zero_tolerance(zero_tolerance_name(did))
+    PVUtil.createPV(status_name(did), 10).write(
+        ("Retry" if retry else "Restore") + " running: DID=" + did + " tolerance=" + str(tolerance) +
+        " zero tol.=" + str(zero_tolerance) + " timeout=" + str(timeout) + " s")
+    result = magapply.apply(devices, tolerance, retry=retry, force_current=retry, timeout=timeout,
+                            zero_tolerance=zero_tolerance)
     prefix = "Retry complete. " if retry else "Restore complete. "
     ScriptUtil.showMessageDialog(widget, prefix + magapply.summary(result, len(devices)))

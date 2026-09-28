@@ -33,7 +33,7 @@ def clear_rows():
         return False
 
 # logger = ScriptUtil.getLogger()
-did = pretuneutil.window_id(widget)
+did = pretuneutil.window_id(widget, pvs[0])
 bases = []
 device_prefix = widget.getEffectiveMacros().getValue("P")
 

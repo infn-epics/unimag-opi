@@ -47,7 +47,7 @@ def main():
     if not name:
         return  # initial value, or the reset done below
 
-    did = restoreutil.window_id(widget)
+    did = restoreutil.window_id(widget, pvs[0])
     status = PVUtil.createPV(restoreutil.status_name(did), 10)
     print("Loading: " + name)
 

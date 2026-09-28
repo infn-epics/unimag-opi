@@ -2,7 +2,7 @@ from org.csstudio.display.builder.runtime.script import PVUtil
 import pretuneutil
 reload(pretuneutil)  # pick up edits without restarting Phoebus
 
-did = pretuneutil.window_id(widget)
+did = pretuneutil.window_id(widget, pvs[0])
 
 counter = PVUtil.getLong(pvs[0])
 

@@ -285,7 +285,7 @@ def resume(widget):
             "Resume the saved setpoints and states of " + str(len(snapshot)) + " tagged magnets?"):
         return
     status(widget, "Resuming " + str(len(snapshot)) + " tagged magnets...")
-    result = magapply.apply(snapshot, zero_tolerance(widget))
+    result = magapply.apply(snapshot, zero_tolerance(widget), zero_tolerance=zero_tolerance(widget))
     update_safe_status(widget)
     message = "MagSafe resume complete. " + magapply.summary(result, len(snapshot))
     status(widget, message.replace("\n", "  "))
