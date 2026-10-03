@@ -69,7 +69,7 @@ def config_path(widget):
 
 def tagged_bases(widget, tag):
     """Build P:R keys for tagged YAML devices, applying iocDefaults as conf_to_dev does."""
-    data = Yaml().load(FileReader(config_path(widget)))
+    data = epik8sutil.load_conf(config_path(widget))
     epics = data.get("epicsConfiguration") or {}
     iocs = epics.get("iocs") or []
     if hasattr(iocs, "values"):
