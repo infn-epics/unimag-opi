@@ -2,6 +2,7 @@ from org.csstudio.display.builder.runtime.script import ScriptUtil, PVUtil
 from confutil import csv_to_list
 from org.csstudio.display.builder.model import WidgetFactory
 from org.phoebus.pv import PVPool
+import epik8sutil
 import os
 import time
 
@@ -30,7 +31,7 @@ for pvr in lpvs:
 
     if name.startswith("loc://selection:"):
         if remote.read().getValue()==1:
-            pv_prefix=name.replace("loc://selection:","")
+            pv_prefix=epik8sutil.loc_unsafe(name.replace("loc://selection:",""))
             ## Name is the last part of rname till the first :
             
             prefix,identifier=pv_prefix.rsplit(":",1)

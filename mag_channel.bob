@@ -86,7 +86,7 @@ $(actions)</tooltip>
     </widget>
     <widget type="checkbox" version="2.0.0">
       <name>Check Box</name>
-      <pv_name>loc://selection:$(P):$(R)&lt;VLong&gt;(0)</pv_name>
+      <pv_name>loc://selection:$(P):$(RL)&lt;VLong&gt;(0)</pv_name>
       <label></label>
       <x>89</x>
       <y>2</y>

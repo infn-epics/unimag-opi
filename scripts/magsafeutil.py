@@ -28,7 +28,7 @@ def local_name(widget, suffix):
 
 
 def device_local_name(widget, base, field):
-    return local_name(widget, base + ":" + field)
+    return local_name(widget, epik8sutil.loc_safe(base) + ":" + field)
 
 
 def status(widget, message):

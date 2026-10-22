@@ -1,5 +1,6 @@
 from org.csstudio.display.builder.runtime.script import ScriptUtil, PVUtil
 from org.phoebus.pv import PVPool
+import epik8sutil
 import time
 
 # "-" / "+" buttons of mag_dynamic.bob: add or subtract the quantity typed in the step entry
@@ -28,7 +29,7 @@ def selected_bases():
                 continue
         except Exception:
             continue
-        base = name.replace("loc://selection:", "")
+        base = epik8sutil.loc_unsafe(name.replace("loc://selection:", ""))
         if "<" in base:
             base = base[:base.index("<")]
         bases.append(base)

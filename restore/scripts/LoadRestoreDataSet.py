@@ -21,6 +21,7 @@ def createInstance(y, macros):
     embedded.setPropertyValue("height", ROW_HEIGHT)
     for macro, value in macros.items():
         embedded.getPropertyValue("macros").add(macro, value)
+    embedded.getPropertyValue("macros").add("RL", restoreutil.epik8sutil.loc_safe(macros["R"]))
     embedded.setPropertyValue("file", "restore-ele.bob")
     return embedded
 

@@ -40,7 +40,7 @@ def window_id(widget, pv=None):
 
 
 def local_name(did, base, field):
-    return "loc://restore-" + did + ":" + base + ":" + field
+    return "loc://restore-" + did + ":" + epik8sutil.loc_safe(base) + ":" + field
 
 
 def list_name(did):

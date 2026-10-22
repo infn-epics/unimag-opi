@@ -1,5 +1,6 @@
 from org.csstudio.display.builder.runtime.script import PVUtil, ScriptUtil
 import re
+import epik8sutil
 
 # Every local PV of a pretune window is named  loc://pretune-<DID>:<P>:<R>:<FIELD>
 # (DID keeps windows independent: a closed display, or a previously loaded file, never leaks into
@@ -30,7 +31,7 @@ def window_id(widget, pv=None):
 
 
 def local_name(did, base, field):
-    return "loc://pretune-" + did + ":" + base + ":" + field
+    return "loc://pretune-" + did + ":" + epik8sutil.loc_safe(base) + ":" + field
 
 
 def list_name(did):

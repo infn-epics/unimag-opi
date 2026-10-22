@@ -23,10 +23,10 @@
     <name>State</name><pv_name>$(P):$(R):STATE_RB</pv_name><x>365</x><y>3</y><width>105</width><height>24</height><horizontal_alignment>1</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>SavedSetpoint</name><pv_name>loc://magsafe-$(MAGSAFE_ID):$(P):$(R):SP&lt;VDouble&gt;(0)</pv_name><x>480</x><y>3</y><width>105</width><height>24</height><precision>3</precision><horizontal_alignment>1</horizontal_alignment>
+    <name>SavedSetpoint</name><pv_name>loc://magsafe-$(MAGSAFE_ID):$(P):$(RL):SP&lt;VDouble&gt;(0)</pv_name><x>480</x><y>3</y><width>105</width><height>24</height><precision>3</precision><horizontal_alignment>1</horizontal_alignment>
     <actions></actions><tooltip>Editable setpoint used by RESUME. The CSV file keeps the originally saved value.</tooltip><border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>SavedState</name><pv_name>loc://magsafe-$(MAGSAFE_ID):$(P):$(R):STATE&lt;VString&gt;("-")</pv_name><x>595</x><y>3</y><width>120</width><height>24</height><horizontal_alignment>1</horizontal_alignment>
+    <name>SavedState</name><pv_name>loc://magsafe-$(MAGSAFE_ID):$(P):$(RL):STATE&lt;VString&gt;("-")</pv_name><x>595</x><y>3</y><width>120</width><height>24</height><horizontal_alignment>1</horizontal_alignment>
   </widget>
 </display>

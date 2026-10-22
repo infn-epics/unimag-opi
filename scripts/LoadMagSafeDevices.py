@@ -19,6 +19,7 @@ def create_instance(y, dev, did):
     embedded.getPropertyValue("macros").add("NAME", dev["NAME"])
     embedded.getPropertyValue("macros").add("P", dev["P"])
     embedded.getPropertyValue("macros").add("R", dev["R"])
+    embedded.getPropertyValue("macros").add("RL", magsafeutil.epik8sutil.loc_safe(dev["R"]))
     embedded.getPropertyValue("macros").add("SID", did)
     embedded.getPropertyValue("macros").add("MAGSAFE_ID", did)
     embedded.setPropertyValue("file", "magsafe-ele.bob")

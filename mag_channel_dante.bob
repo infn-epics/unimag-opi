@@ -28,7 +28,7 @@
             </color>
           </value>
         </exp>
-        <pv_name>loc://selection:$(P):$(R)</pv_name>
+        <pv_name>loc://selection:$(P):$(RL)</pv_name>
       </rule>
     </rules>
     <widget type="textupdate" version="2.0.0">
@@ -105,7 +105,7 @@ $(actions)</tooltip>
     </widget>
     <widget type="checkbox" version="2.0.0">
       <name>Check Box</name>
-      <pv_name>loc://selection:$(P):$(R)&lt;VLong&gt;(0)</pv_name>
+      <pv_name>loc://selection:$(P):$(RL)&lt;VLong&gt;(0)</pv_name>
       <label></label>
       <x>84</x>
       <y>2</y>
@@ -145,7 +145,7 @@ else:
         <exp bool_exp="pvInt0==1">
           <value>false</value>
         </exp>
-        <pv_name>loc://selection:$(P):$(R)</pv_name>
+        <pv_name>loc://selection:$(P):$(RL)</pv_name>
       </rule>
     </rules>
     <widget type="textentry" version="3.0.0">
@@ -173,7 +173,7 @@ else:
         <target>window</target>
       </action>
     </actions>
-    <pv_name>loc://OPI:$(P):$(R)&lt;VString&gt;($(OPI))</pv_name>
+    <pv_name>loc://OPI:$(P):$(RL)&lt;VString&gt;($(OPI))</pv_name>
     <text>Ctrl</text>
     <x>470</x>
     <y>6</y>
@@ -206,12 +206,12 @@ else:
         <exp bool_exp="pvInt0==0">
           <value>false</value>
         </exp>
-        <pv_name>loc://selection:$(P):$(R)</pv_name>
+        <pv_name>loc://selection:$(P):$(RL)</pv_name>
       </rule>
     </rules>
     <widget type="textentry" version="3.0.0">
       <name>entryCurrent_1</name>
-      <pv_name>loc://loc:$(P):$(R):CURRENT_SP</pv_name>
+      <pv_name>loc://loc:$(P):$(RL):CURRENT_SP</pv_name>
       <x>4</x>
       <y>2</y>
       <width>61</width>
@@ -235,7 +235,7 @@ P = macros.getValue("P")
 R = macros.getValue("R")
 
 # Create the local PV name for the setpoint
-local_pv_name = "loc://loc:" + P + ":" + R + ":CURRENT_SP"
+local_pv_name = "loc://loc:" + P + ":" + macros.getValue("RL") + ":CURRENT_SP"
 pl = PVUtil.createPV(local_pv_name, 100)
 
 # Read the value from the local PV

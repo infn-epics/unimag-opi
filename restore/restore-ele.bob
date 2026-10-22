@@ -5,7 +5,7 @@
   <height>30</height>
   <widget type="checkbox" version="2.0.0">
     <name>chkApply</name>
-    <pv_name>loc://restore-$(RID):$(P):$(R):enabled&lt;VLong&gt;(1)</pv_name>
+    <pv_name>loc://restore-$(RID):$(P):$(RL):enabled&lt;VLong&gt;(1)</pv_name>
     <label></label>
     <x>5</x>
     <y>5</y>
@@ -59,7 +59,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>RestoreSet</name>
-    <pv_name>loc://restore-$(RID):$(P):$(R):SP&lt;VDouble&gt;(0)</pv_name>
+    <pv_name>loc://restore-$(RID):$(P):$(RL):SP&lt;VDouble&gt;(0)</pv_name>
     <x>305</x>
     <y>3</y>
     <width>75</width>
@@ -73,7 +73,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>DeltaSet</name>
-    <pv_name>=('loc://restore-$(RID):$(P):$(R):SP'-'$(P):$(R):CURRENT_SP')</pv_name>
+    <pv_name>=('loc://restore-$(RID):$(P):$(RL):SP'-'$(P):$(R):CURRENT_SP')</pv_name>
     <x>385</x>
     <y>3</y>
     <width>70</width>
@@ -96,7 +96,7 @@
             </color>
           </value>
         </exp>
-        <pv_name>=('loc://restore-$(RID):$(P):$(R):SP'-'$(P):$(R):CURRENT_SP')</pv_name>
+        <pv_name>=('loc://restore-$(RID):$(P):$(RL):SP'-'$(P):$(R):CURRENT_SP')</pv_name>
         <pv_name>loc://restore-tol-$(RID)&lt;VDouble&gt;(0.1)</pv_name>
       </rule>
     </rules>
@@ -118,7 +118,7 @@
   </widget>
   <widget type="combo" version="2.0.0">
     <name>RestoreState</name>
-    <pv_name>loc://restore-$(RID):$(P):$(R):STATE_SP&lt;VString&gt;("")</pv_name>
+    <pv_name>loc://restore-$(RID):$(P):$(RL):STATE_SP&lt;VString&gt;("")</pv_name>
     <items>
       <item>ON</item>
       <item>STANDBY</item>
@@ -152,7 +152,7 @@
         <exp bool_exp="true">
           <value>DIFF</value>
         </exp>
-        <pv_name>loc://restore-$(RID):$(P):$(R):STATE_SP&lt;VString&gt;("")</pv_name>
+        <pv_name>loc://restore-$(RID):$(P):$(RL):STATE_SP&lt;VString&gt;("")</pv_name>
         <pv_name>$(P):$(R):STATE_RB</pv_name>
       </rule>
       <rule name="StateColor" prop_id="background_color" out_exp="false">
@@ -174,7 +174,7 @@
             </color>
           </value>
         </exp>
-        <pv_name>loc://restore-$(RID):$(P):$(R):STATE_SP&lt;VString&gt;("")</pv_name>
+        <pv_name>loc://restore-$(RID):$(P):$(RL):STATE_SP&lt;VString&gt;("")</pv_name>
         <pv_name>$(P):$(R):STATE_RB</pv_name>
       </rule>
     </rules>
@@ -182,7 +182,7 @@
   </widget>
   <widget type="led" version="2.0.0">
     <name>ReachedLED</name>
-    <pv_name>loc://restore-$(RID):$(P):$(R):reached&lt;VLong&gt;(0)</pv_name>
+    <pv_name>loc://restore-$(RID):$(P):$(RL):reached&lt;VLong&gt;(0)</pv_name>
     <x>695</x>
     <y>5</y>
     <rules>
@@ -199,9 +199,9 @@
             </color>
           </value>
         </exp>
-        <pv_name>=('loc://restore-$(RID):$(P):$(R):SP'-'$(P):$(R):CURRENT_RB')</pv_name>
+        <pv_name>=('loc://restore-$(RID):$(P):$(RL):SP'-'$(P):$(R):CURRENT_RB')</pv_name>
         <pv_name>loc://restore-tol-$(RID)&lt;VDouble&gt;(0.1)</pv_name>
-        <pv_name>loc://restore-$(RID):$(P):$(R):STATE_SP&lt;VString&gt;("")</pv_name>
+        <pv_name>loc://restore-$(RID):$(P):$(RL):STATE_SP&lt;VString&gt;("")</pv_name>
         <pv_name>$(P):$(R):STATE_RB</pv_name>
       </rule>
       <rule name="ReachedOff" prop_id="off_color" out_exp="false">
@@ -217,9 +217,9 @@
             </color>
           </value>
         </exp>
-        <pv_name>=('loc://restore-$(RID):$(P):$(R):SP'-'$(P):$(R):CURRENT_RB')</pv_name>
+        <pv_name>=('loc://restore-$(RID):$(P):$(RL):SP'-'$(P):$(R):CURRENT_RB')</pv_name>
         <pv_name>loc://restore-tol-$(RID)&lt;VDouble&gt;(0.1)</pv_name>
-        <pv_name>loc://restore-$(RID):$(P):$(R):STATE_SP&lt;VString&gt;("")</pv_name>
+        <pv_name>loc://restore-$(RID):$(P):$(RL):STATE_SP&lt;VString&gt;("")</pv_name>
         <pv_name>$(P):$(R):STATE_RB</pv_name>
       </rule>
     </rules>

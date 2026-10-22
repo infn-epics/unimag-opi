@@ -1,5 +1,6 @@
 from org.csstudio.display.builder.runtime.script import ScriptUtil, PVUtil
 from org.phoebus.pv import PVPool
+import epik8sutil
 import time
 
 def _get_pv_refs():
@@ -21,7 +22,7 @@ def reset_selected():
 
         if name.startswith("loc://selection:"):
             if selection_pv.read().getValue() == 1:
-                pv_prefix = name.replace("loc://selection:", "")
+                pv_prefix = epik8sutil.loc_unsafe(name.replace("loc://selection:", ""))
                 prefix, identifier = pv_prefix.rsplit(":", 1)
                 try:
                     state_sp_pv = PVUtil.createPV(pv_prefix + ":STATE_SP", 100)
