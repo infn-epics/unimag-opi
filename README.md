@@ -45,8 +45,30 @@ The status PVs represent the operational state of the magnet channel. Possible v
 | `SET_TOLERANCE` | Current setpoint tolerance | 1.0 | Amperes |
 | `ZERO_TOLERANCE` | Zero current tolerance | 0.5 | Amperes |
 | `SET_TIMEOUT_S` | Setpoint timeout (resets on progress) | 30 | Seconds |
+| `RETRY` | Number of times a command (setpoint, state) is sent again when not applied | 3 | - |
 
 **Important**: The timeout timer resets whenever the power supply makes progress toward the target current.
+
+#### UNIMAG State Machine (`STATE_SM`)
+
+IOCs that verify and retry their commands publish what the power supply is
+doing in `$(P):$(R):STATE_SM`, with the retries of the current command in
+`$(P):$(R):RETRY_COUNT`:
+
+| Value | State | Meaning | Severity |
+|-------|-------|---------|----------|
+| 0 | `READY` | Idle, last command done | |
+| 1 | `GOTOSET` | Going to the current setpoint (within `SET_TOLERANCE`) | |
+| 2 | `GOTOSTATE` | Going to the commanded state | |
+| 3 | `GOZERO` | Going to zero current (within `ZERO_TOLERANCE`) | |
+| 4 | `GOPOS` | Changing polarity to positive | |
+| 5 | `GONEG` | Changing polarity to negative | |
+| 6 | `SPNOTSET` | Setpoint not reached after `RETRY` retries (`STATE_RB` = `SP_NOT_REACHED`) | MINOR |
+| 7 | `STATENOTSET` | State not reached after `RETRY` retries (`STATE_RB` = `ST_NOT_REACHED`) | MAJOR |
+
+A command not applied within `SET_TIMEOUT_S` is sent again up to `RETRY`
+times. `SPNOTSET` / `STATENOTSET` stay until the next command; `STATE_SP` =
+`RESET` interrupts the retries and brings `STATE_SM` back to `READY`.
 
 
 These values are displayed in the status widgets and can be set using the action buttons in the OPI.
