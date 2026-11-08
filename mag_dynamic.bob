@@ -35,17 +35,9 @@
     <widget type="action_button" version="3.0.0">
       <name>RestoreBtn</name>
       <actions>
-        <action type="open_display">
-          <description>Restore snapshot</description>
-          <file>restore/restore.bob</file>
-          <macros>
-            <P>$(P)</P>
-            <CONFFILE>$(CONFFILE)</CONFFILE>
-            <GROUP>mag</GROUP>
-            <FACILITY>$(FACILITY=ALL)</FACILITY>
-            <MAGNET_SOURCE_ID>$(DID)</MAGNET_SOURCE_ID>
-          </macros>
-          <target>window</target>
+        <action type="execute">
+          <description>Open filtered magnet dataset</description>
+          <script file="scripts/OpenMagDataset.py"/>
         </action>
       </actions>
       <text>Restore Snapshot</text>
@@ -313,17 +305,9 @@
     <widget type="action_button" version="3.0.0">
       <name>Action Button</name>
       <actions>
-        <action type="open_display">
-          <description>Preture</description>
-          <file>pretune/pretune.bob</file>
-          <macros>
-            <P>$(P)</P>
-            <CONFFILE>$(CONFFILE)</CONFFILE>
-            <GROUP>mag</GROUP>
-            <FACILITY>$(FACILITY=ALL)</FACILITY>
-            <MAGNET_SOURCE_ID>$(DID)</MAGNET_SOURCE_ID>
-          </macros>
-          <target>window</target>
+        <action type="execute">
+          <description>Open filtered magnet dataset</description>
+          <script file="scripts/OpenMagDataset.py"/>
         </action>
       </actions>
       <x>699</x>

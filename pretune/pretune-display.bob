@@ -19,4 +19,9 @@
     <visible>false</visible>
     <transparent>true</transparent>
   </widget>
+  <widget type="label" version="2.0.0">
+    <name>MagnetSourceId</name>
+    <text>$(MAGNET_SOURCE_ID)</text>
+    <visible>false</visible>
+  </widget>
 </display>

@@ -10,4 +10,9 @@
       <pv_name>loc://restorefile-$(DID)&lt;VString&gt;</pv_name>
     </script>
   </scripts>
+  <widget type="label" version="2.0.0">
+    <name>MagnetSourceId</name>
+    <text>$(MAGNET_SOURCE_ID)</text>
+    <visible>false</visible>
+  </widget>
 </display>
