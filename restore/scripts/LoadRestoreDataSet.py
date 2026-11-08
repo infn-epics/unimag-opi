@@ -1,11 +1,12 @@
 from org.csstudio.display.builder.runtime.script import ScriptUtil, PVUtil
 from org.csstudio.display.builder.model import WidgetFactory
 import restoreutil
+import magselection
 reload(restoreutil)  # pick up edits without restarting Phoebus
 
 # Triggered by the file selector's local PV (pvs[0]) holding the chosen file path, the same
 # way pretune loads its datasets. One row (restore-ele.bob) is created for every device in the
-# file, whether or not it is part of the list shown in mag_dynamic.bob.
+# file that is also in the source mag_dynamic.bob selection.
 
 ROW_WIDTH  = 760
 ROW_HEIGHT = 30
@@ -50,18 +51,18 @@ def main():
 
     did = restoreutil.window_id(widget, pvs[0])
     status = PVUtil.createPV(restoreutil.status_name(did), 10)
+    PVUtil.createPV(restoreutil.list_name(did), 10).write("")
     print("Loading: " + name)
 
     try:
         devices, unknown = restoreutil.read_file(name, widget)
-        if not devices:
-            status.write("No devices found in " + name)
-            return
+        allowed = magselection.visible_bases(widget, did)
 
         if not clear_rows():
             status.write("Cannot replace the loaded file: close and reopen this display")
             return
 
+        skipped = []
         bases = []
         for d in devices:
             identifier = d.get("Name", "")
@@ -79,6 +80,9 @@ def main():
             if state not in restoreutil.RESTORABLE_STATES:
                 state = ""
             base = prefix + ":" + identifier
+            if base not in allowed:
+                skipped.append(base)
+                continue
 
             y = len(bases) * (ROW_HEIGHT + INTERLINE)
             widget.runtimeChildren().addChild(
@@ -93,11 +97,18 @@ def main():
         PVUtil.createPV(restoreutil.list_name(did), 10).write("\n".join(bases))
 
         msg = "Loaded " + str(len(bases)) + " devices from " + name
+        if not bases:
+            msg = "No magnets from the file are in the current Zone, Type and Model selection"
         if unknown:
             msg += "   SKIPPED " + str(len(unknown)) + ": " + ", ".join(unknown[:5])
             if len(unknown) > 5:
                 msg += ", ..."
         status.write(msg)
+        notice = magselection.skipped_message(skipped, 'dataset')
+        if notice:
+            ScriptUtil.showMessageDialog(widget, notice)
+        elif not bases:
+            ScriptUtil.showMessageDialog(widget, msg)
     except Exception as e:
         status.write("Cannot load " + name + ": " + str(e))
     finally:

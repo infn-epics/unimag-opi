@@ -2,6 +2,7 @@ from org.csstudio.display.builder.runtime.script import ScriptUtil, PVUtil
 import re
 import epik8sutil
 import magapply
+import magselection
 reload(magapply)  # pick up edits without restarting Phoebus
 
 # Shared by the restore scripts.
@@ -29,9 +30,9 @@ def window_id(widget, pv=None):
             pv = None
     if pv is not None:
         name = pv.getName().split("<")[0].split("(")[0]
-        did = re.split("[-_]", name)[-1]
-        if did and "$" not in did:
-            return did
+        match = re.match(r"loc://restore(?:file|[-](?:status|tol|timeout|zerotol|list))[-](.+)$", name)
+        if match and "$" not in match.group(1):
+            return match.group(1)
     did = widget.getEffectiveMacros().getValue("DID")
     if did:
         return did
@@ -160,14 +161,24 @@ def run(widget, retry):
     """Restore Selected (retry=False), or redo the checked rows that have not reached their
     restore set yet (retry=True). State first, then current: see magapply.apply."""
     devices = selected_devices(widget)
+    did = window_id(widget)
+    try:
+        allowed = magselection.visible_bases(widget, did)
+    except Exception as error:
+        ScriptUtil.showMessageDialog(widget, str(error) + ". No magnets were restored.")
+        return
+    skipped = [d['base'] for d in devices if d['base'] not in allowed]
+    devices = [d for d in devices if d['base'] in allowed]
+    notice = magselection.skipped_message(skipped, 'selected')
+    if notice:
+        ScriptUtil.showMessageDialog(widget, notice)
     if not devices:
-        ScriptUtil.showMessageDialog(widget, "No power supply selected: load a file and check at least one row.")
+        ScriptUtil.showMessageDialog(widget, "No magnets are both selected in this dataset and visible in the source magnet window. Nothing will be restored.")
         return
 
     if not retry and not ScriptUtil.showConfirmationDialog(widget, "Restore " + str(len(devices)) + " power supplies?"):
         return
 
-    did = window_id(widget)
     tolerance = PVUtil.getDouble(PVUtil.createPV(tolerance_name(did), 10))
     timeout = magapply.read_timeout(timeout_name(did))
     zero_tolerance = magapply.read_zero_tolerance(zero_tolerance_name(did))

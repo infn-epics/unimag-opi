@@ -20,9 +20,9 @@ def window_id(widget, pv=None):
             pv = None
     if pv is not None:
         name = pv.getName().split("<")[0].split("(")[0]
-        did = re.split("[-_]", name)[-1]
-        if did and "$" not in did:
-            return did
+        match = re.match(r"loc://(?:confload|counter|nsteps|tolerance|timeout|zerotol|filterdiff)[-_](.+)$", name)
+        if match and "$" not in match.group(1):
+            return match.group(1)
     did = widget.getEffectiveMacros().getValue("DID")
     if did:
         return did

@@ -41,6 +41,9 @@
           <macros>
             <P>$(P)</P>
             <CONFFILE>$(CONFFILE)</CONFFILE>
+            <GROUP>mag</GROUP>
+            <FACILITY>$(FACILITY=ALL)</FACILITY>
+            <DID>$(DID)</DID>
           </macros>
           <target>window</target>
         </action>
@@ -50,7 +53,7 @@
       <y>2</y>
       <width>130</width>
       <height>25</height>
-      <tooltip>Open the restore display: load a snapshot (.csv) or dataset (.dat), compare it with the power supplies, edit and restore</tooltip>
+      <tooltip>Restore only file magnets visible under the current Zone, Type and Model filters</tooltip>
     </widget>
     <widget type="label" version="2.0.0">
       <name>SelLabel</name>
@@ -316,13 +319,16 @@
           <macros>
             <P>$(P)</P>
             <CONFFILE>$(CONFFILE)</CONFFILE>
+            <GROUP>mag</GROUP>
+            <FACILITY>$(FACILITY=ALL)</FACILITY>
+            <DID>$(DID)</DID>
           </macros>
           <target>window</target>
         </action>
       </actions>
       <x>699</x>
       <y>12</y>
-      <tooltip>$(actions)</tooltip>
+      <tooltip>Pretune only file magnets visible under the current Zone, Type and Model filters</tooltip>
     </widget>
   </widget>
 </display>

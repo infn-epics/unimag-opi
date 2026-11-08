@@ -4,6 +4,7 @@ from org.csstudio.display.builder.model import WidgetFactory
 import os
 import epik8sutil
 import pretuneutil
+import magselection
 reload(pretuneutil)  # pick up edits without restarting Phoebus
 def createInstance(x, y,macros):
     embedded = WidgetFactory.getInstance().getWidgetDescriptor("embedded").createWidget()
@@ -36,6 +37,7 @@ def clear_rows():
 # logger = ScriptUtil.getLogger()
 did = pretuneutil.window_id(widget, pvs[0])
 bases = []
+skipped = []
 device_prefix = widget.getEffectiveMacros().getValue("P")
 
 # logger.info("device " +device_prefix )
@@ -43,6 +45,13 @@ if not device_prefix:
     device_prefix="NOPREFIX"
 
 name = PVUtil.getString(pvs[0])
+allowed = None
+if name:
+    PVUtil.createPV(pretuneutil.list_name(did), 10).write("")
+    try:
+        allowed = magselection.visible_bases(widget, did)
+    except Exception as error:
+        ScriptUtil.showMessageDialog(widget, str(error) + ". No magnets were loaded for pretune.")
 
 
 # pv = ScriptUtil.getPrimaryPV(filename)
@@ -64,6 +73,10 @@ cnt=0
 def addElement(identifier, prefix, current, state_sp=""):
     """state_sp "" : the file has no state to restore, the step leaves STATE_SP untouched"""
     global cnt
+    base = prefix + ":" + identifier
+    if base not in allowed:
+        skipped.append(base)
+        return
     x=0
     y= offy+ cnt * (embedded_height)
 
@@ -73,7 +86,6 @@ def addElement(identifier, prefix, current, state_sp=""):
     ## I1 (target), CURRENT_NEXT_SP (pushed to hardware on StepUp) and CURRENT_PREV_SP
     ## (pushed on StepDown) all start at the loaded value: no step is in progress yet,
     ## so target == next set == prev set. ComputeStep.py refines next/prev once nsteps is set.
-    base = prefix+":"+identifier
     loc_i1 = PVUtil.createPV(pretuneutil.local_name(did, base, "I1"),10)
     loc_next_sp = PVUtil.createPV(pretuneutil.local_name(did, base, "CURRENT_NEXT_SP"),10)
     loc_prev_sp = PVUtil.createPV(pretuneutil.local_name(did, base, "CURRENT_PREV_SP"),10)
@@ -86,7 +98,7 @@ def addElement(identifier, prefix, current, state_sp=""):
     bases.append(base)
     cnt=cnt+1
 
-if name and clear_rows():
+if name and allowed is not None and clear_rows():
     if name.endswith(".csv"):
         ## Name, Prefix, Current, State
         devinfo = csv_to_list(name)
@@ -102,7 +114,7 @@ if name and clear_rows():
         ## look up each device's real prefix from the same YAML config used elsewhere (e.g. mag_dynamic.bob),
         ## since a single P macro isn't reliably forwarded through every "open in window" action
         prefix_by_name = {}
-        for dev in epik8sutil.conf_to_dev(widget):
+        for dev in epik8sutil.conf_to_dev(widget, "ALL", "ALL", "ALL"):
             prefix_by_name[dev['R']] = dev['P']
 
         with open(name, 'r') as file:
@@ -143,3 +155,8 @@ if name and clear_rows():
     
     ## the steps act on exactly the rows of this window, never on leftovers of an earlier load
     PVUtil.createPV(pretuneutil.list_name(did), 10).write("\n".join(bases))
+    notice = magselection.skipped_message(skipped, 'dataset')
+    if notice:
+        ScriptUtil.showMessageDialog(widget, notice)
+    elif not bases:
+        ScriptUtil.showMessageDialog(widget, "No magnets from the file are in the current Zone, Type and Model selection. Nothing was loaded for pretune.")
