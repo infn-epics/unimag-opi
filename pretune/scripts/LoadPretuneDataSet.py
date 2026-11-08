@@ -5,6 +5,7 @@ import os
 import epik8sutil
 import pretuneutil
 import magselection
+reload(magselection)
 reload(pretuneutil)  # pick up edits without restarting Phoebus
 def createInstance(x, y,macros):
     embedded = WidgetFactory.getInstance().getWidgetDescriptor("embedded").createWidget()

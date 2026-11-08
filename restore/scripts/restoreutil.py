@@ -3,6 +3,7 @@ import re
 import epik8sutil
 import magapply
 import magselection
+reload(magselection)
 reload(magapply)  # pick up edits without restarting Phoebus
 
 # Shared by the restore scripts.

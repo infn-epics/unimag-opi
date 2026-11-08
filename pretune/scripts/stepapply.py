@@ -2,6 +2,7 @@ from org.csstudio.display.builder.runtime.script import PVUtil, ScriptUtil
 import magapply
 import pretuneutil
 import magselection
+reload(magselection)
 reload(magapply)  # pick up edits without restarting Phoebus
 reload(pretuneutil)
 

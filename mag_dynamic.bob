@@ -43,7 +43,7 @@
             <CONFFILE>$(CONFFILE)</CONFFILE>
             <GROUP>mag</GROUP>
             <FACILITY>$(FACILITY=ALL)</FACILITY>
-            <DID>$(DID)</DID>
+            <MAGNET_SOURCE_ID>$(DID)</MAGNET_SOURCE_ID>
           </macros>
           <target>window</target>
         </action>
@@ -321,7 +321,7 @@
             <CONFFILE>$(CONFFILE)</CONFFILE>
             <GROUP>mag</GROUP>
             <FACILITY>$(FACILITY=ALL)</FACILITY>
-            <DID>$(DID)</DID>
+            <MAGNET_SOURCE_ID>$(DID)</MAGNET_SOURCE_ID>
           </macros>
           <target>window</target>
         </action>

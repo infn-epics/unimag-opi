@@ -2,6 +2,7 @@ from org.csstudio.display.builder.runtime.script import ScriptUtil, PVUtil
 from org.csstudio.display.builder.model import WidgetFactory
 import restoreutil
 import magselection
+reload(magselection)
 reload(restoreutil)  # pick up edits without restarting Phoebus
 
 # Triggered by the file selector's local PV (pvs[0]) holding the chosen file path, the same
