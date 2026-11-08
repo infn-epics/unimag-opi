@@ -7,6 +7,7 @@
       <pv_name>loc://FUNC_$(DID)</pv_name>
       <pv_name>loc://TYPE_$(DID)</pv_name>
       <pv_name trigger="false">loc://mag-visible-$(DID)&lt;VString&gt;(&quot;&quot;)</pv_name>
+      <pv_name trigger="false">loc://mag-visible-filters-$(DID)&lt;VString&gt;(&quot;&quot;)</pv_name>
     </script>
   </scripts>
   <widget type="embedded" version="2.0.0">
