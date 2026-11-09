@@ -1,5 +1,6 @@
 from org.csstudio.display.builder.runtime.script import ScriptUtil, PVUtil
 import re
+import time
 import epik8sutil
 import magapply
 import magselection
@@ -188,5 +189,20 @@ def run(widget, retry):
         " zero tol.=" + str(zero_tolerance) + " timeout=" + str(timeout) + " s")
     result = magapply.apply(devices, tolerance, retry=retry, force_current=retry, timeout=timeout,
                             zero_tolerance=zero_tolerance)
+    report_widget = ScriptUtil.findWidgetByName(widget, 'TestReportPath')
+    report_path = str(report_widget.getPropertyValue('text')) if report_widget is not None else ''
+    if report_path and '$' not in report_path:
+        try:
+            dataset_widget = ScriptUtil.findWidgetByName(widget, 'TestDatasetFile')
+            with open(report_path, 'a') as report:
+                report.write('\n' + time.strftime('%Y-%m-%d %H:%M:%S %Z') +
+                             ' Restore: ' + str(dataset_widget.getPropertyValue('text')) + '\n')
+                for device in devices:
+                    report.write('  target ' + device['base'] + ' ' + device['state'] +
+                                 ' ' + str(device['current']) + ' A\n')
+                report.write(magapply.summary(result, len(devices)) + '\nRESULT: ' +
+                             ('FAIL' if magapply.incomplete(result) else 'PASS') + '\n')
+        except Exception as error:
+            ScriptUtil.showMessageDialog(widget, 'Restore completed, but the test report could not be updated: ' + str(error))
     prefix = "Retry complete. " if retry else "Restore complete. "
     ScriptUtil.showMessageDialog(widget, prefix + magapply.summary(result, len(devices)))

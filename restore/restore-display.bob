@@ -7,7 +7,7 @@
   </macros>
   <scripts>
     <script file="scripts/LoadRestoreDataSet.py">
-      <pv_name>loc://restorefile-$(DID)&lt;VString&gt;</pv_name>
+      <pv_name>loc://restorefile-$(DID)&lt;VString&gt;("$(DATASET=)")</pv_name>
     </script>
   </scripts>
   <widget type="label" version="2.0.0">
@@ -15,4 +15,6 @@
     <text>$(MAGNET_SOURCE_ID)</text>
     <visible>false</visible>
   </widget>
+  <widget type="label" version="2.0.0"><name>TestReportPath</name><text>$(TEST_REPORT=)</text><visible>false</visible></widget>
+  <widget type="label" version="2.0.0"><name>TestDatasetFile</name><text>$(DATASET=)</text><visible>false</visible></widget>
 </display>
