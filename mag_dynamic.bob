@@ -306,10 +306,11 @@
       <name>Action Button</name>
       <actions>
         <action type="execute">
-          <description>Open filtered magnet dataset</description>
+          <description>Pretune</description>
           <script file="scripts/OpenMagDataset.py"/>
         </action>
       </actions>
+      <text>Pretune</text>
       <x>699</x>
       <y>12</y>
       <tooltip>Pretune only file magnets visible under the current Zone, Type and Model filters</tooltip>
