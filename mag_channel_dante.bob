@@ -7,7 +7,7 @@
   <widget type="group" version="3.0.0">
     <name>Readout</name>
     <x>10</x>
-    <width>350</width>
+    <width>398</width>
     <height>30</height>
     <style>2</style>
     <line_color>
@@ -133,7 +133,7 @@ else:
   </widget>
   <widget type="group" version="3.0.0">
     <name>Settings</name>
-    <x>370</x>
+    <x>414</x>
     <width>170</width>
     <height>30</height>
     <style>2</style>
@@ -175,7 +175,7 @@ else:
     </actions>
     <pv_name>loc://OPI:$(P):$(RL)&lt;VString&gt;($(OPI))</pv_name>
     <text>Ctrl</text>
-    <x>470</x>
+    <x>514</x>
     <y>6</y>
     <width>60</width>
     <height>25</height>
@@ -194,8 +194,8 @@ else:
   </widget>
   <widget type="group" version="3.0.0">
     <name>Control PS</name>
-    <x>370</x>
-    <width>370</width>
+    <x>414</x>
+    <width>326</width>
     <height>30</height>
     <style>2</style>
     <rules>
@@ -249,7 +249,7 @@ ScriptUtil.getPrimaryPV(widget).write(val)
       </actions>
       <pv_name>$(P):$(R):CURRENT_SP</pv_name>
       <text>Set Current</text>
-      <x>79</x>
+      <x>70</x>
       <y>2</y>
       <width>80</width>
       <height>20</height>
@@ -271,7 +271,7 @@ ScriptUtil.getPrimaryPV(widget).write(val)
       </actions>
       <pv_name>$(P):$(R):STATE_SP</pv_name>
       <text>ON</text>
-      <x>189</x>
+      <x>156</x>
       <y>4</y>
       <width>50</width>
       <height>20</height>
@@ -293,7 +293,7 @@ ScriptUtil.getPrimaryPV(widget).write(val)
       </actions>
       <pv_name>$(P):$(R):STATE_SP</pv_name>
       <text>Standby</text>
-      <x>249</x>
+      <x>212</x>
       <y>4</y>
       <width>60</width>
       <height>20</height>
@@ -326,7 +326,7 @@ ScriptUtil.getPrimaryPV(widget).write(val)
       </actions>
       <pv_name>$(P):$(R):STATE_SP</pv_name>
       <text>Reset</text>
-      <x>319</x>
+      <x>278</x>
       <y>4</y>
       <width>43</width>
       <height>20</height>
@@ -348,5 +348,101 @@ ScriptUtil.getPrimaryPV(widget).write(val)
       <tooltip>OFF ALL SELECTED</tooltip>
       <border_alarm_sensitive>false</border_alarm_sensitive>
     </widget>
+  </widget>
+  <widget type="multi_state_led" version="2.0.0">
+    <name>StateSM</name>
+    <pv_name>$(P):$(R):STATE_SM</pv_name>
+    <x>358</x>
+    <y>2</y>
+    <width>42</width>
+    <height>23</height>
+    <visible>false</visible>
+    <square>true</square>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="9.0">
+      </font>
+    </font>
+    <states>
+      <state>
+        <value>0</value>
+        <label>READY</label>
+        <color>
+          <color name="OK" red="0" green="255" blue="0">
+          </color>
+        </color>
+      </state>
+      <state>
+        <value>1</value>
+        <label>SET</label>
+        <color>
+          <color red="110" green="180" blue="255">
+          </color>
+        </color>
+      </state>
+      <state>
+        <value>2</value>
+        <label>STATE</label>
+        <color>
+          <color red="110" green="180" blue="255">
+          </color>
+        </color>
+      </state>
+      <state>
+        <value>3</value>
+        <label>ZERO</label>
+        <color>
+          <color red="128" green="230" blue="230">
+          </color>
+        </color>
+      </state>
+      <state>
+        <value>4</value>
+        <label>POS</label>
+        <color>
+          <color red="200" green="160" blue="255">
+          </color>
+        </color>
+      </state>
+      <state>
+        <value>5</value>
+        <label>NEG</label>
+        <color>
+          <color red="200" green="160" blue="255">
+          </color>
+        </color>
+      </state>
+      <state>
+        <value>6</value>
+        <label>NO SP</label>
+        <color>
+          <color name="Attention" red="255" green="160" blue="0">
+          </color>
+        </color>
+      </state>
+      <state>
+        <value>7</value>
+        <label>NO ST</label>
+        <color>
+          <color name="STOP" red="255" green="0" blue="0">
+          </color>
+        </color>
+      </state>
+    </states>
+    <fallback_label>?</fallback_label>
+    <fallback_color>
+      <color red="160" green="160" blue="160">
+      </color>
+    </fallback_color>
+    <rules>
+      <rule name="Visible when STATE_SM exists" prop_id="visible" out_exp="false">
+        <exp bool_exp="pvInt0&gt;=0">
+          <value>true</value>
+        </exp>
+        <pv_name>$(pv_name)</pv_name>
+      </rule>
+    </rules>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
 </display>

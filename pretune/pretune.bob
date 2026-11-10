@@ -5,11 +5,11 @@
   <height>1077</height>
   <scripts>
     <script file="scripts/ComputeCalcStep.py">
-      <pv_name>loc://nsteps_$(DID)&lt;VLong&gt;</pv_name>
+      <pv_name>loc://nsteps_$(DID)&lt;VLong&gt;(0)</pv_name>
       <pv_name>loc://confload-$(DID)&lt;VString&gt;</pv_name>
     </script>
     <script file="scripts/ComputeStep.py">
-      <pv_name>loc://counter_$(DID)&lt;VLong&gt;</pv_name>
+      <pv_name>loc://counter_$(DID)&lt;VLong&gt;(0)</pv_name>
     </script>
   </scripts>
   <widget type="label" version="2.0.0">
