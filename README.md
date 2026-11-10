@@ -32,11 +32,12 @@ The status PVs represent the operational state of the magnet channel. Possible v
 - 3 `FAULT` – Magnet has detected a fault condition (alarm high)
 - 4 `EXT_INTLK`  –triggered by external interlock (alarm high)
 - 5 `CONN_FAULT` -triggered by communication errors (alarm high)
-- 6 `SP_NOT_REACHED` | Current setpoint not reached | MINOR |
-- 7 `ST_NOT_REACHED` | State not reached (UNIMAG failure) | MAJOR |
+- 8.. additional, device specific states (e.g. Danfysik `RAMPING`, `POL_CHANGE`)
 
-
-- Additional states may be supported depending on IOC implementation
+`STATE_RB` is the state of the device. A setpoint or state not reached is a
+software state, reported in `STATE_SM` (`SPNOTSET` / `STATENOTSET`, see below).
+Only the Hazemeyer CITBus cubicle, which has no `STATE_SM`, still reports a
+state not reached in `STATE_RB` as `7 ST_NOT_REACHED` (MAJOR).
 
 #### UNIMAG Configuration
 
@@ -51,8 +52,9 @@ The status PVs represent the operational state of the magnet channel. Possible v
 
 #### UNIMAG State Machine (`STATE_SM`)
 
-IOCs that verify and retry their commands publish what the power supply is
-doing in `$(P):$(R):STATE_SM`, with the retries of the current command in
+Every UNIMAG power supply publishes what it is doing in
+`$(P):$(R):STATE_SM`. The ones that also send a command again (OCEM E642,
+Hazemeyer CITBus channels) give the retries of the current command in
 `$(P):$(R):RETRY_COUNT`:
 
 | Value | State | Meaning | Severity |
@@ -63,11 +65,15 @@ doing in `$(P):$(R):STATE_SM`, with the retries of the current command in
 | 3 | `GOZERO` | Going to zero current (within `ZERO_TOLERANCE`) | |
 | 4 | `GOPOS` | Changing polarity to positive | |
 | 5 | `GONEG` | Changing polarity to negative | |
-| 6 | `SPNOTSET` | Setpoint not reached after `RETRY` retries (`STATE_RB` = `SP_NOT_REACHED`) | MINOR |
-| 7 | `STATENOTSET` | State not reached after `RETRY` retries (`STATE_RB` = `ST_NOT_REACHED`) | MAJOR |
+| 6 | `SPNOTSET` | Setpoint not reached within `SET_TIMEOUT_S` (after `RETRY` retries where supported) | MINOR |
+| 7 | `STATENOTSET` | State not reached within `SET_TIMEOUT_S` (after `RETRY` retries where supported) | MAJOR |
 
-A command not applied within `SET_TIMEOUT_S` is sent again up to `RETRY`
-times. `SPNOTSET` / `STATENOTSET` stay until the next command; `STATE_SP` =
+Where supported, a command not applied within `SET_TIMEOUT_S` is sent again
+up to `RETRY` times. `GOPOS` / `GONEG` only appear on supplies that switch
+polarity in software (OCEM E642, Danfysik, Maccaferri, EEI); `GOZERO` while
+going to a zero setpoint or ramping down before a polarity change. The
+setpoint check is armed by the first `CURRENT_SP` written after the IOC
+starts, so a supply left running is not reported as `SPNOTSET`. `SPNOTSET` / `STATENOTSET` stay until the next command; `STATE_SP` =
 `RESET` interrupts the retries and brings `STATE_SM` back to `READY`.
 
 
