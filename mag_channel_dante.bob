@@ -51,10 +51,10 @@
           <exp bool_exp="pv1==0">
             <value>icons/icons-2407/off.png</value>
           </exp>
-          <exp bool_exp="(pv0&lt;0)&amp;&amp;(pv1==1)">
+          <exp bool_exp="(pv0&lt;0)&amp;&amp;(pv1!=2)">
             <value>icons/icons-2407/neg.png</value>
           </exp>
-          <exp bool_exp="(pv0&gt;0)&amp;&amp;(pv1==1)">
+          <exp bool_exp="(pv0&gt;0)&amp;&amp;(pv1!=2)">
             <value>icons/icons-2407/pos.png</value>
           </exp>
           <exp bool_exp="(pv0==0)||(pv1==2)">
